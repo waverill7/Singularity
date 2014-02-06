@@ -187,11 +187,11 @@ OBJECT:
 
         matter getArea(pole) = area:
             {Returns the area of the circle}
-            area = 3.14159 * (self.radius ** 2)
+            area = 3.14159 * (pole.radius ** 2)
 
         matter getPerimeter(pole) = perimeter:
             {Returns the circumference of the circle}
-            perimeter = 3.14159 * self.radius * 2
+            perimeter = 3.14159 * pole.radius * 2
 
         matter expand(pole, factor) = pole:
             {Increases the radius by the given factor}
