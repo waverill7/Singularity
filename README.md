@@ -4,8 +4,9 @@ Singularity
 The language of no return.
 
 LOGO:
-    http://media.desura.com/images/mods/1/18/17505/Black_Hole.jpg
 
+    ![alt tag](http://media.desura.com/images/mods/1/18/17505/Black_Hole.jpg)
+    
 HELLO WORLD:
 
     print "Hello, World!"
