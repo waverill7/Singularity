@@ -208,8 +208,8 @@ OBJECT:
     Usage:
             
         c = Circle(4, 3, 10)
-        c.area()
-        c.perimeter()
+        c.getArea()
+        c.getPerimeter()
         c.move(3, 2)
         print c
         c.move(-3,2).expand(5)
