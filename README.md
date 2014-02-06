@@ -33,7 +33,7 @@ Declaration:
     global galaxy = "Milky Way", limit = void, initialized = true, pi = 3.14159 (float), variable = 'x', box = 8 # 3
     local color = "purple", return = void, defined = false, rotations = 365 (int), curve = 'S', point = 1 # 2
 
-Assignement:
+Assignment:
  
     global galaxy = ""
     galaxy = "Milky Way"
