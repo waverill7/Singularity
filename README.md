@@ -3,20 +3,20 @@ Singularity
 
 The language of no return.
 
-OVERVIEW:
+Overview:
     
     This is a static and strongly typed programming language that draws influence from Python and MATLAB.
     Furthermore, this language is intended to be clean, intuitive, and reminiscent of the cosmos.
 
-LOGO:
+Logo:
 
 ![Logo](http://media.desura.com/images/mods/1/18/17505/Black_Hole.jpg)
     
-HELLO WORLD:
+Hello World:
 
     print "Hello, World!"
 
-DECLARATION:
+Declaration:
 
     global galaxy = "Milky Way"
     local color = "purple"
@@ -33,7 +33,7 @@ DECLARATION:
     global galaxy = "Milky Way", limit = void, initialized = true, pi = 3.14159 (float), variable = 'x', box = 8 # 3
     local color = "purple", return = void, defined = false, rotations = 365 (int), curve = 'S', point = 1 # 2
 
-ASSIGNMENT:
+Assignement:
  
     global galaxy = ""
     galaxy = "Milky Way"
@@ -71,7 +71,7 @@ ASSIGNMENT:
     local point = 1 # 2
     point = [[1 1]]
     
-NUMBER:
+Number:
     
     Number declarations must include one of the following proceeding the specified value:
     
@@ -87,7 +87,7 @@ NUMBER:
         
         (float)/(double)
         
-FUNCTION:
+Function:
 
     No Parameters/No Value Returned:
         
@@ -151,7 +151,7 @@ FUNCTION:
             global z = 0 (int) 
             z = f(1)
 
-ITERATION:
+Iteration:
 
     while x == y:
         ...
@@ -159,7 +159,7 @@ ITERATION:
     for i = x, i < y, i++:
         ...
         
-SELECTION:
+Selection:
 
     if x < y and y < z:
         ...
@@ -177,7 +177,7 @@ SELECTION:
         default:
             ...
             
-OBJECT:
+Object:
     
     (Much Like Python)
     
@@ -251,7 +251,7 @@ OBJECT:
             matter sound(pole) = s:
                 s = "baaaaa"
 
-MATRIX:
+Matrix:
     
     global m = 4 # 2     matrix with 4 rows and 2 columns with every entry initialized to void
     m[3][1] = 12         row 3, column 1 entry assigned the value 12
@@ -266,7 +266,7 @@ MATRIX:
     x[1]                 returns the first row ([6 8])
     x[2][1]              returns 12
     
-KEYWORDS:
+Keywords:
     
     global
     local
@@ -299,7 +299,7 @@ KEYWORDS:
     and
     not
     
-OPERATORS:
+Operators:
     
     ++ --              increment/decrement              
     or                 logical or
@@ -317,7 +317,7 @@ OPERATORS:
     **                 power
     #                  matrix size (n # n)
     
-TYPES:
+Types:
 
     Singularity has 10 types:
 
@@ -332,7 +332,7 @@ TYPES:
     object             
     function
                        
-MACROSYNTAX:
+Macrosyntax:
                        
     Program            ::=    Block
                               
@@ -417,6 +417,6 @@ MACROSYNTAX:
                         |     StringLiteral
                         |     CharacterLiteral
                 
-MICROSYNTAX:
+Microsyntax:
 
     (TO DO)
