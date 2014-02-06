@@ -5,7 +5,7 @@ The language of no return.
 
 LOGO:
 
-    ![alt tag](http://media.desura.com/images/mods/1/18/17505/Black_Hole.jpg)
+    ![logo](http://media.desura.com/images/mods/1/18/17505/Black_Hole.jpg?raw=true)
     
 HELLO WORLD:
 
