@@ -6,7 +6,7 @@ The language of no return.
 OVERVIEW:
     
     This is a static and strongly typed programming language that draws influence from Python and MATLAB.
-    Syntactically speaking, this language is intended to be clean, intuitive, and reminiscint of the cosmos.
+    Syntactically speaking, this language is intended to be clean, intuitive, and reminiscent of the cosmos.
 
 LOGO:
 
