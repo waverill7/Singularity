@@ -5,7 +5,7 @@ The language of no return.
 
 OVERVIEW:
     
-    This is a static and strongly typed programming language that draws influence from Python, Matlab, and C.
+    This is a static and strongly typed programming language that draws influence from Python and MATLAB.
 
 LOGO:
 
