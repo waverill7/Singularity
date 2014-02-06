@@ -3,6 +3,10 @@ Singularity
 
 The language of no return.
 
+OVERVIEW:
+    
+    This is a static and strongly typed programming language.
+
 LOGO:
 
 ![Logo](http://media.desura.com/images/mods/1/18/17505/Black_Hole.jpg)
