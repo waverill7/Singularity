@@ -405,7 +405,7 @@ MACROSYNTAX:
                         |     Matrix
                         |     '(' Expression ')'
                            
-Literal                ::=    'void'
+    Literal            ::=    'void'
                         |     ('true' | 'false')
                         |     (NaturalLiteral | IntegerLiteral | RealLiteral)
                         |     StringLiteral
