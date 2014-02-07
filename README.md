@@ -349,7 +349,7 @@ Macrosyntax:
                         |     'if' Expression ':' Block ('elif' Expression ':' Block)* ('else' ':' Block)?
                         |     'switch' ID ':' ('case' Expression ':' Block 'continue'?)* ('default' ':' Block)? 
                         |     'object' ID ('(' ID ')')? ':' Block
-                        |     'method' ID '(' 'pole' (',' ID)* ')' '=' ((ID ':' Block Assignment) | (('void' | 'pole') ':' Block)))
+                        |     'method' ID '(' 'self' (',' ID)* ')' '=' ((ID ':' Block Assignment) | (('void' | 'self') ':' Block)))
                         |     Attribute
                               
     Declaration        ::=    ID '=' Expression Type? (',' ID '=' Expression Type?)*
