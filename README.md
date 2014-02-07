@@ -208,7 +208,7 @@ Object:
             self.x += dx
             self.y += dy
             
-        method __str__ self) = description:
+        method __str__ (self) = description:
             description = "Circle at (%g,%g) with r=%g" % (self.x, self.y, self.radius)
             
     Usage:
