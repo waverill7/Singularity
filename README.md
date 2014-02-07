@@ -6,7 +6,7 @@ The language of no return.
 Overview:
     
     This is a static and strongly typed programming language that draws influence from Python and MATLAB.
-    Furthermore, this language is intended to be clean, intuitive, and reminiscent of the cosmos.
+    Furthermore, this language is intended to be clean, intuitive, and subtly reminiscent of the cosmos.
 
 Logo:
 
@@ -186,30 +186,30 @@ Object:
         object Circle:
             {A circle with a 2-D center point and a radius.}
 
-        matter __init__(pole, x, y, radius) = void:
-            pole.x = x
-            pole.y = y
-            pole.radius = radius
+        method __init__(self, x, y, radius) = void:
+            self.x = x
+            self.y = y
+            self.radius = radius
 
-        matter getArea(pole) = area:
+        method getArea(self) = area:
             {Returns the area of the circle}
-            area = 3.14159 * (pole.radius ** 2)
+            area = 3.14159 * (self.radius ** 2)
 
-        matter getPerimeter(pole) = perimeter:
+        method getPerimeter(self) = perimeter:
             {Returns the circumference of the circle}
-            perimeter = 3.14159 * pole.radius * 2
+            perimeter = 3.14159 * self.radius * 2
 
-        matter expand(pole, factor) = pole:
+        method expand(self, factor) = self:
             {Increases the radius by the given factor}
-            pole.radius *= factor
+            self.radius *= factor
 
-        matter move(pole, dx, dy) = pole:
+        method move(self, dx, dy) = self:
             {Moves the center point by <dx, dy>}
-            pole.x += dx
-            pole.y += dy
+            self.x += dx
+            self.y += dy
             
-        matter __str__(pole) = description:
-            description = "Circle at (%g,%g) with r=%g" % (pole.x, pole.y, pole.radius)
+        method __str__ self) = description:
+            description = "Circle at (%g,%g) with r=%g" % (self.x, self.y, self.radius)
             
     Usage:
             
@@ -224,31 +224,31 @@ Object:
     Inheritance:
     
         object Animal:
-            matter __init__(pole, name) = void:
-                pole.name = name
+            method __init__(self, name) = void:
+                self.name = name
 
-            matter speak(pole) = void:
-                print pole.name, "says", pole.sound()
+            method speak(self) = void:
+                print self.name, "says", self.sound()
 
         object Cow(Animal):
-            matter __init__(pole, name) = void:
-                Animal.__init__(pole, name)
+            method __init__(self, name) = void:
+                Animal.__init__(self, name)
 
-            matter sound(pole) = s:
+            method sound(self) = s:
                 s = "moo"
 
         object Horse(Animal):
-            matter __init__(pole, name) = void:
-                Animal.__init__(pole, name)
+            method __init__(self, name) = void:
+                Animal.__init__(self, name)
 
-            matter sound(pole) = s:
+            method sound(self) = s:
                 s = "neigh"
 
         object Sheep(Animal):
-            matter __init__(pole, name) = void:
-                Animal.__init__(pole, name)
+            method __init__(self, name) = void:
+                Animal.__init__(self, name)
 
-            matter sound(pole) = s:
+            method sound(self) = s:
                 s = "baaaaa"
 
 Matrix:
@@ -282,8 +282,8 @@ Keywords:
     case
     default
     object
-    matter
-    pole
+    method
+    self
     void
     u_byte
     u_short
@@ -349,7 +349,7 @@ Macrosyntax:
                         |     'if' Expression ':' Block ('elif' Expression ':' Block)* ('else' ':' Block)?
                         |     'switch' ID ':' ('case' Expression ':' Block 'continue'?)* ('default' ':' Block)? 
                         |     'object' ID ('(' ID ')')? ':' Block
-                        |     'matter' ID '(' 'pole' (',' ID)* ')' '=' ((ID ':' Block Assignment) | (('void' | 'pole') ':' Block)))
+                        |     'method' ID '(' 'pole' (',' ID)* ')' '=' ((ID ':' Block Assignment) | (('void' | 'pole') ':' Block)))
                         |     Attribute
                               
     Declaration        ::=    ID '=' Expression Type? (',' ID '=' Expression Type?)*
@@ -358,7 +358,7 @@ Macrosyntax:
                         |     '(' ('byte' | 'short' | 'int' | 'long' ')'
                         |     '(' ('float' | 'double') ')'
                               
-    Assignment         ::=    (ID | ('pole' '.' ID)) '=' (Expression | ('++' | '--'))
+    Assignment         ::=    (ID | ('self' '.' ID)) '=' (Expression | ('++' | '--'))
                         |     ID '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
                         |     ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
                         |     ID '[' Expression ']' '[' Expression ']' '=' Expression
@@ -371,8 +371,8 @@ Macrosyntax:
                           
     Arguments          ::=    '(' (Expression (',' Expression)*)? ')'
                           
-    Attribute          ::=    'pole' '.' ID
-                        |     ID ('.' ID '(' 'pole' (',' Expression)* ')')+
+    Attribute          ::=    'self' '.' ID
+                        |     ID ('.' ID '(' 'self' (',' Expression)* ')')+
                         |     ID ('.' ID Arguments)+
                           
     Matrix             ::=    ID ('[' Expression ']' ('[' Expression ']')?)? 
