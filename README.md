@@ -336,11 +336,11 @@ Types:
                        
 Macrosyntax:
                        
-    Program            ::=    Block
+    Program             →     Block
                               
-    Block              ::=    (Statement)+
+    Block               →     (Statement)+
                               
-    Statement          ::=    ('global' | 'local') (Declaration | Signature)
+    Statement           →     ('global' | 'local') (Declaration | Signature)
                         |     Assignment
                         |     Call
                         |     'print' Arguments
@@ -354,66 +354,66 @@ Macrosyntax:
                         |     'method' ID '(' 'self' (',' ID)* ')' '=' ((ID ':' Block Assignment) | (('void' | 'self') ':' Block)))
                         |     Attribute
                               
-    Declaration        ::=    ID '=' Expression Type? (',' ID '=' Expression Type?)*
+    Declaration         →     ID '=' Expression Type? (',' ID '=' Expression Type?)*
                               
-    Type               ::=    '(' ('u_byte' | 'u_short' | 'u_int' | 'u_long' ')'
+    Type                →     '(' ('u_byte' | 'u_short' | 'u_int' | 'u_long' ')'
                         |     '(' ('byte' | 'short' | 'int' | 'long' ')'
                         |     '(' ('float' | 'double') ')'
                               
-    Assignment         ::=    (ID | ('self' '.' ID)) '=' (Expression | ('++' | '--'))
+    Assignment          →     (ID | ('self' '.' ID)) '=' (Expression | ('++' | '--'))
                         |     ID '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
                         |     ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
                         |     ID '[' Expression ']' '[' Expression ']' '=' Expression
                    
-    Signature          ::=    ID Parameters '=' ((ID ':' Block Assignment) | ('void' ':' Block))
+    Signature           →     ID Parameters '=' ((ID ':' Block Assignment) | ('void' ':' Block))
                            
-    Parameters         ::=    '(' ((ID (',' ID)*) | 'void') ')' 
+    Parameters          →     '(' ((ID (',' ID)*) | 'void') ')' 
                            
-    Call               ::=    ID Arguments 
+    Call                →     ID Arguments 
                           
-    Arguments          ::=    '(' (Expression (',' Expression)*)? ')'
+    Arguments           →     '(' (Expression (',' Expression)*)? ')'
                           
-    Attribute          ::=    'self' '.' ID
+    Attribute           →     'self' '.' ID
                         |     ID ('.' ID '(' 'self' (',' Expression)* ')')+
                         |     ID ('.' ID Arguments)+
                           
-    Matrix             ::=    ID ('[' Expression ']' ('[' Expression ']')?)? 
+    Matrix              →     ID ('[' Expression ']' ('[' Expression ']')?)? 
                         |     Expression '#' Expression    
                           
-    Expression         ::=    Expression_1 ('or' Expression_1)*
+    Expression          →     Expression_1 ('or' Expression_1)*
                           
-    Expression_1       ::=    Expression_2 ('and' Expression_2)*
+    Expression_1        →     Expression_2 ('and' Expression_2)*
 
-    Expression_2       ::=    'not'? Expression_3
+    Expression_2        →     'not'? Expression_3
 
-    Expression_3       ::=    Expression_4 (('<' | '<=' | '>' | '>=' | '!=' | '==') Expression_4)?
+    Expression_3        →     Expression_4 (('<' | '<=' | '>' | '>=' | '!=' | '==') Expression_4)?
 
-    Expression_4       ::=    Expression_5 ('|' Expression_5)*
+    Expression_4        →     Expression_5 ('|' Expression_5)*
 
-    Expression_5       ::=    Expression_6 ('^' Expression_6)*
+    Expression_5        →     Expression_6 ('^' Expression_6)*
                             
-    Expression_6       ::=    Expression_7 ('&' Expression_7)*
+    Expression_6        →     Expression_7 ('&' Expression_7)*
                            
-    Expression_7       ::=    Expression_8 (('<<' | '>>') Expression_8)*
+    Expression_7        →     Expression_8 (('<<' | '>>') Expression_8)*
                           
-    Expression_8       ::=    Expression_9 (('+' | '-') Expression_9)*
+    Expression_8        →     Expression_9 (('+' | '-') Expression_9)*
                           
-    Expression_9       ::=    Expression_10 (('*' | '/' | '%') Expression_10)*
+    Expression_9        →     Expression_10 (('*' | '/' | '%') Expression_10)*
                           
-    Expression_10      ::=    '-'? Expression_11
+    Expression_10       →     '-'? Expression_11
                           
-    Expression_11      ::=    '~'? Expression_12
+    Expression_11       →     '~'? Expression_12
                           
-    Expression_12      ::=    Expression_13 ('**' Expression_13)*
+    Expression_12       →     Expression_13 ('**' Expression_13)*
                           
-    Expression_13      ::=    Literal
+    Expression_13       →     Literal
                         |     ID
                         |     Call
                         |     Attribute 
                         |     Matrix
                         |     '(' Expression ')'
                            
-    Literal            ::=    'void'
+    Literal             →     'void'
                         |     ('true' | 'false')
                         |     (NaturalLiteral | IntegerLiteral | RealLiteral)
                         |     StringLiteral
