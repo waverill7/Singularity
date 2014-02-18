@@ -415,7 +415,7 @@ Macrosyntax:
                            
     Literal             →     'void'
                         |     ('true' | 'false')
-                        |     (NaturalLiteral | IntegerLiteral | RealLiteral)
+                        |     (IntegerLiteral | RealLiteral)
                         |     StringLiteral
                         |     CharacterLiteral
                 
