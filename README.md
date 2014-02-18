@@ -298,6 +298,8 @@ Keywords:
     or
     and
     not
+    true
+    false
     
 Operators:
     
