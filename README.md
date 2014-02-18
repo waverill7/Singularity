@@ -184,7 +184,7 @@ Object:
     Basic:
     
         object Circle:
-            {A circle with a 2-D center point and a radius.}
+            $A circle with a 2-D center point and a radius.
 
         method __init__(self, x, y, radius) = void:
             self.x = x
@@ -192,19 +192,19 @@ Object:
             self.radius = radius
 
         method getArea(self) = area:
-            {Returns the area of the circle}
+            $Returns the area of the circle.
             area = 3.14159 * (self.radius ** 2)
 
         method getPerimeter(self) = perimeter:
-            {Returns the circumference of the circle}
+            $Returns the circumference of the circle.
             perimeter = 3.14159 * self.radius * 2
 
         method expand(self, factor) = self:
-            {Increases the radius by the given factor}
+            $Increases the radius by the given factor.
             self.radius *= factor
 
         method move(self, dx, dy) = self:
-            {Moves the center point by <dx, dy>}
+            $Moves the center point by <dx, dy>.
             self.x += dx
             self.y += dy
             
