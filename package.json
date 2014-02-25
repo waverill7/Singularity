@@ -1,0 +1,14 @@
+{
+  "name": "singularity-compiler",
+  "version": "0.0.1",
+  "description": "a compiler for the Singularity programming language",
+  "dependencies": {
+    "byline": "latest",
+    "hashmap": "latest",
+    "yargs": "latest"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "should": "latest"
+  }
+}
