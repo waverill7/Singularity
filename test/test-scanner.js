@@ -98,7 +98,6 @@ describe('The scanner', function () {
       i(tokens[2]).should.equal(i({kind:'ID',lexeme:'whil',line:1,col:193}))
       i(tokens[8]).should.equal(i({kind:'ID',lexeme:'ore',line:1,col:198}))
       i(tokens[11]).should.equal(i({kind:'ID',lexeme:'globallocal',line:1,col:202}))
-      
       done()
     })
   })
