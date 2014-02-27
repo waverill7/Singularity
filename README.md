@@ -321,12 +321,11 @@ Operators:
     
 Types:
 
-    Singularity has 10 types:
+    Singularity has 9 types:
 
     void               void
     boolean            true/false
-    natural            u_byte/u_short/u_int/u_long
-    integer            byte/short/int/long
+    integer            u_byte/u_short/u_int/u_long/byte/short/int/long
     real               float/double
     string             ""
     char               ''
