@@ -215,9 +215,13 @@ describe('The scanner', function () {
   it('scans numbers properly', function (done) {
     scan('test/data/token-tests/numbers', function (tokens) {
       i(tokens[0]).should.equal(i({kind:'ID',lexeme:'loop89x7',line:1,col:1}))
-      i(tokens[2]).should.equal(i({kind:'INTLIT',lexeme:'222289',line:1,col:10}))
-      i(tokens[3]).should.equal(i({kind:'ID',lexeme:'while9',line:1,col:16}))
-      i(tokens[4]).should.equal(i({kind:'INTLIT',lexeme:'02',line:1,col:23}))
+      i(tokens[1]).should.equal(i({kind:'IntegerLiteral',lexeme:'222289',line:1,col:10}))
+      i(tokens[2]).should.equal(i({kind:'ID',lexeme:'while9',line:1,col:17}))
+      i(tokens[3]).should.equal(i({kind:'IntegerLiteral',lexeme:'02',line:1,col:24}))
+      i(tokens[4]).should.equal(i({kind:'RealLiteral',lexeme:'3.14',line:1,col:27}))
+      i(tokens[5]).should.equal(i({kind:'RealLiteral',lexeme:'9.0e8',line:1,col:32}))
+      i(tokens[6]).should.equal(i({kind:'RealLiteral',lexeme:'6.02e+23',line:1,col:38}))
+      i(tokens[7]).should.equal(i({kind:'RealLiteral',lexeme:'1.0e-10',line:1,col:47}))
       done()
     })
   })
