@@ -61,7 +61,7 @@ describe('The scanner', function () {
   })
   
   it('reads characters properly', function (done) {
-    scan('test/data/token-tests/symbols', function (tokens) {
+    scan('test/data/token-tests/characters', function (tokens) {
       i(tokens[0]).should.equal(i({kind:'CharacterLiteral',lexeme:''a'',line:1,col:1}))
       i(tokens[1]).should.equal(i({kind:'CharacterLiteral',lexeme:''A'',line:1,col:5}))
       i(tokens[2]).should.equal(i({kind:'CharacterLiteral',lexeme:''b'',line:1,col:9}))
