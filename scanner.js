@@ -9,6 +9,8 @@
 var fs = require('fs')
 var byline = require('byline')
 var error = require('./error')
+var indent = 0;
+var indentSize = 4;
 
 module.exports = function (filename, callback) {
     var baseStream = fs.createReadStream(filename, {encoding: 'utf8'})
@@ -36,12 +38,23 @@ function scan(line, linenumber, tokens) {
     }
 
     while (true) {
-        // Skip spaces
-        while (/\s/.test(line[pos])) pos++
-            start = pos
-
-        // Nothing on the line
-        if (pos >= line.length) break
+        // Indent/Dedent tokens
+        if (/0x0A/.test(line[pos]) {
+            var numSpaces = 0;
+            pos++
+            while (/0x20/.test(line[pos])) {
+                numSpaces++
+                pos++
+            }
+            
+            if (numSpaces >= indentSize) {
+                indentSize += 4    
+                emit('Indent')
+            } else if ((indentSize > 4) && (numSpaces < indentSize) {
+                indentSize -= 4
+                emit('Dedent')
+            }
+        }
 
         // Comment
         if (line[pos] == '$') break
