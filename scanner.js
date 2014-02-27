@@ -40,8 +40,9 @@ function scan(line, linenumber, tokens) {
     while (true) {
         // Indent/Dedent tokens
         if (/0x0A/.test(line[pos]) {
-            var numSpaces = 0;
+            var numSpaces = 0
             pos++
+            
             while (/0x20/.test(line[pos])) {
                 numSpaces++
                 pos++
