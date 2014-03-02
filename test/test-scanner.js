@@ -45,7 +45,7 @@ describe('The scanner', function () {
       i(tokens[14]).should.equal(i({kind:'+',lexeme:'+',line:1,col:24}))
       i(tokens[15]).should.equal(i({kind:'-',lexeme:'-',line:1,col:25}))
       i(tokens[16]).should.equal(i({kind:'*',lexeme:'*',line:1,col:26}))
-      i(tokens[17]).should.equal(i({kind:'*',lexeme:'/',line:1,col:27}))
+      i(tokens[17]).should.equal(i({kind:'/',lexeme:'/',line:1,col:27}))
       i(tokens[18]).should.equal(i({kind:'%',lexeme:'%',line:1,col:28}))
       i(tokens[19]).should.equal(i({kind:'~',lexeme:'~',line:1,col:29}))
       i(tokens[20]).should.equal(i({kind:'#',lexeme:'#',line:1,col:30}))
