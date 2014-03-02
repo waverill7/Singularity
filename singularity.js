@@ -7,7 +7,7 @@ var argv = require('yargs')
     .describe('a', 'show abstract syntax tree after parsing then stop')
     .describe('o', 'do optimizations')
     .describe('i', 'generate and show the intermediate code then stop')
-    .describe('target', 'generate code for target language: x86, C, or JavaScript')
+    .describe('target', 'generate code for target language:  JavaScript')
     .default({target:'js'})
     .demand(1)
     .argv
