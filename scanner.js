@@ -78,7 +78,7 @@ function scan(line, linenumber, tokens) {
             pos += 2
 
         // One-Character Tokens
-        } else if (/[<>|^&+\-*%~#:,()=.[\]]/.test(line[pos])) {
+        } else if (/[<>|^&+\-*/%~#:,()=.[\]]/.test(line[pos])) {
             emit(line[pos])
             pos++
 
@@ -91,10 +91,14 @@ function scan(line, linenumber, tokens) {
         } else if (/"/.test(line[pos])) {
             pos++
             while (!/"/.test(line[pos]) && pos < line.length) pos++
-            emit('StringLiteral', line.substring(start, pos+1))
+            if (pos === line.length) {
+                error('Unmatched String', {line: linenumber, col: start+1})    
+            } else {
+                emit('StringLiteral', line.substring(start, pos+1))
+            }
             
         // Reserved Words or Identifiers
-        } else if (/[A-Za-z]/.test(line[pos])) {
+        } else if (/[a-zA-Z]/.test(line[pos])) {
             while (/\w/.test(line[pos]) && pos < line.length) pos++
             var word = line.substring(start, pos)
             if (/^(?:global|local|print|while|for|break|continue|if|elif|else|switch|case|default|object|method|self|void|u_byte|u_short|u_int|u_long|byte|short|int|long|float|double|or|and|not|true|false)$/.test(word)) {
