@@ -42,9 +42,6 @@ function scan(line, linenumber, tokens) {
         
         // Nothing On The Line
         if (pos >= line.length) break
-
-        // Comment
-        if (line[pos] == '$') break
         
         // Return Tokens
         if (/\n/.test(line[pos]) {
@@ -67,6 +64,12 @@ function scan(line, linenumber, tokens) {
         // Skip Irrelevant Whitespace
         } else if (/\s/.test(line[pos])) {
             pos++
+
+        // Comment
+        } else if (line[pos] == '$') {
+            emit('Return')
+            break
+        }
 
         // Two-Character Tokens
         } else if (/\+\+|--|<=|>=|!=|==|<<|>>|\*\*/.test(line.substring(pos, pos+2))) {
