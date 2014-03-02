@@ -41,7 +41,7 @@ function scan(line, linenumber, tokens) {
     while (true) {
         start = pos
         
-        // Nothing On The Line
+        // Nothing on the Line
         if (pos >= line.length) break
         
         // Return Tokens
