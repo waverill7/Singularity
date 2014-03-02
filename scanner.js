@@ -68,7 +68,6 @@ function scan(line, linenumber, tokens) {
 
         // Comment
         } else if (line[pos] == '$') {
-            emit('Return')
             break
         }
 
