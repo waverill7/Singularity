@@ -10,8 +10,6 @@ var fs = require('fs')
 var byline = require('byline')
 var error = require('./error')
 
-var indentSize = 4;
-
 module.exports = function (filename, callback) {
     var baseStream = fs.createReadStream(filename, {encoding: 'utf8'})
     baseStream.on('error', function (err) {error(err)})
@@ -19,6 +17,9 @@ module.exports = function (filename, callback) {
     var stream = byline(baseStream, {keepEmptyLines: true})
     var tokens = []
     var linenumber = 0
+    
+    var indentSize = 4
+    
     stream.on('readable', function () {
         scan(stream.read(), ++linenumber, tokens)
     })
