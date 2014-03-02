@@ -113,11 +113,8 @@ function scan(line, linenumber, tokens) {
             if (/\.\d/.test(line.substring(pos, pos+2))) {
                 pos++
                 while (/\d/.test(line[pos])) pos++
-                if (/[Ee][+-]?\d/.test(line.substring(pos, pos+3))) {
-                    pos++
-                    if (/[+-]/.test(line[pos])) {
-                        pos++
-                    }
+                if (/[Ee][+\-]\d/.test(line.substring(pos, pos+3))) {
+                    pos += 2
                     while (/\d/.test(line[pos])) pos++
                 }
                 emit('RealLiteral', line.substring(start, pos))
