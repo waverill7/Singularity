@@ -9,7 +9,7 @@
 var fs = require('fs')
 var byline = require('byline')
 var error = require('./error')
-var indent = 0;
+
 var indentSize = 4;
 
 module.exports = function (filename, callback) {
@@ -38,61 +38,59 @@ function scan(line, linenumber, tokens) {
     }
 
     while (true) {
-        // Return token
-        if (/0x0A/.test(line[pos]) {
-            pos++
+        // Return Tokens
+        if (/\n/.test(line[pos]) {
             emit('Return')
+            pos++
         }
         
-        // Indent/Dedent tokens
-        if (/0x20/.test(line[pos])) {
-            
-            while (/0x20/.test(line[pos])) {
-                numSpaces++
-                pos++
-            }
-            
-            if (numSpaces >= indentSize) {
+        // Indent or Dedent Tokens
+        if (tokens[tokens.length-1]["kind"] === 'Return') {
+            if (/\040{indentSize}/.test(line.substring(pos, pos+indentSize))) {
                 indentSize += 4    
                 emit('Indent')
-            } else if ((indentSize > 4) && (numSpaces < indentSize) {
-                indentSize -= 4
-                emit('Dedent')
+            } else {
+                while(!/\040{indentSize}/.test(line.substring(pos, pos+indentSize))) {
+                    indentSize -= 4
+                    emit('Dedent')
+                    if (indentSize === 4) break
+                }
             }
+            if (/\040{indentSize}/.test(line.substring(pos, pos+indentSize))) pos += indentSize
         }
         
-        // Skip irrelevant whitespace
+        // Skip Irrelevant Whitespace
         while (/\s/.test(line[pos])) pos++
         start = pos
 
-        // Nothing on the line
+        // Nothing On The Line
         if (pos >= line.length) break
 
         // Comment
         if (line[pos] == '$') break
 
-        // Two-character tokens
+        // Two-Character Tokens
         if (/\+\+|--|<=|>=|!=|==|<<|>>|\*\*/.test(line.substring(pos, pos+2))) {
             emit(line.substring(pos, pos+2))
             pos += 2
 
-        // One-character tokens
-        } else if (/[<>|^&+*%~#:,()=.[\]\-]/.test(line[pos])) {
+        // One-Character Tokens
+        } else if (/[<>|^&+\-*%~#:,()=.[\]]/.test(line[pos])) {
             emit(line[pos])
             pos++
 
-        // Character literals
+        // Character Literals
         } else if (/'.'/.test(line.substring(pos, pos+3))) {
             emit('CharacterLiteral', line.substring(pos, pos+3))
             pos += 3
             
-        // String literals
+        // String Literals
         } else if (/"/.test(line[pos])) {
             pos++
             while (!/"/.test(line[pos]) && pos < line.length) pos++
             emit('StringLiteral', line.substring(start, pos+1))
             
-        // Reserved words or identifiers
+        // Reserved Words or Identifiers
         } else if (/[A-Za-z]/.test(line[pos])) {
             while (/\w/.test(line[pos]) && pos < line.length) pos++
             var word = line.substring(start, pos)
@@ -102,7 +100,7 @@ function scan(line, linenumber, tokens) {
                 emit('ID', word)
             }
     
-        // Integer or Real literals
+        // Integer or Real Literals
         } else if (/\d/.test(line[pos])) {
             while (/\d/.test(line[pos])) pos++
             if (/\.\d/.test(line.substring(pos, pos+2))) {
