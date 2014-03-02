@@ -1,4 +1,3 @@
-$ A multiplication table for row * column, where column and row are both >= 1 and <= 10.
 global multiplication_table = 10 # 10
 
 $ Iterates through each row of the table.
