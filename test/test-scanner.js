@@ -6,7 +6,7 @@ var i = require('util').inspect
 describe('The scanner', function () {
 
   it('scans the simplest program', function (done) {
-    scan('test/data/good-programs/hello.singularity', function (tokens) {
+    scan('test/data/good-programs/hello.sing', function (tokens) {
       tokens.length.should.equal(3)
       i(tokens[0]).should.equal(i({kind:'print',lexeme:'print',line:1,col:1}))
       i(tokens[1]).should.equal(i({kind:'StringLiteral',lexeme:'"Hello, World!"',line:1,col:7}))
@@ -16,7 +16,7 @@ describe('The scanner', function () {
   })
 
   it('properly handles comments and blank lines', function (done) {
-    scan('test/data/token-tests/comments-and-blank-lines', function (tokens) {
+    scan('test/data/token-tests/multiplication_table.sing', function (tokens) {
       tokens.length.should.equal(4)
       i(tokens[0]).should.equal(i({kind:'var',lexeme:'var',line:1,col:1}))
       i(tokens[1]).should.equal(i({kind:'ID',lexeme:'x',line:3,col:3}))
