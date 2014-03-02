@@ -55,9 +55,10 @@ function scan(line, linenumber, tokens) {
                     emit('Dedent')
                 }
             }
+            pos += indentSize-4
         }
         
-        // Skip Irrelevant Whitespace and Modify Position for Indent/Dedent
+        // Skip Irrelevant Whitespace
         while (/\s/.test(line[pos])) pos++
         start = pos
 
