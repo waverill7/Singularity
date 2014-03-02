@@ -222,7 +222,7 @@ describe('The scanner', function () {
       i(tokens[2]).should.equal(i({kind:'ID',lexeme:'while9',line:1,col:17}))
       i(tokens[3]).should.equal(i({kind:'IntegerLiteral',lexeme:'02',line:1,col:24}))
       i(tokens[4]).should.equal(i({kind:'RealLiteral',lexeme:'3.14',line:1,col:27}))
-      i(tokens[5]).should.equal(i({kind:'RealLiteral',lexeme:'9.0e8',line:1,col:32}))
+      i(tokens[5]).should.equal(i({kind:'RealLiteral',lexeme:'9.0E+8',line:1,col:32}))
       i(tokens[6]).should.equal(i({kind:'RealLiteral',lexeme:'6.02e+23',line:1,col:38}))
       i(tokens[7]).should.equal(i({kind:'RealLiteral',lexeme:'1.0e-10',line:1,col:47}))
       done()
