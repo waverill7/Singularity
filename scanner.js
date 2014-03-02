@@ -60,6 +60,13 @@ function scan(line, linenumber, tokens) {
                 emit('Dedent')
             }
         }
+        
+        // Skip irrelevant whitespace
+        while (/\s/.test(line[pos])) pos++
+        start = pos
+
+        // Nothing on the line
+        if (pos >= line.length) break
 
         // Comment
         if (line[pos] == '$') break
@@ -70,8 +77,9 @@ function scan(line, linenumber, tokens) {
             pos += 2
 
         // One-character tokens
-        } else if (/[<>|^&+*%~#:,()=.[]-]/.test(line[pos])) {
-            emit(line[pos++])
+        } else if (/[<>|^&+*%~#:,()=.[\]\-]/.test(line[pos])) {
+            emit(line[pos])
+            pos++
 
         // Character literals
         } else if (/'.'/.test(line.substring(pos, pos+3))) {
