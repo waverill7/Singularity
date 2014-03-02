@@ -38,11 +38,14 @@ function scan(line, linenumber, tokens) {
     }
 
     while (true) {
-        // Indent/Dedent tokens
+        // Return token
         if (/0x0A/.test(line[pos]) {
             pos++
             emit('Return')
         }
+        
+        // Indent/Dedent tokens
+        if (/0x20/.test(line[pos])) {
             
             while (/0x20/.test(line[pos])) {
                 numSpaces++
