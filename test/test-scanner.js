@@ -17,7 +17,7 @@ describe('The scanner', function () {
 
   it('properly handles comments and blank lines', function (done) {
     scan('test/data/token-tests/multiplication_table.sing', function (tokens) {
-      tokens.length.should.equal(53)
+      tokens.length.should.equal(54)
       i(tokens[0]).should.equal(i({kind:'var',lexeme:'var',line:1,col:1}))
       i(tokens[1]).should.equal(i({kind:'ID',lexeme:'x',line:3,col:3}))
       i(tokens[2]).should.equal(i({kind:';',lexeme:';',line:5,col:7}))
