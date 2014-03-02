@@ -38,14 +38,24 @@ function scan(line, linenumber, tokens) {
     }
 
     while (true) {
+        start = pos
+        
+        // Skip Irrelevant Whitespace
+        while (/\s/.test(line[pos])) pos++
+
+        // Nothing On The Line
+        if (pos >= line.length) break
+
+        // Comment
+        if (line[pos] == '$') break
+        
         // Return Tokens
         if (/\n/.test(line[pos]) {
             emit('Return')
             pos++
-        }
         
         // Indent or Dedent Tokens
-        if (tokens[tokens.length-1]["kind"] === 'Return') {
+        } else if (tokens[tokens.length-1]["kind"] === 'Return') {
             if (/\040{indentSize}/.test(line.substring(pos, pos+indentSize))) {
                 indentSize += 4    
                 emit('Indent')
@@ -56,20 +66,9 @@ function scan(line, linenumber, tokens) {
                 }
             }
             pos += indentSize-4
-        }
-        
-        // Skip Irrelevant Whitespace
-        while (/\s/.test(line[pos])) pos++
-        start = pos
-
-        // Nothing On The Line
-        if (pos >= line.length) break
-
-        // Comment
-        if (line[pos] == '$') break
 
         // Two-Character Tokens
-        if (/\+\+|--|<=|>=|!=|==|<<|>>|\*\*/.test(line.substring(pos, pos+2))) {
+        } else if (/\+\+|--|<=|>=|!=|==|<<|>>|\*\*/.test(line.substring(pos, pos+2))) {
             emit(line.substring(pos, pos+2))
             pos += 2
 
