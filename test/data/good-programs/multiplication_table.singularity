@@ -1,0 +1,9 @@
+$ A multiplication table for row * column, where column and row are both >= 1 and <= 10.
+global multiplicationTable = 10 # 10
+
+$ Iterates through each row of the table.
+for row = 1, row <= 10, row++:
+    $ Iterates through each column of the table.
+    for column = 1, column <= 10, column++:
+        $ Fills in each entry of the table.
+        multiplicationTable[row][column] = row * column
