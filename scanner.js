@@ -40,9 +40,6 @@ function scan(line, linenumber, tokens) {
     while (true) {
         start = pos
         
-        // Skip Irrelevant Whitespace
-        while (/\s/.test(line[pos])) pos++
-
         // Nothing On The Line
         if (pos >= line.length) break
 
@@ -66,6 +63,9 @@ function scan(line, linenumber, tokens) {
                 }
             }
             pos += indentSize-4
+            
+        // Skip Irrelevant Whitespace
+        } else if (/\s/.test(line[pos])) pos++
 
         // Two-Character Tokens
         } else if (/\+\+|--|<=|>=|!=|==|<<|>>|\*\*/.test(line.substring(pos, pos+2))) {
