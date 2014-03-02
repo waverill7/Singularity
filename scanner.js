@@ -49,14 +49,10 @@ function scan(line, linenumber, tokens) {
             if (/\040{indentSize}/.test(line.substring(pos, pos+indentSize))) {
                 indentSize += 4    
                 emit('Indent')
-            } else if (/\040{indentSize-4}/.test(line.substring(pos, pos+(indentSize-4)))) {
-                // Case where there is neither indentation nor dedentation.
-            }
             } else {
-                while(!/\040{indentSize}/.test(line.substring(pos, pos+indentSize))) {
+                while(!/\040{indentSize-4}/.test(line.substring(pos, pos+(indentSize-4)))) {
                     indentSize -= 4
                     emit('Dedent')
-                    if (indentSize === 4) break
                 }
             }
         }
