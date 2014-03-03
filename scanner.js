@@ -49,11 +49,17 @@ function scan(line, linenumber, tokens) {
         
         // Indent or Dedent Tokens
         if ((tokens.length > 0) && (tokens[tokens.length-1]["kind"] === 'Return')) {
-            if (/\040{indentSize}/.test(line.substring(pos, pos+indentSize))) {
+            var numSpaces = 0
+            
+            while ((/\040/.test(line[pos])) && (numSpaces < indentSize)) {
+                numSpaces++
+            }
+            
+            if (numSpaces === indentSize) {
                 indentSize += 4    
                 emit('Indent')
             } else {
-                while(!/\040{indentSize-4}/.test(line.substring(pos, pos+(indentSize-4)))) {
+                while ((numSpaces < indentSize) && (indentSize > 4)) {
                     indentSize -= 4
                     emit('Dedent')
                 }
