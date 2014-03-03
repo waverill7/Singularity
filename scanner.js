@@ -48,7 +48,7 @@ function scan(line, linenumber, tokens) {
         }
         
         // Indent or Dedent Tokens
-        } if ((tokens.length > 0) && (tokens[tokens.length-1]["kind"] === 'Return')) {
+        if ((tokens.length > 0) && (tokens[tokens.length-1]["kind"] === 'Return')) {
             if (/\040{indentSize}/.test(line.substring(pos, pos+indentSize))) {
                 indentSize += 4    
                 emit('Indent')
