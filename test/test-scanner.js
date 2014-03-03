@@ -211,13 +211,13 @@ describe('The scanner', function () {
   
   it('scans strings properly', function (done) {
     scan('test/data/token-tests/strings', function (tokens) {
-      i(tokens[0]).should.equal(i({kind:'StringLiteral',lexeme:'"testing 123"',line:1,col:1}))
-      i(tokens[1]).should.equal(i({kind:'StringLiteral',lexeme:'"All your base are belong to us."',line:1,col:15}))
-      i(tokens[2]).should.equal(i({kind:'StringLiteral',lexeme:'"a"',line:1,col:49}))
-      i(tokens[3]).should.equal(i({kind:'StringLiteral',lexeme:'"3.14"',line:1,col:53}))
-      i(tokens[4]).should.equal(i({kind:'StringLiteral',lexeme:'"y = x ** 2"',line:1,col:60}))
-      i(tokens[5]).should.equal(i({kind:'StringLiteral',lexeme:'" "',line:1,col:73}))
-      i(tokens[6]).should.equal(i({kind:'StringLiteral',lexeme:'"while x > 0:"',line:1,col:77}))
+      i(tokens[0]).should.equal(i({kind:'StringLiteral',lexeme:'\"testing 123\"',line:1,col:1}))
+      i(tokens[1]).should.equal(i({kind:'StringLiteral',lexeme:'\"All your base are belong to us.\"',line:1,col:15}))
+      i(tokens[2]).should.equal(i({kind:'StringLiteral',lexeme:'\"a\"',line:1,col:49}))
+      i(tokens[3]).should.equal(i({kind:'StringLiteral',lexeme:'\"3.14\"',line:1,col:53}))
+      i(tokens[4]).should.equal(i({kind:'StringLiteral',lexeme:'\"y = x ** 2\"',line:1,col:60}))
+      i(tokens[5]).should.equal(i({kind:'StringLiteral',lexeme:'\" \"',line:1,col:73}))
+      i(tokens[6]).should.equal(i({kind:'StringLiteral',lexeme:'\"while x > 0:\"',line:1,col:77}))
       done()
     })
   })   
