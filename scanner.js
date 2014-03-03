@@ -10,6 +10,8 @@ var fs = require('fs')
 var byline = require('byline')
 var error = require('./error')
 
+var indentSize = 4
+
 module.exports = function (filename, callback) {
     var baseStream = fs.createReadStream(filename, {encoding: 'utf8'})
     baseStream.on('error', function (err) {error(err)})
@@ -17,10 +19,9 @@ module.exports = function (filename, callback) {
     var stream = byline(baseStream, {keepEmptyLines: true})
     var tokens = []
     var linenumber = 0
-    var indentSize = [4]
     
     stream.on('readable', function () {
-        scan(stream.read(), ++linenumber, tokens, indentSize)
+        scan(stream.read(), ++linenumber, tokens)
     })
     stream.once('end', function () {
         tokens.push({kind: 'EOF', lexeme: 'EOF'})
@@ -28,7 +29,7 @@ module.exports = function (filename, callback) {
     })
 }
 
-function scan(line, linenumber, tokens, indentSize) {
+function scan(line, linenumber, tokens) {
     if (!line) return
 
     var start, pos = 0
@@ -48,16 +49,16 @@ function scan(line, linenumber, tokens, indentSize) {
         
         // Indent or Dedent Tokens
         if ((tokens.length > 0) && (tokens[tokens.length-1]["kind"] === 'Return')) {
-            if (/\040{indentSize[0]}/.test(line.substring(pos, pos+indentSize[0]))) {
-                indentSize[0] += 4    
+            if (/\040{indentSize}/.test(line.substring(pos, pos+indentSize))) {
+                indentSize += 4    
                 emit('Indent')
             } else {
-                while(!/\040{indentSize[0]-4}/.test(line.substring(pos, pos+(indentSize[0]-4)))) {
-                    indentSize[0] -= 4
+                while(!/\040{indentSize-4}/.test(line.substring(pos, pos+(indentSize-4)))) {
+                    indentSize -= 4
                     emit('Dedent')
                 }
             }
-            pos += indentSize[0]-4
+            pos += indentSize-4
             
         // Skip Irrelevant Whitespace
         } else if (/\s/.test(line[pos])) {
