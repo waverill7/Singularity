@@ -39,8 +39,6 @@ function scan(line, linenumber, tokens) {
     }
 
     while (true) {
-        start = pos
-        
         // Nothing on the Line
         if (pos >= line.length) {
             emit('Return')
@@ -71,6 +69,7 @@ function scan(line, linenumber, tokens) {
         while (/\s/.test(line[pos])) {
             pos++
         }
+        start = pos
 
         // Comment
         if (line[pos] === '$') {
