@@ -17,11 +17,10 @@ module.exports = function (filename, callback) {
     var stream = byline(baseStream, {keepEmptyLines: true})
     var tokens = []
     var linenumber = 0
-    
-    var indentSize = 4
+    var indentSize = [4]
     
     stream.on('readable', function () {
-        scan(stream.read(), ++linenumber, tokens)
+        scan(stream.read(), ++linenumber, tokens, indentSize)
     })
     stream.once('end', function () {
         tokens.push({kind: 'EOF', lexeme: 'EOF'})
@@ -49,16 +48,16 @@ function scan(line, linenumber, tokens) {
         
         // Indent or Dedent Tokens
         if ((tokens.length > 0) && (tokens[tokens.length-1]["kind"] === 'Return')) {
-            if (/\040{indentSize}/.test(line.substring(pos, pos+indentSize))) {
-                indentSize += 4    
+            if (/\040{indentSize[0]}/.test(line.substring(pos, pos+indentSize[0]))) {
+                indentSize[0] += 4    
                 emit('Indent')
             } else {
-                while(!/\040{indentSize-4}/.test(line.substring(pos, pos+(indentSize-4)))) {
-                    indentSize -= 4
+                while(!/\040{indentSize[0]-4}/.test(line.substring(pos, pos+(indentSize[0]-4)))) {
+                    indentSize[0] -= 4
                     emit('Dedent')
                 }
             }
-            pos += indentSize-4
+            pos += indentSize[0]-4
             
         // Skip Irrelevant Whitespace
         } else if (/\s/.test(line[pos])) {
