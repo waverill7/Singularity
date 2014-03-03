@@ -69,7 +69,6 @@ function scan(line, linenumber, tokens) {
         // Comment
         } else if (line[pos] == '$') {
             break
-        }
 
         // Two-Character Tokens
         } else if (/\+\+|--|<=|>=|!=|==|<<|>>|\*\*/.test(line.substring(pos, pos+2))) {
