@@ -89,7 +89,7 @@ function scan(line, linenumber, tokens) {
         } else if (/"/.test(line[pos])) {
             pos++
             while (!/"/.test(line[pos]) && pos < line.length) pos++
-            if (pos === line.length) {
+            if ((pos === line.length) && (!/"/.test(line[pos]))) {
                 error('Unmatched String', {line: linenumber, col: start+1})    
             } else {
                 emit('StringLiteral', line.substring(start, pos+1))
