@@ -1,5 +1,4 @@
 var should = require('should');
-var mocha = require('mocha');
 var scan = require('../scanner')
 var error = require('../error')
 var i = require('util').inspect
@@ -113,7 +112,7 @@ describe('The scanner', function () {
   
   it('reads characters properly', function (done) {
     scan('test/data/token-tests/characters', function (tokens) {
-      i(tokens[0]).should.equal(i({kind:'CharacterLiteral',lexeme:'\'a\'',line:1,col:1}))
+      i(tokens[0]).should.equal(i({kind:'CharacterLiteral',lexeme:'\'b\'',line:1,col:1}))
       i(tokens[1]).should.equal(i({kind:'CharacterLiteral',lexeme:'\'A\'',line:1,col:5}))
       i(tokens[2]).should.equal(i({kind:'CharacterLiteral',lexeme:'\'b\'',line:1,col:9}))
       i(tokens[3]).should.equal(i({kind:'CharacterLiteral',lexeme:'\'B\'',line:1,col:13}))
