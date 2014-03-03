@@ -28,7 +28,7 @@ module.exports = function (filename, callback) {
     })
 }
 
-function scan(line, linenumber, tokens) {
+function scan(line, linenumber, tokens, indentSize) {
     if (!line) return
 
     var start, pos = 0
