@@ -1,4 +1,5 @@
 var should = require('should');
+var mocha = require('mocha');
 var scan = require('../scanner')
 var error = require('../error')
 var i = require('util').inspect
