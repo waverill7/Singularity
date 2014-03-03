@@ -89,10 +89,11 @@ function scan(line, linenumber, tokens) {
         } else if (/"/.test(line[pos])) {
             pos++
             while (!/"/.test(line[pos]) && pos < line.length) pos++
-            if ((pos === line.length) && (!/"/.test(line[pos]))) {
-                error('Unmatched String', {line: linenumber, col: start+1})    
-            } else {
+            if (/"/.test(line[pos]) {
                 emit('StringLiteral', line.substring(start, pos+1))
+                pos++
+            } else {
+                error('Unmatched String', {line: linenumber, col: start+1})
             }
             
         // Reserved Words or Identifiers
