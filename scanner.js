@@ -41,7 +41,7 @@ function scan(line, linenumber, tokens) {
     while (true) {
         // Nothing on the Line
         if (pos >= line.length) {
-            emit('Return')
+            emit('Return', )
             break
         }
         
