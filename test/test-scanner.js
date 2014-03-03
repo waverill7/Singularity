@@ -7,10 +7,11 @@ describe('The scanner', function () {
 
   it('scans the simplest program', function (done) {
     scan('test/data/good-programs/hello.sing', function (tokens) {
-      tokens.length.should.equal(3)
+      tokens.length.should.equal(4)
       i(tokens[0]).should.equal(i({kind:'print',lexeme:'print',line:1,col:1}))
       i(tokens[1]).should.equal(i({kind:'StringLiteral',lexeme:'"Hello, World!"',line:1,col:7}))
-      i(tokens[2]).should.equal(i({kind:'EOF',lexeme:'EOF'}))
+      i(tokens[2]).should.equal(i({kind:'Return', lexeme:'Return', line:1,col:15}))
+      i(tokens[3]).should.equal(i({kind:'EOF',lexeme:'EOF'}))
       done()
     })
   })
