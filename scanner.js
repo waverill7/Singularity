@@ -65,17 +65,21 @@ function scan(line, linenumber, tokens) {
                 }
             }
             pos += indentSize-4
+        }
             
         // Skip Irrelevant Whitespace
-        } else if (/\s/.test(line[pos])) {
+        while (/\s/.test(line[pos])) {
             pos++
+        }
 
         // Comment
-        } else if (line[pos] === '$') {
-            pos = line.length
+        if (line[pos] === '$') {
+            emit('Return')
+            break
+        }
 
         // Two-Character Tokens
-        } else if (/\+\+|--|<=|>=|!=|==|<<|>>|\*\*/.test(line.substring(pos, pos+2))) {
+        if (/\+\+|--|<=|>=|!=|==|<<|>>|\*\*/.test(line.substring(pos, pos+2))) {
             emit(line.substring(pos, pos+2))
             pos += 2
 
