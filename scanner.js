@@ -89,7 +89,7 @@ function scan(line, linenumber, tokens) {
         } else if (/"/.test(line[pos])) {
             pos++
             while (!/"/.test(line[pos]) && pos < line.length) pos++
-            if (/"/.test(line[pos]) {
+            if (/"/.test(line[pos])) {
                 emit('StringLiteral', line.substring(start, pos+1))
                 pos++
             } else {
