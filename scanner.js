@@ -39,21 +39,13 @@ function scan(line, linenumber, tokens) {
     }
 
     while (true) {
-        // Nothing on the Line
-        if (pos >= line.length) {
-            emit('Return')
-            start = pos++
-            break
-        }
-        
         // Indent or Dedent Tokens
         if ((tokens.length > 0) && (tokens[tokens.length-1]["kind"] === 'Return')) {
             var numSpaces = 0
-            
             while ((/\040/.test(line[pos])) && (numSpaces < indentSize)) {
+                pos++
                 numSpaces++
             }
-            
             if (numSpaces === indentSize) {
                 indentSize += 4    
                 emit('Indent')
@@ -63,20 +55,23 @@ function scan(line, linenumber, tokens) {
                     emit('Dedent')
                 }
             }
-            pos += indentSize-4
-            start = pos
         }
             
         // Skip Irrelevant Whitespace
         while (/\s/.test(line[pos])) {
             pos++
-            start = pos
+        }
+        start = pos
+        
+        // Nothing on the Line
+        if (pos >= line.length) {
+            emit('Return')
+            break
         }
 
         // Comment
         if (line[pos] === '$') {
             emit('Return')
-            start = pos++
             break
         }
 
