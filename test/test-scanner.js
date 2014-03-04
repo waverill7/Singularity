@@ -10,7 +10,7 @@ describe('The scanner', function () {
       tokens.length.should.equal(4)
       i(tokens[0]).should.equal(i({kind:'print',lexeme:'print',line:1,col:1}))
       i(tokens[1]).should.equal(i({kind:'StringLiteral',lexeme:'\"Hello, World!\"',line:1,col:7}))
-      i(tokens[2]).should.equal(i({kind:'Return', lexeme:'Return', line:1,col:23}))
+      i(tokens[2]).should.equal(i({kind:'Return', lexeme:'Return', line:1,col:22}))
       i(tokens[3]).should.equal(i({kind:'EOF',lexeme:'EOF'}))
       done()
     })
