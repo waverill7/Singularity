@@ -41,7 +41,8 @@ function scan(line, linenumber, tokens) {
     while (true) {
         // Nothing on the Line
         if (pos >= line.length) {
-            emit('Return', )
+            emit('Return')
+            start = pos
             break
         }
         
@@ -63,13 +64,14 @@ function scan(line, linenumber, tokens) {
                 }
             }
             pos += indentSize-4
+            start = pos
         }
             
         // Skip Irrelevant Whitespace
         while (/\s/.test(line[pos])) {
             pos++
+            start = pos
         }
-        start = pos
 
         // Comment
         if (line[pos] === '$') {
