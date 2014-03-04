@@ -42,7 +42,7 @@ function scan(line, linenumber, tokens) {
         // Nothing on the Line
         if (pos >= line.length) {
             emit('Return')
-            start = pos
+            start = pos++
             break
         }
         
@@ -76,6 +76,7 @@ function scan(line, linenumber, tokens) {
         // Comment
         if (line[pos] === '$') {
             emit('Return')
+            start = pos++
             break
         }
 
