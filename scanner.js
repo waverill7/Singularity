@@ -32,7 +32,8 @@ module.exports = function (filename, callback) {
 function scan(line, linenumber, tokens) {
     if (!line) return
 
-    var start, pos = 0
+    var start = 0 
+    var pos = 0
 
     function emit(kind, lexeme) {
         tokens.push({kind: kind, lexeme: lexeme || kind, line: linenumber, col: start+1})
