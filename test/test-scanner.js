@@ -58,6 +58,7 @@ describe('The scanner', function () {
       i(tokens[36]).should.equal(i({kind:'Return',lexeme:'Return',line:7,col:44}))
       i(tokens[37]).should.equal(i({kind:'Indent',lexeme:'Indent',line:8,col:1}))
       i(tokens[38]).should.equal(i({kind:'Return',lexeme:'Return',line:8,col:9}))
+      i(tokens[39]).should.equal(i({kind:'Return',lexeme:'Return',line:9,col:9}))
       i(tokens[39]).should.equal(i({kind:'ID',lexeme:'multiplication_table',line:10,col:9}))
       i(tokens[40]).should.equal(i({kind:'[',lexeme:'[',line:10,col:29}))
       i(tokens[41]).should.equal(i({kind:'ID',lexeme:'row',line:10,col:30}))
