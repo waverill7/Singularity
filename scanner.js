@@ -48,7 +48,7 @@ function scan(line, linenumber, tokens) {
             }
             if (numSpaces === indentSize) {
                 indentSize += 4
-                console.log(pos)
+                console.log(start)
                 emit('Indent')
             } else {
                 while ((numSpaces < indentSize) && (indentSize > 4)) {
