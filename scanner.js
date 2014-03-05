@@ -40,6 +40,10 @@ function scan(line, linenumber, tokens) {
     }
 
     while (true) {
+        if (line === 1) {
+            console.log(pos)
+        }
+        
         // Indent or Dedent Tokens
         if ((tokens.length > 0) && (tokens[tokens.length-1]["kind"] === 'Return')) {
             var numSpaces = 0
