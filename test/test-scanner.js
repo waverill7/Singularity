@@ -25,7 +25,7 @@ describe('The scanner', function () {
       i(tokens[3]).should.equal(i({kind:'IntegerLiteral',lexeme:'10',line:1,col:31}))
       i(tokens[4]).should.equal(i({kind:'#',lexeme:'#',line:1,col:34}))
       i(tokens[5]).should.equal(i({kind:'IntegerLiteral',lexeme:'10',line:1,col:36}))
-      i(tokens[6]).should.equal(i({kind:'Return',lexeme:'Return',line:2,col:1}))
+      i(tokens[6]).should.equal(i({kind:'Return',lexeme:'Return',line:1,col:38}))
       i(tokens[7]).should.equal(i({kind:'Return', lexeme:'Return',line:3,col:1}))
       i(tokens[8]).should.equal(i({kind:'for',lexeme:'for',line:4,col:1}))
       i(tokens[9]).should.equal(i({kind:'ID',lexeme:'row',line:4,col:5}))
