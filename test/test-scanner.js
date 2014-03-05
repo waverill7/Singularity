@@ -74,7 +74,7 @@ describe('The scanner', function () {
       i(tokens[52]).should.equal(i({kind:'Dedent',lexeme:'Dedent',line:11,col:1}))
       i(tokens[53]).should.equal(i({kind:'Dedent',lexeme:'Dedent',line:11,col:1}))
       i(tokens[54]).should.equal(i({kind:'Return',lexeme:'Return',line:11,col:1}))
-      i(tokens[54]).should.equal(i({kind:'EOF',lexeme:'EOF'}))
+      i(tokens[55]).should.equal(i({kind:'EOF',lexeme:'EOF'}))
       done()
     })
   })
