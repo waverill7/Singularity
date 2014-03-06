@@ -8,4 +8,3 @@ for row = 1, row <= 10, row++:
         
         $ Fills in each entry of the table.
         multiplication_table[row][column] = row * column
-$
