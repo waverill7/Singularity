@@ -30,10 +30,6 @@ module.exports = function (filename, callback) {
 }
 
 function scan(line, linenumber, tokens) {
-    console.log(linenumber)
-    console.log(!line)
-    if (!line) return
-
     var start = 0 
     var pos = 0
 
@@ -42,10 +38,6 @@ function scan(line, linenumber, tokens) {
     }
 
     while (true) {
-        if (line === 1) {
-            console.log(pos)
-        }
-        
         // Indent or Dedent Tokens
         if ((tokens.length > 0) && (tokens[tokens.length-1]["kind"] === 'Return')) {
             var numSpaces = 0
