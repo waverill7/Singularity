@@ -30,6 +30,8 @@ module.exports = function (filename, callback) {
 }
 
 function scan(line, linenumber, tokens) {
+    console.log(linenumber)
+    console.log(!line)
     if (!line) return
 
     var start = 0 
