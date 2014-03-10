@@ -343,14 +343,14 @@ Macrosyntax:
                         |     Assignment
                         |     Call
                         |     'print' Arguments
-                        |     'while' Expression ':' Block
-                        |     'for' Assignment ',' Expression ',' Assignment ':' Block
+                        |     'while' Expression ':' 'Indent' Block 'Dedent'
+                        |     'for' Assignment ',' Expression ',' Assignment ':' 'Indent' Block 'Dedent'
                         |     'break'
                         |     'continue'
-                        |     'if' Expression ':' Block ('elif' Expression ':' Block)* ('else' ':' Block)?
-                        |     'switch' ID ':' ('case' Expression ':' Block 'continue'?)* ('default' ':' Block)? 
-                        |     'object' ID ('(' ID ')')? ':' Block
-                        |     'method' ID '(' 'self' (',' ID)* ')' '=' ((ID ':' Block Assignment) | (('void' | 'self') ':' Block)))
+                        |     'if' Expression ':' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Indent' Block 'Dedent')* ('else' ':' 'Indent' Block 'Dedent')?
+                        |     'switch' ID ':' 'Indent' ('case' Expression ':' 'Indent' Block 'continue'? 'Dedent')* ('default' ':' 'Indent' Block 'Dedent')? 'Dedent' 
+                        |     'object' ID ('(' ID ')')? ':' 'Indent' Block 'Dedent'
+                        |     'method' ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent')))
                         |     Attribute
                               
     Declaration         →     ID '=' Expression Type? (',' ID '=' Expression Type?)*
@@ -364,7 +364,7 @@ Macrosyntax:
                         |     ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
                         |     ID '[' Expression ']' '[' Expression ']' '=' Expression
                    
-    Signature           →     ID Parameters '=' ((ID ':' Block Assignment) | ('void' ':' Block))
+    Signature           →     ID Parameters '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | ('void' ':' 'Indent' Block 'Dedent'))
                            
     Parameters          →     '(' ((ID (',' ID)*) | 'void') ')' 
                            
