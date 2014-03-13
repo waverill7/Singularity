@@ -355,11 +355,11 @@ Macrosyntax:
                               
     Declaration         →     ID '=' Expression Type? (',' ID '=' Expression Type?)*
                               
-    Type                →     '(' ('u_byte' | 'u_short' | 'u_int' | 'u_long' ')'
-                        |     '(' ('byte' | 'short' | 'int' | 'long' ')'
+    Type                →     '(' ('u_byte' | 'u_short' | 'u_int' | 'u_long') ')'
+                        |     '(' ('byte' | 'short' | 'int' | 'long') ')'
                         |     '(' ('float' | 'double') ')'
                               
-    Assignment          →     (ID | ('self' '.' ID)) '=' (Expression | ('++' | '--'))
+    Assignment          →     (ID | ('self' '.' ID)) (('=' Expression) | ('++' | '--'))
                         |     ID '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
                         |     ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
                         |     ID '[' Expression ']' '[' Expression ']' '=' Expression
