@@ -335,92 +335,89 @@ Types:
                        
 Macrosyntax:
                        
-    Program             →     Block
-                              
-    Block               →     (Statement)+
-                              
-    Statement           →     ('global' | 'local') (Declaration | Signature)
-                        |     Assignment
-                        |     Call
-                        |     'print' Arguments
-                        |     'while' Expression ':' 'Indent' Block 'Dedent'
-                        |     'for' Assignment ',' Expression ',' Assignment ':' 'Indent' Block 'Dedent'
-                        |     'break'
-                        |     'continue'
-                        |     'if' Expression ':' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Indent' Block 'Dedent')* ('else' ':' 'Indent' Block 'Dedent')?
-                        |     'switch' ID ':' 'Indent' ('case' Expression ':' 'Indent' Block 'continue'? 'Dedent')* ('default' ':' 'Indent' Block 'Dedent')? 'Dedent' 
-                        |     'object' ID ('(' ID ')')? ':' 'Indent' Block 'Dedent'
-                        |     'method' ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent')))
-                        |     Attribute
-                              
-    Declaration         →     ID '=' Expression Type? (',' ID '=' Expression Type?)*
-                              
-    Type                →     '(' ('u_byte' | 'u_short' | 'u_int' | 'u_long') ')'
-                        |     '(' ('byte' | 'short' | 'int' | 'long') ')'
-                        |     '(' ('float' | 'double') ')'
-                              
-    Assignment          →     (ID | ('self' '.' ID)) (('=' Expression) | ('++' | '--'))
-                        |     ID '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
-                        |     ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
-                        |     ID '[' Expression ']' '[' Expression ']' '=' Expression
-                   
-    Signature           →     ID Parameters '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | ('void' ':' 'Indent' Block 'Dedent'))
-                           
-    Parameters          →     '(' ((ID (',' ID)*) | 'void') ')' 
-                           
-    Call                →     ID Arguments 
-                          
-    Arguments           →     '(' (Expression (',' Expression)*)? ')'
-                          
-    Attribute           →     'self' '.' ID
-                        |     ID ('.' ID '(' 'self' (',' Expression)* ')')+
-                        |     ID ('.' ID Arguments)+
-                          
-    Matrix              →     ID ('[' Expression ']' ('[' Expression ']')?)? 
-                        |     Expression '#' Expression    
-                          
-    Expression          →     Expression_1 ('or' Expression_1)*
-                          
-    Expression_1        →     Expression_2 ('and' Expression_2)*
+Program             ::=     Block
 
-    Expression_2        →     'not'? Expression_3
+Block               ::=     (Statement)+
 
-    Expression_3        →     Expression_4 (('<' | '<=' | '>' | '>=' | '!=' | '==') Expression_4)?
+Statement           ::=     ('global' | 'local') (Declaration | Signature)
+                    |       Assignment
+                    |       Call
+                    |       'print' Arguments
+                    |       'while' Expression ':' 'Indent' Block 'Dedent'
+                    |       'for' Assignment ',' Expression ',' Assignment ':' 'Indent' Block 'Dedent'
+                    |       'break'
+                    |       'continue'
+                    |       'if' Expression ':' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Indent' Block 'Dedent')* ('else' ':' 'Indent' Block 'Dedent')?
+                    |       'switch' ID ':' 'Indent' ('case' Expression ':' 'Indent' Block 'continue'? 'Dedent')* ('default' ':' 'Indent' Block 'Dedent')? 'Dedent' 
+                    |       'object' ID ('(' ID ')')? ':' 'Indent' Block 'Dedent'
+                    |       'method' ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent'))')'
+                    |       Attribute
 
-    Expression_4        →     Expression_5 ('|' Expression_5)*
+Declaration         ::=     ID '=' Expression Type? (',' ID '=' Expression Type?)*
 
-    Expression_5        →     Expression_6 ('^' Expression_6)*
-                            
-    Expression_6        →     Expression_7 ('&' Expression_7)*
-                           
-    Expression_7        →     Expression_8 (('<<' | '>>') Expression_8)*
-                          
-    Expression_8        →     Expression_9 (('+' | '-') Expression_9)*
-                          
-    Expression_9        →     Expression_10 (('*' | '/' | '%') Expression_10)*
-                          
-    Expression_10       →     '-'? Expression_11
-                          
-    Expression_11       →     '~'? Expression_12
-                          
-    Expression_12       →     Expression_13 ('**' Expression_13)*
-                          
-    Expression_13       →     Literal
-                        |     ID
-                        |     Call
-                        |     Attribute 
-                        |     Matrix
-                        |     '(' Expression ')'
-                           
-    Literal             →     'void'
-                        |     ('true' | 'false')
-                        |     (IntegerLiteral | RealLiteral)
-                        |     StringLiteral
-                        |     CharacterLiteral
+Type                ::=     '(' ('u_byte' | 'u_short' | 'u_int' | 'u_long') ')'
+                    |       '(' ('byte' | 'short' | 'int' | 'long') ')'
+                    |       '(' ('float' | 'double') ')'
+
+Assignment          ::=     (ID | ('self' '.' ID)) (('=' Expression) | ('++' | '--'))
+                    |       ID '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
+                    |       ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
+                    |       ID '[' Expression ']' '[' Expression ']' '=' Expression
+
+Signature           ::=     ID Parameters '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | ('void' ':' 'Indent' Block 'Dedent'))
+
+Parameters          ::=     '(' ((ID (',' ID)*) | 'void') ')' 
+
+Call                ::=     ID Arguments 
+
+Arguments           ::=     '(' (Expression (',' Expression)*)? ')'
+
+Attribute           ::=     'self' '.' ID
+                    |       ID ('.' ID '(' 'self' (',' Expression)* ')')+
+                    |       ID ('.' ID Arguments)+
+
+Matrix              ::=     ID ('[' Expression ']' ('[' Expression ']')?)? 
+                    |       Expression '#' Expression    
+
+Expression          ::=     Expression_1 ('or' Expression_1)*
+
+Expression_1        ::=     Expression_2 ('and' Expression_2)*
+
+Expression_2        ::=     'not'? Expression_3
+
+Expression_3        ::=     Expression_4 (('<' | '<=' | '>' | '>=' | '!=' | '==') Expression_4)?
+
+Expression_4        ::=     Expression_5 ('|' Expression_5)*
+
+Expression_5        ::=     Expression_6 ('^' Expression_6)*
+
+Expression_6        ::=     Expression_7 ('&' Expression_7)*
+
+Expression_7        ::=     Expression_8 (('<<' | '>>') Expression_8)*
+
+Expression_8        ::=     Expression_9 (('+' | '-') Expression_9)*
+
+Expression_9        ::=     Expression_10 (('*' | '/' | '%') Expression_10)*
+
+Expression_10       ::=     '-'? Expression_11
+
+Expression_11       ::=     '~'? Expression_12
+
+Expression_12       ::=     Expression_13 ('**' Expression_13)*
+
+Expression_13       ::=     Literal
+                    |       ID
+                    |       Call
+                    |       Attribute 
+                    |       Matrix
+                    |       '(' Expression ')'
+
+Literal             ::=     'void'
+                    |       ('true' | 'false')
+                    |       (IntegerLiteral | RealLiteral)
+                    |       StringLiteral
+                    |       CharacterLiteral
                 
 Microsyntax:
 
     (TO DO)
-    
-Railroad Diagram:
-http://www.bottlecaps.de/rr/ui
