@@ -353,7 +353,7 @@ Macrosyntax:
                         |       'method' ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent'))')'
                         |       Attribute
 
-    Declaration         ::=     ID '=' Expression Type? (',' ID '=' Expression Type?)*
+    Declaration         ::=     ID '=' Expression (Type | ('#' Expression))? (',' ID '=' Expression (Type | ('#' Expression))?)*
 
     Type                ::=     '(' ('u_byte' | 'u_short' | 'u_int' | 'u_long') ')'
                         |       '(' ('byte' | 'short' | 'int' | 'long') ')'
@@ -377,7 +377,6 @@ Macrosyntax:
                         |       ID ('.' ID Arguments)+
 
     Matrix              ::=     ID ('[' Expression ']' ('[' Expression ']')?)? 
-                        |       Expression '#' Expression    
 
     Expression          ::=     Expression_1 ('or' Expression_1)*
 
