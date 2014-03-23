@@ -24,14 +24,14 @@ Declaration:
     local return = void
     global initialized = true
     local defined = false
-    global pi = 3.14159 (float)
-    local rotations = 365 (int)
+    global pi = 3.14159 {float}
+    local rotations = 365 {int}
     global variable = 'x'
     local curve = 'S'
     global  box = 8 # 3
     local point = 1 # 2
-    global galaxy = "Milky Way", limit = void, initialized = true, pi = 3.14159 (float), variable = 'x', box = 8 # 3
-    local color = "purple", return = void, defined = false, rotations = 365 (int), curve = 'S', point = 1 # 2
+    global galaxy = "Milky Way", limit = void, initialized = true, pi = 3.14159 {float}, variable = 'x', box = 8 # 3
+    local color = "purple", return = void, defined = false, rotations = 365 {int}, curve = 'S', point = 1 # 2
 
 Assignment:
  
@@ -53,10 +53,10 @@ Assignment:
     local defined = true
     defined = false
     
-    global pi = 0.0 (float)
+    global pi = 0.0 {float}
     pi = 3.14159
     
-    local rotations = 0 (int)
+    local rotations = 0 {int}
     rotations = 365
     
     global variable = ''
@@ -66,10 +66,10 @@ Assignment:
     curve = 'S'
     
     global  box = 8 # 3
-    box = [[0 0 0] [0 0 1] [0 1 0] [0 1 1] [1 0 0] [1 0 1] [1 1 0] [1 1 1]]
+    box[] = [[0 0 0] [0 0 1] [0 1 0] [0 1 1] [1 0 0] [1 0 1] [1 1 0] [1 1 1]]
     
     local point = 1 # 2
-    point = [[1 1]]
+    point[] = [[1 1]]
     
 Number:
     
@@ -77,15 +77,15 @@ Number:
     
     Natural:
         
-        (u_byte)/(u_short)/(u_int)/(u_long)
+        {u_byte}/{u_short}/{u_int}/{u_long}
     
     Integer:
         
-        (byte)/(short)/(int)/(long)
+        {byte}/{short}/{int}/{long}
         
     Real:
         
-        (float)/(double)
+        {float}/{double}
         
 Function:
 
@@ -256,13 +256,13 @@ Matrix:
     global m = 4 # 2     matrix with 4 rows and 2 columns with every entry initialized to void
     m[3][1] = 12         row 3, column 1 entry assigned the value 12
     m[0] = [2 4]         row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
-    m = [                
+    m[] = [                
          [2 4]           row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
          [6 8]           row 1, column 0 assigned the value 6 and row 1, column 1 assigned the value 8
          [10 12]         row 2, column 0 assigned the value 10 and row 2, column 1 assigned the value 12
          [14 16]         row 3, column 0 assigned the value 14 and row 3, column 1 assigned the value 16
         ]
-    m                    returns the entire matrix
+    m[]                  returns the entire matrix
     m[1]                 returns the first row ([6 8])
     m[2][1]              returns 12
     
@@ -317,7 +317,6 @@ Operators:
     -                  negation
     ~                  unary complement
     **                 power
-    #                  matrix size (n # n)
     
 Types:
 
@@ -329,7 +328,7 @@ Types:
     real               float/double
     string             ""
     char               ''
-    matrix             n # n
+    matrix             r # c
     object             
     function
                        
@@ -352,6 +351,7 @@ Macrosyntax:
                         |       'object' ID ('(' ID ')')? ':' 'Indent' Block 'Dedent'
                         |       'method' ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent'))')'
                         |       Attribute
+                        |       Matrix
 
     Declaration         ::=     ID '=' Expression (Type | ('#' Expression))? (',' ID '=' Expression (Type | ('#' Expression))?)*
 
