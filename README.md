@@ -355,12 +355,12 @@ Macrosyntax:
 
     Declaration         ::=     ID '=' Expression (Type | ('#' Expression))? (',' ID '=' Expression (Type | ('#' Expression))?)*
 
-    Type                ::=     '(' ('u_byte' | 'u_short' | 'u_int' | 'u_long') ')'
-                        |       '(' ('byte' | 'short' | 'int' | 'long') ')'
-                        |       '(' ('float' | 'double') ')'
+    Type                ::=     '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long') '}'
+                        |       '{' ('byte' | 'short' | 'int' | 'long') '}'
+                        |       '{' ('float' | 'double') '}'
 
     Assignment          ::=     (ID | ('self' '.' ID)) (('=' Expression) | ('++' | '--'))
-                        |       ID '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
+                        |       ID '[' ']' '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
                         |       ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
                         |       ID '[' Expression ']' '[' Expression ']' '=' Expression
 
@@ -376,7 +376,7 @@ Macrosyntax:
                         |       ID ('.' ID '(' 'self' (',' Expression)* ')')+
                         |       ID ('.' ID Arguments)+
 
-    Matrix              ::=     ID ('[' Expression ']' ('[' Expression ']')?)? 
+    Matrix              ::=     ID ('[' ']' | '[' Expression ']') ('[' Expression ']')?
 
     Expression          ::=     Expression_1 ('or' Expression_1)*
 
