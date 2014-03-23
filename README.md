@@ -376,7 +376,7 @@ Macrosyntax:
                         |       ID ('.' ID '(' 'self' (',' Expression)* ')')+
                         |       ID ('.' ID Arguments)+
 
-    Matrix              ::=     ID (('[' ']') | ('[' Expression ']' ([' Expression ']')?))
+    Matrix              ::=     ID (('[' ']') | ('[' Expression ']' ('[' Expression ']')?))
 
     Expression          ::=     Expression_1 ('or' Expression_1)*
 
