@@ -359,7 +359,9 @@ Macrosyntax:
                          |     '{' ('byte' | 'short' | 'int' | 'long') '}'
                          |     '{' ('float' | 'double') '}'
                         
-    Signature           ::=    ID Parameters '=' (ID | 'void') ':' 'Indent' Block 'Dedent'
+    Signature           ::=    ID (Function | Method)
+    
+    Function            ::=    Parameters '=' (ID | 'void') ':' 'Indent' Block 'Dedent'
     
     Parameters          ::=    '(' ((ID (',' ID)*) | 'void') ')'
     
