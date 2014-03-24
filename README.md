@@ -333,88 +333,106 @@ Types:
                        
 Macrosyntax:
                        
-    Program             ::=     Block
+    Program             ::=    Block
 
-    Block               ::=     (Statement)+
+    Block               ::=    (Statement)+
 
-    Statement           ::=     ('global' | 'local') (Declaration | Signature | Method)
-                        |       Assignment
-                        |       Attribute
-                        |       Call
-                        |       Matrix
-                        |       'print' Expression
-                        |       'while' Expression ':' 'Indent' Block 'Dedent'
-                        |       'for' Assignment ',' Expression ',' Assignment ':' 'Indent' Block 'Dedent'
-                        |       'break'
-                        |       'continue'
-                        |       'if' Expression ':' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Indent' Block 'Dedent')* ('else' ':' 'Indent' Block 'Dedent')?
-                        |       'switch' ID ':' 'Indent' ('case' Expression ':' 'Indent' Block 'continue'? 'Dedent')* ('default' ':' 'Indent' Block 'Dedent')? 'Dedent' 
-                        |       'object' ID ('(' ID ')')? ':' 'Indent' Block 'Dedent'
-
-    Declaration         ::=     ID '=' Expression (Type | ('#' Expression))? (',' ID '=' Expression (Type | ('#' Expression))?)*
-
-    Type                ::=     '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long') '}'
-                        |       '{' ('byte' | 'short' | 'int' | 'long') '}'
-                        |       '{' ('float' | 'double') '}'
+    Statement           ::=    Scope
+                         |     Assignment
+                         |     Attribute
+                         |     Call
+                         |     Matrix
+                         |     Print
+                         |     While
+                         |     For
+                         |     Break
+                         |     Continue
+                         |     Conditional
+                         |     Switch 
+                         |     Object
                         
-    Signature           ::=     ID Parameters '=' ((ID ':' 'Indent' Block 'Dedent') | ('void' ':' 'Indent' Block 'Dedent'))
-    
-    Parameters          ::=     '(' ((ID (',' ID)*) | 'void') ')'
-    
-    Method              ::=     ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent'))')'
+    Scope               ::=    ('global' | 'local') (Declaration | Signature | Method)
 
-    Assignment          ::=     (ID | ('self' '.' ID)) (('=' Expression) | ('++' | '--'))
-                        |       ID '[' ']' '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
-                        |       ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
-                        |       ID '[' Expression ']' '[' Expression ']' '=' Expression
+    Declaration         ::=    ID '=' Expression (Type | ('#' Expression))? (',' ID '=' Expression (Type | ('#' Expression))?)*
+
+    Type                ::=    '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long') '}'
+                         |     '{' ('byte' | 'short' | 'int' | 'long') '}'
+                         |     '{' ('float' | 'double') '}'
                         
-    Attribute           ::=     'self' '.' ID
-                        |       (ID | 'self') ('.' Call)+
+    Signature           ::=    ID Parameters '=' ((ID ':' 'Indent' Block 'Dedent') | ('void' ':' 'Indent' Block 'Dedent'))
+    
+    Parameters          ::=    '(' ((ID (',' ID)*) | 'void') ')'
+    
+    Method              ::=    ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent'))')'
 
-    Call                ::=     ID Arguments 
+    Assignment          ::=    (ID | ('self' '.' ID)) (('=' Expression) | ('++' | '--'))
+                         |     ID '[' ']' '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
+                         |     ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
+                         |     ID '[' Expression ']' '[' Expression ']' '=' Expression
+                        
+    Attribute           ::=    'self' '.' ID
+                         |     (ID | 'self') ('.' Call)+
 
-    Arguments           ::=     '(' ((Expression | 'self') (',' Expression)*)? ')'
+    Call                ::=    ID Arguments 
 
-    Matrix              ::=     ID (('[' ']') | ('[' Expression ']' ('[' Expression ']')?))
+    Arguments           ::=    '(' ((Expression | 'self') (',' Expression)*)? ')'
 
-    Expression          ::=     Expression_1 ('or' Expression_1)*
+    Matrix              ::=    ID (('[' ']') | ('[' Expression ']' ('[' Expression ']')?))
+    
+    Print               ::=    'print' Expression
+    
+    While               ::=    'while' Expression ':' 'Indent' Block 'Dedent'
+    
+    For                 ::=    'for' Assignment ',' Expression ',' Assignment ':' 'Indent' Block 'Dedent'
+    
+    Break               ::=    'break'
+    
+    Continue            ::=    'continue'
+                                    
+    Conditional         ::=    'if' Expression ':' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Indent' Block 'Dedent')* ('else' ':' 'Indent' Block 'Dedent')?
+    
+    Switch              ::=    'switch' ID ':' 'Indent' ('case' Expression ':' 'Indent' Block 'continue'? 'Dedent')* ('default' ':' 'Indent' Block 'Dedent')? 'Dedent'
+    
+    Object              ::=    'object' ID ('(' ID ')')? ':' 'Indent' Block 'Dedent'
 
-    Expression_1        ::=     Expression_2 ('and' Expression_2)*
+    Expression          ::=    Expression_1 ('or' Expression_1)*
 
-    Expression_2        ::=     'not'? Expression_3
+    Expression_1        ::=    Expression_2 ('and' Expression_2)*
 
-    Expression_3        ::=     Expression_4 (('<' | '<=' | '>' | '>=' | '!=' | '==') Expression_4)?
+    Expression_2        ::=    'not'? Expression_3
 
-    Expression_4        ::=     Expression_5 ('|' Expression_5)*
+    Expression_3        ::=    Expression_4 (('<' | '<=' | '>' | '>=' | '!=' | '==') Expression_4)?
 
-    Expression_5        ::=     Expression_6 ('^' Expression_6)*
+    Expression_4        ::=    Expression_5 ('|' Expression_5)*
 
-    Expression_6        ::=     Expression_7 ('&' Expression_7)*
+    Expression_5        ::=    Expression_6 ('^' Expression_6)*
 
-    Expression_7        ::=     Expression_8 (('<<' | '>>') Expression_8)*
+    Expression_6        ::=    Expression_7 ('&' Expression_7)*
 
-    Expression_8        ::=     Expression_9 (('+' | '-') Expression_9)*
+    Expression_7        ::=    Expression_8 (('<<' | '>>') Expression_8)*
 
-    Expression_9        ::=     Expression_10 (('*' | '/' | '%') Expression_10)*
+    Expression_8        ::=    Expression_9 (('+' | '-') Expression_9)*
 
-    Expression_10       ::=     '-'? Expression_11
+    Expression_9        ::=    Expression_10 (('*' | '/' | '%') Expression_10)*
 
-    Expression_11       ::=     '~'? Expression_12
+    Expression_10       ::=    '-'? Expression_11
 
-    Expression_12       ::=     Expression_13 ('**' Expression_13)*
+    Expression_11       ::=    '~'? Expression_12
 
-    Expression_13       ::=     Literal
-                        |       ID
-                        |       Call
-                        |       Attribute 
-                        |       Matrix
-                        |       '(' Expression ')'
+    Expression_12       ::=    Expression_13 ('**' Expression_13)*
 
-    Literal             ::=     'void'
-                        |       ('true' | 'false')
-                        |       (IntegerLiteral | RealLiteral)
-                        |       StringLiteral
-                        |       CharacterLiteral
+    Expression_13       ::=    Literal
+                         |     ID
+                         |     Call
+                         |     Attribute 
+                         |     Matrix
+                         |     '(' Expression ')'
+
+    Literal             ::=    'void'
+                         |     ('true' | 'false')
+                         |     (IntegerLiteral | RealLiteral)
+                         |     StringLiteral
+                         |     CharacterLiteral
                 
 Microsyntax:
 
