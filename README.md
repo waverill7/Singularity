@@ -359,11 +359,11 @@ Macrosyntax:
                          |     '{' ('byte' | 'short' | 'int' | 'long') '}'
                          |     '{' ('float' | 'double') '}'
                         
-    Signature           ::=    ID Parameters '=' ((ID ':' 'Indent' Block 'Dedent') | ('void' ':' 'Indent' Block 'Dedent'))
+    Signature           ::=    ID Parameters '=' (ID | 'void') ':' 'Indent' Block 'Dedent'
     
     Parameters          ::=    '(' ((ID (',' ID)*) | 'void') ')'
     
-    Method              ::=    ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent'))')'
+    Method              ::=    ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent'))')'
 
     Assignment          ::=    (ID | ('self' '.' ID)) (('=' Expression) | ('++' | '--'))
                          |     ID '[' ']' '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
