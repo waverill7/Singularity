@@ -347,7 +347,7 @@ Macrosyntax:
                          |     For
                          |     Break
                          |     Continue
-                         |     Conditional
+                         |     If
                          |     Switch 
                          |     Object
                         
@@ -389,7 +389,7 @@ Macrosyntax:
     
     Continue            ::=    'continue'
                                     
-    Conditional         ::=    'if' Expression ':' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Indent' Block 'Dedent')* ('else' ':' 'Indent' Block 'Dedent')?
+    If                  ::=    'if' Expression ':' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Indent' Block 'Dedent')* ('else' ':' 'Indent' Block 'Dedent')?
     
     Switch              ::=    'switch' ID ':' 'Indent' ('case' Expression ':' 'Indent' Block 'continue'? 'Dedent')* ('default' ':' 'Indent' Block 'Dedent')? 'Dedent'
     
