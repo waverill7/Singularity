@@ -264,7 +264,6 @@ Keywords:
     
     global
     local
-    @
     print
     while
     for
@@ -317,8 +316,8 @@ Types:
     boolean            true/false
     integer            u_byte/u_short/u_int/u_long/byte/short/int/long
     real               float/double
+    character          ''
     string             ""
-    char               ''
     matrix             r # c
     object             
     function
