@@ -339,7 +339,9 @@ Macrosyntax:
 
     Statement           ::=     ('global' | 'local') (Declaration | Signature | Method)
                         |       Assignment
+                        |       Attribute
                         |       Call
+                        |       Matrix
                         |       'print' Expression
                         |       'while' Expression ':' 'Indent' Block 'Dedent'
                         |       'for' Assignment ',' Expression ',' Assignment ':' 'Indent' Block 'Dedent'
@@ -348,8 +350,6 @@ Macrosyntax:
                         |       'if' Expression ':' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Indent' Block 'Dedent')* ('else' ':' 'Indent' Block 'Dedent')?
                         |       'switch' ID ':' 'Indent' ('case' Expression ':' 'Indent' Block 'continue'? 'Dedent')* ('default' ':' 'Indent' Block 'Dedent')? 'Dedent' 
                         |       'object' ID ('(' ID ')')? ':' 'Indent' Block 'Dedent'
-                        |       Attribute
-                        |       Matrix
 
     Declaration         ::=     ID '=' Expression (Type | ('#' Expression))? (',' ID '=' Expression (Type | ('#' Expression))?)*
 
@@ -367,13 +367,13 @@ Macrosyntax:
                         |       ID '[' ']' '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
                         |       ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
                         |       ID '[' Expression ']' '[' Expression ']' '=' Expression
+                        
+    Attribute           ::=     'self' '.' ID
+                        |       (ID | 'self') ('.' Call)+
 
     Call                ::=     ID Arguments 
 
     Arguments           ::=     '(' ((Expression | 'self') (',' Expression)*)? ')'
-
-    Attribute           ::=     'self' '.' ID
-                        |       (ID | 'self') ('.' Call)+
 
     Matrix              ::=     ID (('[' ']') | ('[' Expression ']' ('[' Expression ']')?))
 
