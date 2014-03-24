@@ -191,38 +191,46 @@ Object:
             local radius = 0
 
             global Circle(self, x, y, radius) = self:
+                $ Constructor for a circle.
+                
                 @ self.x = x
                 @ self.y = y
                 @ self.radius = radius
 
             global getArea(self) = area:
                 $Returns the area of the circle.
+                
                 @ area = 3.14159 * (self.radius ** 2)
 
             global getPerimeter(self) = perimeter:
                 $Returns the circumference of the circle.
+                
                 @ perimeter = 3.14159 * self.radius * 2
 
             global expand(self, factor) = self:
                 $Increases the radius by the given factor.
+                
                 @ self.radius = self.radius * factor
 
             global move(self, dx, dy) = self:
                 $Moves the center point by <dx, dy>.
+                
                 @ self.x += dx
                 @ self.y += dy
             
             global toString(self) = description:
-                @ description = "Circle at (%g,%g) with r=%g" % (self.x, self.y, self.radius)
+                $ Returns a stringy representation of the circle.
+                
+                @ description = "Circle at " + self.x + ", " + self.y + " with r = " +  self.radius
             
     Usage:
             
         global c = Circle(4, 3, 10)
-        c.getArea()
-        c.getPerimeter()
-        c.move(3, 2)
-        print c
-        c.move(-3,2).expand(5)
+        print c.getArea()
+        print c.getPerimeter()
+        print c.move(3, 2).toString()
+        print c.toString()
+        print c.move(-3,2).expand(5).toString()
         print c.toString()
     
     Inheritance:
