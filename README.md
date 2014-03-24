@@ -185,9 +185,6 @@ Object:
     
         object Circle:
             $ A circle with a 2-D center point and a radius.
-            local x = 0
-            local y = 0
-            local radius = 0
 
             global Circle(self, x, y, radius) = self:
                 $ Constructor for a circle.
@@ -218,7 +215,7 @@ Object:
             
     Usage:
             
-        global c = Circle(4, 3, 10)
+        global c = self.Circle(4, 3, 10)
         print c.getArea()
         print c.getPerimeter()
         print c.move(3, 2).toString()
@@ -229,8 +226,6 @@ Object:
     Inheritance:
     
         object Animal:
-            local name = ""
-            local sound = ""
             
             global Animal(self, name, sound) = self:
                 @ self.name = name
@@ -240,16 +235,19 @@ Object:
                 print self.name + " says " + self.sound
 
         object Cow(Animal):
+            
             global Cow(self, name) = self:
-                Animal(name, "moo")
+                self.Animal(name, "moo")
 
         object Horse(Animal):
+            
             global Horse(self, name) = self:
-                Animal(name, "neigh")
+                self.Animal(name, "neigh")
 
         object Sheep(Animal):
+            
             global Sheep(self, name) = self:
-                Animal(name, "baaaaa")
+                self.Animal(name, "baaaaa")
 
 Matrix:
     
@@ -377,7 +375,7 @@ Macrosyntax:
 
     Call                ::=    ID Arguments 
 
-    Arguments           ::=    '(' ((Expression | 'self') (',' Expression)*)? ')'
+    Arguments           ::=    '(' (Expression (',' Expression)*)? ')'
 
     Matrix              ::=    ID (('[' ']') | ('[' Expression ']' ('[' Expression ']')?))
     
