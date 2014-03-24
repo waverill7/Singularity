@@ -371,7 +371,8 @@ Macrosyntax:
                          |     ID '[' Expression ']' '[' Expression ']' '=' Expression
                         
     Attribute           ::=    'self' '.' ID
-                         |     (ID | 'self') ('.' Call)+
+                         |     'self' '.' Call
+                         |     ID ('.' Call)+
 
     Call                ::=    ID Arguments 
 
@@ -393,7 +394,7 @@ Macrosyntax:
     
     Switch              ::=    'switch' Expression ':' 'Indent' ('case' Expression ':' 'Indent' Block 'Dedent')* ('default' ':' 'Indent' Block 'Dedent')? 'Dedent'
     
-    Object              ::=    'object' ID ('(' ID ')')? ':' 'Indent' Block 'Dedent'
+    Object              ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Indent' Block 'Dedent'
 
     Expression          ::=    Expression_1 ('or' Expression_1)*
 
