@@ -364,7 +364,7 @@ Macrosyntax:
                         |       ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
                         |       ID '[' Expression ']' '[' Expression ']' '=' Expression
 
-    Signature           ::=     ID Parameters '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | ('void' ':' 'Indent' Block 'Dedent'))
+    Signature           ::=     ID Parameters '=' ((ID ':' 'Indent' Block 'Dedent') | ('void' ':' 'Indent' Block 'Dedent'))
 
     Parameters          ::=     '(' ((ID (',' ID)*) | 'void') ')' 
 
