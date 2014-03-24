@@ -209,8 +209,8 @@ Object:
 
             global move(self, dx, dy) = self:
                 $Moves the center point by <dx, dy>.
-                @ self.x += dx
-                @ self.y += dy
+                @ self.x = self.x + dx
+                @ self.y = self.y + dy
             
             global toString(self) = description:
                 $ Returns a stringy representation of the circle.
