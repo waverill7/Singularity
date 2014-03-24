@@ -80,7 +80,7 @@ function scan(line, linenumber, tokens) {
             pos += 2
 
         // One-Character Tokens
-        } else if (/[<>|^&+\-*/%~#:,()=.[\]]/.test(line[pos])) {
+        } else if (/[<>|^&+\-*/%~#:,()=.[\]{}@]/.test(line[pos])) {
             emit(line[pos])
             pos++
 
