@@ -167,15 +167,6 @@ Selection:
         ...
     else:
         ...
-    
-    switch x:
-        case 1:
-            ...
-        case 2:
-            ...
-            continue   (Switch Cases Break By Default!)
-        default:
-            ...
             
 Object:
     
@@ -282,9 +273,6 @@ Keywords:
     if
     elif
     else
-    switch
-    case
-    default
     object
     self
     void
@@ -352,7 +340,6 @@ Macrosyntax:
                          |     Break
                          |     Continue
                          |     If
-                         |     Switch 
                          |     Object
                         
     Scope               ::=    ('global' | 'local') ID (Declaration | Signature)
@@ -366,9 +353,9 @@ Macrosyntax:
     Signature           ::=    Function 
                          |     Method
     
-    Function            ::=    '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Indent' Block 'Dedent'
+    Function            ::=    '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
     
-    Method              ::=    '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Indent' Block 'Dedent'
+    Method              ::=    '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
 
     Assignment          ::=    (ID | ('self' '.' ID)) (('=' Expression) | ('++' | '--'))
                          |     ID '[' ']' '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
@@ -387,19 +374,17 @@ Macrosyntax:
     
     Print               ::=    'print' Expression
     
-    While               ::=    'while' Expression ':' 'Indent' Block 'Dedent'
+    While               ::=    'while' Expression ':' 'Return' 'Indent' Block 'Dedent'
     
-    For                 ::=    'for' Assignment ',' Expression ',' Assignment ':' 'Indent' Block 'Dedent'
+    For                 ::=    'for' Assignment ',' Expression ',' Assignment ':' 'Return' 'Indent' Block 'Dedent'
     
     Break               ::=    'break'
     
     Continue            ::=    'continue'
                                     
-    If                  ::=    'if' Expression ':' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Indent' Block 'Dedent')* ('else' ':' 'Indent' Block 'Dedent')?
+    If                  ::=    'if' Expression ':' 'Return' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Return' 'Indent' Block 'Dedent')* ('else' ':' 'Return' 'Indent' Block 'Dedent')?
     
-    Switch              ::=    'switch' Expression ':' 'Indent' ('case' Expression ':' 'Indent' Block 'Dedent')* ('default' ':' 'Indent' Block 'Dedent')? 'Dedent'
-    
-    Object              ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Indent' Block 'Dedent'
+    Object              ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
 
     Expression          ::=    Expression_1 ('or' Expression_1)*
 
