@@ -253,9 +253,9 @@ Object:
 
 Matrix:
     
-    global m = 4 # 2     matrix with 4 rows and 2 columns with every entry initialized to void
-    @ m[3][1] = 12         row 3, column 1 entry assigned the value 12
-    @ m[0] = [2 4]         row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
+    global m = 4 # 2      matrix with 4 rows and 2 columns with every entry initialized to void
+    @ m[3][1] = 12        row 3, column 1 entry assigned the value 12
+    @ m[0] = [2 4]        row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
     @ m[] = [                
           [2 4]           row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
           [6 8]           row 1, column 0 assigned the value 6 and row 1, column 1 assigned the value 8
