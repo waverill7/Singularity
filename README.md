@@ -370,10 +370,9 @@ Macrosyntax:
 
     Call                ::=     ID Arguments 
 
-    Arguments           ::=     '(' (Expression (',' Expression)*)? ')'
+    Arguments           ::=     '(' ((Expression | 'self') (',' Expression)*)? ')'
 
     Attribute           ::=     'self' '.' ID
-                        |       ID ('.' ID '(' 'self' (',' Expression)* ')')+
                         |       ID ('.' ID Arguments)+
 
     Matrix              ::=     ID (('[' ']') | ('[' Expression ']' ('[' Expression ']')?))
