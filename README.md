@@ -391,7 +391,7 @@ Macrosyntax:
                                     
     If                  ::=    'if' Expression ':' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Indent' Block 'Dedent')* ('else' ':' 'Indent' Block 'Dedent')?
     
-    Switch              ::=    'switch' ID ':' 'Indent' ('case' Expression ':' 'Indent' Block 'Dedent')* ('default' ':' 'Indent' Block 'Dedent')? 'Dedent'
+    Switch              ::=    'switch' ID ':' 'Indent' ('case' Expression ':' 'Indent' Block 'Dedent')+ ('default' ':' 'Indent' Block 'Dedent')? 'Dedent'
     
     Object              ::=    'object' ID ('(' ID ')')? ':' 'Indent' Block 'Dedent'
 
