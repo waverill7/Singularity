@@ -373,7 +373,7 @@ Macrosyntax:
     Arguments           ::=     '(' ((Expression | 'self') (',' Expression)*)? ')'
 
     Attribute           ::=     'self' '.' ID
-                        |       (ID | 'self') ('.' ID Arguments)+
+                        |       (ID | 'self') ('.' Call)+
 
     Matrix              ::=     ID (('[' ']') | ('[' Expression ']' ('[' Expression ']')?))
 
