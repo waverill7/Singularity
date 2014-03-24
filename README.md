@@ -361,11 +361,9 @@ Macrosyntax:
                         
     Signature           ::=    ID (Function | Method)
     
-    Function            ::=    Parameters '=' (ID | 'void') ':' 'Indent' Block 'Dedent'
+    Function            ::=    '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Indent' Block 'Dedent'
     
-    Parameters          ::=    '(' ((ID (',' ID)*) | 'void') ')'
-    
-    Method              ::=    ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent'))')'
+    Method              ::=    '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Indent' Block 'Dedent'
 
     Assignment          ::=    (ID | ('self' '.' ID)) (('=' Expression) | ('++' | '--'))
                          |     ID '[' ']' '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
