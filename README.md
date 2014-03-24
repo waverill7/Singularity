@@ -351,7 +351,7 @@ Macrosyntax:
                          |     Switch 
                          |     Object
                         
-    Scope               ::=    ('global' | 'local') (Declaration | Signature | Method)
+    Scope               ::=    ('global' | 'local') (Declaration | Signature)
 
     Declaration         ::=    ID '=' Expression (Size | ('#' Expression))? (',' ID '=' Expression (Size | ('#' Expression))?)*
 
