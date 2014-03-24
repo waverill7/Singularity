@@ -353,9 +353,9 @@ Macrosyntax:
                         
     Scope               ::=    ('global' | 'local') (Declaration | Signature | Method)
 
-    Declaration         ::=    ID '=' Expression (Type | ('#' Expression))? (',' ID '=' Expression (Type | ('#' Expression))?)*
+    Declaration         ::=    ID '=' Expression (Size | ('#' Expression))? (',' ID '=' Expression (Size | ('#' Expression))?)*
 
-    Type                ::=    '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long') '}'
+    Size                ::=    '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long') '}'
                          |     '{' ('byte' | 'short' | 'int' | 'long') '}'
                          |     '{' ('float' | 'double') '}'
                         
