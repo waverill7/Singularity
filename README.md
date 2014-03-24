@@ -351,15 +351,16 @@ Macrosyntax:
                          |     Switch 
                          |     Object
                         
-    Scope               ::=    ('global' | 'local') (Declaration | Signature)
+    Scope               ::=    ('global' | 'local') ID (Declaration | Signature)
 
-    Declaration         ::=    ID '=' Expression (Size | ('#' Expression))? (',' ID '=' Expression (Size | ('#' Expression))?)*
+    Declaration         ::=    '=' Expression (Size | ('#' Expression))? (',' ID '=' Expression (Size | ('#' Expression))?)*
 
     Size                ::=    '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long') '}'
                          |     '{' ('byte' | 'short' | 'int' | 'long') '}'
                          |     '{' ('float' | 'double') '}'
                         
-    Signature           ::=    ID (Function | Method)
+    Signature           ::=    Function 
+                         |     Method
     
     Function            ::=    '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Indent' Block 'Dedent'
     
