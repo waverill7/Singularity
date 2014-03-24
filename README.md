@@ -5,7 +5,7 @@ The language of no return.
 
 Overview:
     
-    This is a static and strongly typed systems programming language that draws influence from Python and MATLAB.
+    This is a static and strongly typed systems programming language that draws influence from Python, Java, and MATLAB.
     Furthermore, this language is intended to be clean, intuitive, and subtly reminiscent of the cosmos.
 
 Logo:
@@ -179,7 +179,7 @@ Selection:
             
 Object:
     
-    (Much Like Python)
+    (Similar to Java/Python)
     
     Basic:
     
