@@ -104,7 +104,7 @@ function scan(line, linenumber, tokens) {
         } else if (/[a-zA-Z]/.test(line[pos])) {
             while (/\w/.test(line[pos]) && pos < line.length) pos++
             var word = line.substring(start, pos)
-            if (/^(?:global|local|print|while|for|break|continue|if|elif|else|switch|case|default|object|method|self|void|u_byte|u_short|u_int|u_long|byte|short|int|long|float|double|or|and|not|true|false)$/.test(word)) {
+            if (/^(?:global|local|print|while|for|break|continue|if|elif|else|switch|case|default|object|self|void|u_byte|u_short|u_int|u_long|byte|short|int|long|float|double|or|and|not|true|false)$/.test(word)) {
                 emit(word)
             } else {
                 emit('ID', word)
