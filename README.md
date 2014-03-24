@@ -237,17 +237,17 @@ Object:
         object Cow(Animal):
             
             global Cow(self, name) = self:
-                self.Animal(name, "moo")
+                @ self.Animal = self.Animal(name, "moo")
 
         object Horse(Animal):
             
             global Horse(self, name) = self:
-                self.Animal(name, "neigh")
+                @ self.Animal = self.Animal(name, "neigh")
 
         object Sheep(Animal):
             
             global Sheep(self, name) = self:
-                self.Animal(name, "baaaaa")
+                @ self.Animal = self.Animal(name, "baaaaa")
 
 Matrix:
     
