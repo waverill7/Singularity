@@ -262,9 +262,9 @@ Matrix:
           [10 12]         row 2, column 0 assigned the value 10 and row 2, column 1 assigned the value 12
           [14 16]         row 3, column 0 assigned the value 14 and row 3, column 1 assigned the value 16
         ]
-    m[]                  returns the entire matrix
-    m[1]                 returns the first row ([6 8])
-    m[2][1]              returns 12
+    print m[]             prints the entire matrix
+    print m[1]            prints the first row ([6 8])
+    print m[2][1]         prints 12
     
 Keywords:
     
