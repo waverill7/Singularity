@@ -36,10 +36,10 @@ Declaration:
 Assignment:
  
     global galaxy = ""
-    galaxy = "Milky Way"
+    @ galaxy = "Milky Way"
     
     local color = ""
-    color = "purple"
+    @ color = "purple"
     
     global limit = void
     (no other value possible)
@@ -48,28 +48,28 @@ Assignment:
     (no other value possible)
     
     global initialized = false
-    initialized = true
+    @ initialized = true
     
     local defined = true
-    defined = false
+    @ defined = false
     
     global pi = 0.0 {float}
-    pi = 3.14159
+    @ pi = 3.14159
     
     local rotations = 0 {int}
-    rotations = 365
+    @ rotations = 365
     
     global variable = ''
-    variable = 'x'
+    @ variable = 'x'
     
     local curve = ''
-    curve = 'S'
+    @ curve = 'S'
     
     global  box = 8 # 3
-    box[] = [[0 0 0] [0 0 1] [0 1 0] [0 1 1] [1 0 0] [1 0 1] [1 1 0] [1 1 1]]
+    @ box[] = [[0 0 0] [0 0 1] [0 1 0] [0 1 1] [1 0 0] [1 0 1] [1 1 0] [1 1 1]]
     
     local point = 1 # 2
-    point[] = [[1 1]]
+    @ point[] = [[1 1]]
     
 Number:
     
@@ -123,16 +123,16 @@ Function:
           
             global f (void) = y:
                 ...
-                y = 2
+                @ y = 2
                 
             local f (void) = y:
                 ...
-                y = 2
+                @ y = 2
                 
         Call:
             
-            global z = 0 (int)
-            z = f()
+            global z = 0 {int}
+            @ z = f()
         
     Parameters/Value Returned:
     
@@ -140,23 +140,23 @@ Function:
             
             global f (x) = y:
                 ...
-                y = 2
+                @ y = 2
                 
             local f (x) = y:
                 ...
-                y = 2
+                @ y = 2
                 
         Call:
             
-            global z = 0 (int) 
-            z = f(1)
+            global z = 0 {int} 
+            @ z = f(1)
 
 Iteration:
 
     while x == y:
         ...
 
-    for i = x, i < y, i++:
+    for @ i = x, i < y, @ i++:
         ...
         
 Selection:
@@ -185,41 +185,45 @@ Object:
     
         object Circle:
             $A circle with a 2-D center point and a radius.
-
-        method __init__(self, x, y, radius) = void:
-            self.x = x
-            self.y = y
-            self.radius = radius
-
-        method getArea(self) = area:
-            $Returns the area of the circle.
-            area = 3.14159 * (self.radius ** 2)
-
-        method getPerimeter(self) = perimeter:
-            $Returns the circumference of the circle.
-            perimeter = 3.14159 * self.radius * 2
-
-        method expand(self, factor) = self:
-            $Increases the radius by the given factor.
-            self.radius *= factor
-
-        method move(self, dx, dy) = self:
-            $Moves the center point by <dx, dy>.
-            self.x += dx
-            self.y += dy
             
-        method __str__ (self) = description:
-            description = "Circle at (%g,%g) with r=%g" % (self.x, self.y, self.radius)
+            local x = 0
+            local y = 0
+            local radius = 0
+
+            global Circle(self, x, y, radius) = self:
+                @ self.x = x
+                @ self.y = y
+                @ self.radius = radius
+
+            global getArea(self) = area:
+                $Returns the area of the circle.
+                @ area = 3.14159 * (self.radius ** 2)
+
+            global getPerimeter(self) = perimeter:
+                $Returns the circumference of the circle.
+                @ perimeter = 3.14159 * self.radius * 2
+
+            global expand(self, factor) = self:
+                $Increases the radius by the given factor.
+                @ self.radius = self.radius * factor
+
+            global move(self, dx, dy) = self:
+                $Moves the center point by <dx, dy>.
+                @ self.x += dx
+                @ self.y += dy
+            
+            global toString(self) = description:
+                @ description = "Circle at (%g,%g) with r=%g" % (self.x, self.y, self.radius)
             
     Usage:
             
-        c = Circle(4, 3, 10)
+        global c = Circle(4, 3, 10)
         c.getArea()
         c.getPerimeter()
         c.move(3, 2)
         print c
         c.move(-3,2).expand(5)
-        print c
+        print c.toString()
     
     Inheritance:
     
@@ -254,13 +258,13 @@ Object:
 Matrix:
     
     global m = 4 # 2     matrix with 4 rows and 2 columns with every entry initialized to void
-    m[3][1] = 12         row 3, column 1 entry assigned the value 12
-    m[0] = [2 4]         row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
-    m[] = [                
-         [2 4]           row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
-         [6 8]           row 1, column 0 assigned the value 6 and row 1, column 1 assigned the value 8
-         [10 12]         row 2, column 0 assigned the value 10 and row 2, column 1 assigned the value 12
-         [14 16]         row 3, column 0 assigned the value 14 and row 3, column 1 assigned the value 16
+    @ m[3][1] = 12         row 3, column 1 entry assigned the value 12
+    @ m[0] = [2 4]         row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
+    @ m[] = [                
+          [2 4]           row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
+          [6 8]           row 1, column 0 assigned the value 6 and row 1, column 1 assigned the value 8
+          [10 12]         row 2, column 0 assigned the value 10 and row 2, column 1 assigned the value 12
+          [14 16]         row 3, column 0 assigned the value 14 and row 3, column 1 assigned the value 16
         ]
     m[]                  returns the entire matrix
     m[1]                 returns the first row ([6 8])
@@ -270,6 +274,7 @@ Keywords:
     
     global
     local
+    @
     print
     while
     for
