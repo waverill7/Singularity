@@ -282,7 +282,6 @@ Keywords:
     case
     default
     object
-    method
     self
     void
     u_byte
@@ -338,10 +337,10 @@ Macrosyntax:
 
     Block               ::=     (Statement)+
 
-    Statement           ::=     ('global' | 'local') (Declaration | Signature)
+    Statement           ::=     ('global' | 'local') (Declaration | Signature | Method)
                         |       Assignment
                         |       Call
-                        |       'print' Arguments
+                        |       'print' Expression
                         |       'while' Expression ':' 'Indent' Block 'Dedent'
                         |       'for' Assignment ',' Expression ',' Assignment ':' 'Indent' Block 'Dedent'
                         |       'break'
@@ -349,7 +348,6 @@ Macrosyntax:
                         |       'if' Expression ':' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Indent' Block 'Dedent')* ('else' ':' 'Indent' Block 'Dedent')?
                         |       'switch' ID ':' 'Indent' ('case' Expression ':' 'Indent' Block 'continue'? 'Dedent')* ('default' ':' 'Indent' Block 'Dedent')? 'Dedent' 
                         |       'object' ID ('(' ID ')')? ':' 'Indent' Block 'Dedent'
-                        |       'method' ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent'))')'
                         |       Attribute
                         |       Matrix
 
@@ -358,15 +356,17 @@ Macrosyntax:
     Type                ::=     '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long') '}'
                         |       '{' ('byte' | 'short' | 'int' | 'long') '}'
                         |       '{' ('float' | 'double') '}'
+                        
+    Signature           ::=     ID Parameters '=' ((ID ':' 'Indent' Block 'Dedent') | ('void' ':' 'Indent' Block 'Dedent'))
+    
+    Parameters          ::=     '(' ((ID (',' ID)*) | 'void') ')'
+    
+    Method              ::=     ID '(' 'self' (',' ID)* ')' '=' ((ID ':' 'Indent' Block Assignment 'Dedent') | (('void' | 'self') ':' 'Indent' Block 'Dedent'))')'
 
     Assignment          ::=     (ID | ('self' '.' ID)) (('=' Expression) | ('++' | '--'))
                         |       ID '[' ']' '=' '[' ('[' Expression (' ' Expression)* ']')+ ']'
                         |       ID '[' Expression ']' '=' '[' Expression (' ' Expression)* ']'
                         |       ID '[' Expression ']' '[' Expression ']' '=' Expression
-
-    Signature           ::=     ID Parameters '=' ((ID ':' 'Indent' Block 'Dedent') | ('void' ':' 'Indent' Block 'Dedent'))
-
-    Parameters          ::=     '(' ((ID (',' ID)*) | 'void') ')' 
 
     Call                ::=     ID Arguments 
 
