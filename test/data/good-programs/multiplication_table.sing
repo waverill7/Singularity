@@ -1,10 +1,10 @@
 global multiplication_table = 10 # 10
 
 $ Iterates through each row of the table.
-for row = 1, row <= 10, row++:
+for @ row = 1, row <= 10, @ row++:
     
     $ Iterates through each column of the table.
-    for column = 1, column <= 10, column++:
+    for @ column = 1, column <= 10, @ column++:
         
         $ Fills in each entry of the table.
-        multiplication_table[row][column] = row * column
+        @ multiplication_table[row][column] = row * column
