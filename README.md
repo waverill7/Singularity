@@ -185,42 +185,35 @@ Object:
     
         object Circle:
             $A circle with a 2-D center point and a radius.
-            
             local x = 0
             local y = 0
             local radius = 0
 
             global Circle(self, x, y, radius) = self:
                 $ Constructor for a circle.
-                
                 @ self.x = x
                 @ self.y = y
                 @ self.radius = radius
 
             global getArea(self) = area:
                 $Returns the area of the circle.
-                
                 @ area = 3.14159 * (self.radius ** 2)
 
             global getPerimeter(self) = perimeter:
                 $Returns the circumference of the circle.
-                
                 @ perimeter = 3.14159 * self.radius * 2
 
             global expand(self, factor) = self:
                 $Increases the radius by the given factor.
-                
                 @ self.radius = self.radius * factor
 
             global move(self, dx, dy) = self:
                 $Moves the center point by <dx, dy>.
-                
                 @ self.x += dx
                 @ self.y += dy
             
             global toString(self) = description:
                 $ Returns a stringy representation of the circle.
-                
                 @ description = "Circle at " + self.x + ", " + self.y + " with r = " +  self.radius
             
     Usage:
@@ -236,32 +229,27 @@ Object:
     Inheritance:
     
         object Animal:
-            method __init__(self, name) = void:
-                self.name = name
+            local name = ""
+            local sound = ""
+            
+            global Animal(self, name, sound) = self:
+                @ self.name = name
+                @ self.sound = sound
 
-            method speak(self) = void:
-                print self.name, "says", self.sound()
+            global speak(self) = void:
+                print self.name + " says " + self.sound
 
         object Cow(Animal):
-            method __init__(self, name) = void:
-                Animal.__init__(self, name)
-
-            method sound(self) = s:
-                s = "moo"
+            global Cow(self, name) = self:
+                Animal(name, "moo")
 
         object Horse(Animal):
-            method __init__(self, name) = void:
-                Animal.__init__(self, name)
-
-            method sound(self) = s:
-                s = "neigh"
+            global Horse(self, name) = self:
+                Animal(name, "neigh")
 
         object Sheep(Animal):
-            method __init__(self, name) = void:
-                Animal.__init__(self, name)
-
-            method sound(self) = s:
-                s = "baaaaa"
+            global Sheep(self, name) = self:
+                Animal(name, "baaaaa")
 
 Matrix:
     
