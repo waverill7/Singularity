@@ -413,17 +413,17 @@ Macrosyntax:
     Expression_12       ::=    Expression_13 ('**' Expression_13)*
 
     Expression_13       ::=    Literal
-                         |     ID
                          |     Attribute
                          |     Call 
                          |     Matrix
+                         |     ID
                          |     '(' Expression ')'
 
     Literal             ::=    'void'
                          |     ('true' | 'false')
                          |     (IntegerLiteral | RealLiteral)
-                         |     StringLiteral
                          |     CharacterLiteral
+                         |     StringLiteral
                 
 Microsyntax:
 
