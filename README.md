@@ -185,6 +185,9 @@ Object:
     
         object Circle:
             $ A circle with a 2-D center point and a radius.
+            local x = 0
+            local y = 0
+            local radius = 0
 
             global Circle(self, x, y, radius) = self:
                 $ Constructor for a circle.
@@ -226,6 +229,8 @@ Object:
     Inheritance:
     
         object Animal:
+            local name = ""
+            local sound = ""
             
             global Animal(self, name, sound) = self:
                 @ self.name = name
