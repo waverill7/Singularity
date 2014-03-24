@@ -414,8 +414,8 @@ Macrosyntax:
 
     Expression_13       ::=    Literal
                          |     ID
-                         |     Call
-                         |     Attribute 
+                         |     Attribute
+                         |     Call 
                          |     Matrix
                          |     '(' Expression ')'
 
