@@ -337,7 +337,7 @@ Macrosyntax:
                          |     For
                          |     Break
                          |     Continue
-                         |     If
+                         |     Condition
                          |     Object
                         
     Scope               ::=    ('global' | 'local') ID (Declaration | Signature)
@@ -380,7 +380,7 @@ Macrosyntax:
     
     Continue            ::=    'continue'
                                     
-    If                  ::=    'if' Expression ':' 'Return' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Return' 'Indent' Block 'Dedent')* ('else' ':' 'Return' 'Indent' Block 'Dedent')?
+    Condition           ::=    'if' Expression ':' 'Return' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Return' 'Indent' Block 'Dedent')* ('else' ':' 'Return' 'Indent' Block 'Dedent')?
     
     Object              ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
 
