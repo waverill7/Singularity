@@ -344,9 +344,7 @@ Macrosyntax:
 
     Declaration         ::=    '=' Expression (Size | ('#' Expression))? (',' ID '=' Expression (Size | ('#' Expression))?)*
 
-    Size                ::=    '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long') '}'
-                         |     '{' ('byte' | 'short' | 'int' | 'long') '}'
-                         |     '{' ('float' | 'double') '}'
+    Size                ::=    '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double') '}'
                         
     Signature           ::=    Function 
                          |     Method
