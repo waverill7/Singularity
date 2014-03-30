@@ -45,7 +45,7 @@ module.exports = function (scannerOutput) {
 }
 
 function parseProgram() {
-    return new Program(parseblock());
+    return new Program(parseBlock());
 }
 
 function parseBlock() {
