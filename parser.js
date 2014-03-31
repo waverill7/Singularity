@@ -661,8 +661,7 @@ function parseExpression_13() {
 
 function parseLiteral() {
     if (at('void')) {
-        match();
-        return new VoidLiteral();
+        return new VoidLiteral(match());
     } else if (at(['true' | 'false'])) {
         return new BooleanLiteral(match());
     } else if (at('IntegerLiteral')) {
