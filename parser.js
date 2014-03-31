@@ -161,8 +161,7 @@ function parseFunctionStatement(scope, name) {
     var value;
     var body;
     if (at('void')) {
-        match();
-        parameters.push(new VoidLiteral());
+        parameters.push(new VoidLiteral(match()));
     } else {
         parameters.push(new VariableReference(match('ID')));
         while (at(',')) {
@@ -175,8 +174,7 @@ function parseFunctionStatement(scope, name) {
     if (at('ID')) {
         value = new VariableReference(match());
     } else {
-        match('void');
-        value = new VoidLiteral();
+        value = new VoidLiteral(match('void'));
     }
     match(':');
     match('Return');
