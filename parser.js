@@ -403,13 +403,11 @@ function parseForStatement() {
 }
 
 function parseBreakStatement() {
-    match('break');
-    return new BreakStatement();
+    return new BreakStatement(match('break'));
 }
 
 function parseContinueStatement() {
-    match('continue');
-    return new ContinueStatement();
+    return new ContinueStatement(match('continue'));
 }
 
 function parseConditionalStatement() {
