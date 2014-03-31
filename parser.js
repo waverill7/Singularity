@@ -23,17 +23,17 @@ var WhileStatement = require('./entities/while');
 var ForStatement = require('./entities/for');
 var BreakStatement = require('./entities/break');
 var ContinueStatement = require('./entities/continue');
-var ConditionStatement = require('./entities/if');
+var ConditionalStatement = require('./entities/conditional');
 var ObjectStatement = require('./entities/object');
-var VoidLiteral = require('./entities/voidLiteral');
-var BooleanLiteral = require('./entities/booleanLiteral');
-var IntegerLiteral = require('./entities/integerLiteral');
-var RealLiteral = require('./entities/realLiteral');
-var CharacterLiteral = require('./entities/characterLiteral');
-var StringLiteral = require('./entities/stringLiteral');
-var VariableReference = require('./entities/variablereRerence');
-var UnaryExpression = require('./entities/unaryExpression');
-var BinaryExpression = require('./entities/binaryExpression');
+var VoidLiteral = require('./entities/void');
+var BooleanLiteral = require('./entities/boolean');
+var IntegerLiteral = require('./entities/integer');
+var RealLiteral = require('./entities/real');
+var CharacterLiteral = require('./entities/character');
+var StringLiteral = require('./entities/string');
+var VariableReference = require('./entities/variable');
+var UnaryExpression = require('./entities/unary');
+var BinaryExpression = require('./entities/binary');
 
 var tokens;
 
@@ -87,7 +87,7 @@ function parseStatement() {
     } else if (at('continue')) {
         return parseContinueStatement();
     } else if (at('if')) {
-        return parseConditionStatement();
+        return parseConditionalStatement();
     } else if (at('object')) {
         return parseObjectStatement();
     } else {
@@ -412,7 +412,7 @@ function parseContinueStatement() {
     return new ContinueStatement();
 }
 
-function parseConditionStatement() {
+function parseConditionalStatement() {
     var IF = [];
     var ELIF = [];
     var ELSE = [];
@@ -440,7 +440,7 @@ function parseConditionStatement() {
         ELSE.push(parseBlock());
         match('Dedent');
     }
-    return new ConditionStatement(IF, ELIF, ELSE);
+    return new ConditionalStatement(IF, ELIF, ELSE);
 }
 
 function parseObjectStatement() {
