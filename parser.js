@@ -112,27 +112,32 @@ function parseScope() {
 }
 
 function parseDeclarationStatement(scope, name) {
+    var declaration = [];
     var declarations = [];
-    declarations.push(name);
+    declaration.push(name);
     match('=');
-    declarations.push(parseExpression());
+    declaration.push(parseExpression());
     if (at('{')) {
-        declarations.push(parseSize());
+        declaration.push(parseSize());
     } else if (at('#')) {
         match();
-        declarations.push(parseExpression());
+        declaration.push(parseExpression());
     }
+    declarations.push(declaration);
+    declaration = [];
     while (at(',')) {
         match();
-        declarations.push(new VariableReference(match('ID')));
+        declaration.push(new VariableReference(match('ID')));
         match('=');
-        declarations.push(parseExpression());
+        declaration.push(parseExpression());
         if (at('{')) {
-            declarations.push(parseSize());
+            declaration.push(parseSize());
         } else if (at('#')) {
             match();
-            declarations.push(parseExpression());
+            declaration.push(parseExpression());
         }
+        declarations.push(declaration);
+        declaration = [];
     }
     return new DeclarationStatement(scope, declarations);
 }
