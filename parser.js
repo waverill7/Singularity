@@ -188,7 +188,7 @@ function parseMethodStatement(scope, name) {
     var parameters = [];
     var value;
     var body;
-    parameters.push(match('self'));
+    parameters.push(match('self').lexeme);
     while (at(',')) {
         match(',');
         parameters.push(new VariableReference(match('ID')));
@@ -198,10 +198,9 @@ function parseMethodStatement(scope, name) {
     if (at('ID')) {
         value = new VariableReference(match());
     } else if (at('void')) {
-        match();
-        value = new VoidLiteral();
+        value = new VoidLiteral(match());
     } else {
-        value = match('self');
+        value = match('self').lexeme;
     }
     match(':');
     match('Return');
