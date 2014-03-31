@@ -386,20 +386,20 @@ function parseWhileStatement() {
 function parseForStatement() {
     var initialization;
     var condition;
-    var afterThought;
+    var update;
     var body;
     match('for');
     initialization = parseAssignmentStatement();
     match(',');
     condition = parseExpression();
     match(',');
-    afterThought = parseAssignmentStatement();
+    update = parseAssignmentStatement();
     match(':');
     match('Return');
     match('Indent');
     body = parseBlock();
     match('Dedent');
-    return new ForStatement(initialization, condition, afterThought, body);
+    return new ForStatement(initialization, condition, update, body);
 }
 
 function parseBreakStatement() {
