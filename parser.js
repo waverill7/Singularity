@@ -158,7 +158,7 @@ function parseSignature(scope, name) {
 
 function parseFunctionStatement(scope, name) {
     var parameters = [];
-    var returnVariable;
+    var value;
     var body;
     if (at('void')) {
         match();
@@ -173,22 +173,22 @@ function parseFunctionStatement(scope, name) {
     match(')');
     match('=');
     if (at('ID')) {
-        returnVariable = new VariableReference(match());
+        value = new VariableReference(match());
     } else {
         match('void');
-        returnVariable = new VoidLiteral();
+        value = new VoidLiteral();
     }
     match(':');
     match('Return');
     match('Indent');
     body = parseBlock();
     match('Dedent');
-    return new FunctionStatement(scope, name, parameters, returnVariable, body);
+    return new FunctionStatement(scope, name, parameters, value, body);
 }
 
 function parseMethodStatement(scope, name) {
     var parameters = [];
-    var returnVariable;
+    var value;
     var body;
     parameters.push(match('self'));
     while (at(',')) {
@@ -198,19 +198,19 @@ function parseMethodStatement(scope, name) {
     match(')');
     match('=');
     if (at('ID')) {
-        returnVariable = new VariableReference(match());
+        value = new VariableReference(match());
     } else if (at('void')) {
         match();
-        returnVariable = new VoidLiteral();
+        value = new VoidLiteral();
     } else {
-        returnVariable = match('self');
+        value = match('self');
     }
     match(':');
     match('Return');
     match('Indent');
     body = parseBlock();
     match('Dedent');
-    return MethodStatement(scope, name, parameters, returnVariable, body);
+    return MethodStatement(scope, name, parameters, value, body);
 }
 
 function parseAssignmentStatement() {
