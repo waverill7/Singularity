@@ -305,7 +305,7 @@ function parseAttributeStatement(name) {
     var property;
     var calls = [];
     if (at('self')) {
-        name = match();
+        name = match().lexeme;
         match('.');
         if (at('ID')) {
             property = new VariableReference(match());
