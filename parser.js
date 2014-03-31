@@ -25,15 +25,15 @@ var BreakStatement = require('./entities/break');
 var ContinueStatement = require('./entities/continue');
 var ConditionStatement = require('./entities/if');
 var ObjectStatement = require('./entities/object');
-var VoidLiteral = require('./entities/voidliteral');
-var BooleanLiteral = require('./entities/booleanliteral');
-var IntegerLiteral = require('./entities/integerliteral');
-var RealLiteral = require('./entities/realliteral');
-var CharacterLiteral = require('./entities/characterliteral');
-var StringLiteral = require('./entities/stringliteral');
-var VariableReference = require('./entities/variablereference');
-var UnaryExpression = require('./entities/unaryexpression');
-var BinaryExpression = require('./entities/binaryexpression');
+var VoidLiteral = require('./entities/voidLiteral');
+var BooleanLiteral = require('./entities/booleanLiteral');
+var IntegerLiteral = require('./entities/integerLiteral');
+var RealLiteral = require('./entities/realLiteral');
+var CharacterLiteral = require('./entities/characterLiteral');
+var StringLiteral = require('./entities/stringLiteral');
+var VariableReference = require('./entities/variablereRerence');
+var UnaryExpression = require('./entities/unaryExpression');
+var BinaryExpression = require('./entities/binaryExpression');
 
 var tokens;
 
