@@ -209,7 +209,7 @@ Object:
             
     Usage:
             
-        global c1 = Circle(4, 3, 10)
+        global c1 = self.Circle(4, 3, 10)
         global c2 = c1
         print c2.getArea()
         print c2.getPerimeter()
