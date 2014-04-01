@@ -418,7 +418,7 @@ Macrosyntax:
                       |     StringLiteral
                       |     MatrixLiteral
                      
-    MatrixLiteral    ::=    [Expression (',' Expression)*]
+    MatrixLiteral    ::=    '[' Expression (',' Expression)* ']'
                 
 Microsyntax:
 
