@@ -299,24 +299,26 @@ Macrosyntax:
                        |     Assignment 
                        |     Function
                        |     Method
+                       |     Object
                        |     Attribute 
                        |     Call 
                        |     Matrix 
-                       |     Print 
+                       |     Print
+                       |     Conditional 
                        |     While 
                        |     For 
                        |     Break 
                        |     Continue 
-                       |     Conditional 
-                       |     Object
 
-    Declaration       ::=    ('global' | 'local') (Assignment | Function | Method)
+    Declaration       ::=    ('global' | 'local') (Assignment | Function | Method | Object)
 
     Assignment        ::=    '@' (Attribute | Call | Matrix | ID) '=' Expression
     
     Function          ::=    ID '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
     
     Method            ::=    ID '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
+    
+    Object            ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
                         
     Attribute         ::=    (ID | 'self') '.' (Call | Matrix | ID)
 
@@ -326,6 +328,8 @@ Macrosyntax:
     
     Print             ::=    'print' Expression
     
+    Conditional       ::=    'if' Expression ':' 'Return' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Return' 'Indent' Block 'Dedent')* ('else' ':' 'Return' 'Indent' Block 'Dedent')?
+    
     While             ::=    'while' Expression ':' 'Return' 'Indent' Block 'Dedent'
     
     For               ::=    'for' Assignment ',' Expression ',' Assignment ':' 'Return' 'Indent' Block 'Dedent'
@@ -333,10 +337,6 @@ Macrosyntax:
     Break             ::=    'break'
     
     Continue          ::=    'continue'
-                                    
-    Conditional       ::=    'if' Expression ':' 'Return' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Return' 'Indent' Block 'Dedent')* ('else' ':' 'Return' 'Indent' Block 'Dedent')?
-    
-    Object            ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
 
     Expression        ::=    Expression_1 ('or' Expression_1)*
 
