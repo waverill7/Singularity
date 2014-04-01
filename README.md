@@ -16,7 +16,7 @@ Hello World:
 
     print "Hello, World!"
 
-Declaration/Assignment:
+Declaration: (update)
 
     global galaxy = "Milky Way"
     local color = "purple"
@@ -33,7 +33,7 @@ Declaration/Assignment:
     global box = [void]
     local point = [void]
 
-Assignment:
+Assignment: (update)
  
     @ galaxy = "Milky Way"
     
@@ -150,7 +150,7 @@ Object:
     
     Basic:
     
-        object Circle:
+        global object Circle:
             $ A circle with a 2-D center point and a radius.
             local x = 0
             local y = 0
@@ -183,7 +183,7 @@ Object:
                 $ Returns a stringy representation of the circle.
                 @ description = "Circle at " + self.x + ", " + self.y + " with r = " +  self.radius
             
-    Usage:
+    Usage: (update)
             
         global c1 = self.Circle(4, 3, 10)
         global c2 = c1
@@ -198,7 +198,7 @@ Object:
     
     Inheritance:
     
-        object Animal:
+        global object Animal:
             local name = ""
             local sound = ""
             
@@ -209,17 +209,17 @@ Object:
             global speak(self) = void:
                 print self.name + " says " + self.sound
 
-        object Cow(Animal):
+        global object Cow(Animal):
             
             global Cow(self, name) = self:
                 @ self.Animal = self.Animal(name, "moo")
 
-        object Horse(Animal):
+        global object Horse(Animal):
             
             global Horse(self, name) = self:
                 @ self.Animal = self.Animal(name, "neigh")
 
-        object Sheep(Animal):
+        global object Sheep(Animal):
             
             global Sheep(self, name) = self:
                 @ self.Animal = self.Animal(name, "baaaaa")
@@ -285,9 +285,9 @@ Types:
     real               
     character          
     string             
+    object
     function
     matrix             
-    object
                        
 Macrosyntax:
                        
