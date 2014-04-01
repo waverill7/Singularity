@@ -66,7 +66,7 @@ Assignment:
     @ curve = 'S'
     
     global  box = 8 # 3
-    @ box[] = [[0, 0, 0] [0, 0, 1] [0, 1, 0] [0, 1, 1] [1, 0, 0] [1, 0, 1] [1, 1, 0] [1, 1, 1]]
+    @ box[] = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
     
     local point = 1 # 2
     @ point[] = [[1, 1]]
@@ -253,7 +253,7 @@ Matrix:
     global m = 4 # 2          matrix with 4 rows and 2 columns with every entry initialized to void
     @ m[3, 1] = 12            row 3, column 1 entry assigned the value 12
     @ m[0] = [2, 4]           row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
-    @ m[] = [[2, 4][6, 8][10, 12][14, 16]]
+    @ m[] = [[2, 4],[6, 8],[10, 12],[14, 16]]
                               row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4      
                               row 1, column 0 assigned the value 6 and row 1, column 1 assigned the value 8
                               row 2, column 0 assigned the value 10 and row 2, column 1 assigned the value 12
@@ -419,6 +419,7 @@ Macrosyntax:
                      |     (IntegerLiteral | RealLiteral)
                      |     CharacterLiteral
                      |     StringLiteral
+                     |     MatrixLiteral
                 
 Microsyntax:
 
