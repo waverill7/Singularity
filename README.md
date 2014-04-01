@@ -295,19 +295,18 @@ Keywords:
     
 Operators:
     
-    ++ --              increment/decrement              
     or                 logical or
     and                logical and
-    not                logical not
-    < <= > >= != ==    less than/less than or equal to/greater than/greater than or equal to/not equal to/equal to
     |                  bitwise or
     ^                  bitwise xor
     &                  bitwise and
-    << >>              shift left/shift right
+    == !=              equal to/not equal to
+    < <= > >=          less than/less than or equal to/greater than/greater than or equal to
+    << >>              bitwise left shift/bitwise right shift
     + -                addition/subtraction
     * / %              multiplication/division/modulo
-    -                  negation
-    ~                  unary complement
+    not ~ + -          logical not/bitwise not/unary plus/unary minus
+    ++ --              postfix increment/postfix decrement
     **                 power
     
 Types:
