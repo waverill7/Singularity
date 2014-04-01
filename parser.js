@@ -9,31 +9,33 @@
 var scanner = require('./scanner');
 var error = require('./error');
 
-var Program = require('./entities/program');
-var Block = require('./entities/block');
-var DeclarationStatement = require('./entities/declaration');
-var FunctionStatement = require('./entities/function');
-var MethodStatement = require('./entities/method');
-var AssignmentStatement = require('./entities/assignment');
-var AttributeStatement = require('./entities/attribute');
-var CallStatement = require('./entities/call');
-var MatrixStatement = require('./entities/matrix');
-var PrintStatement = require('./entiteis/print');
-var WhileStatement = require('./entities/while');
-var ForStatement = require('./entities/for');
-var BreakStatement = require('./entities/break');
-var ContinueStatement = require('./entities/continue');
-var ConditionalStatement = require('./entities/conditional');
-var ObjectStatement = require('./entities/object');
-var VoidLiteral = require('./entities/void');
-var BooleanLiteral = require('./entities/boolean');
-var IntegerLiteral = require('./entities/integer');
-var RealLiteral = require('./entities/real');
-var CharacterLiteral = require('./entities/character');
-var StringLiteral = require('./entities/string');
-var VariableReference = require('./entities/variable');
-var UnaryExpression = require('./entities/unary');
-var BinaryExpression = require('./entities/binary');
+var Program = require('./entities/Program');
+var Block = require('./entities/Block');
+var DeclarationStatement = require('./entities/DeclarationStatement');
+var FunctionStatement = require('./entities/FunctionStatement');
+var MethodStatement = require('./entities/MethodStatement');
+var AssignmentStatement = require('./entities/AssignmentStatement');
+var AttributeStatement = require('./entities/AttributeStatement');
+var CallStatement = require('./entities/CallStatement');
+var MatrixStatement = require('./entities/MatrixStatement');
+var PrintStatement = require('./entiteis/PrintStatement');
+var WhileStatement = require('./entities/WhileStatement');
+var ForStatement = require('./entities/ForStatement');
+var BreakStatement = require('./entities/BreakStatement');
+var ContinueStatement = require('./entities/ContinueStatement');
+var ConditionalStatement = require('./entities/ConditionalStatement');
+var ObjectStatement = require('./entities/ObjectStatement');
+var VoidLiteral = require('./entities/VoidLiteral');
+var BooleanLiteral = require('./entities/BooleanLiteral');
+var IntegerLiteral = require('./entities/IntegerLiteral');
+var RealLiteral = require('./entities/RealLiteral');
+var CharacterLiteral = require('./entities/CharacterLiteral');
+var StringLiteral = require('./entities/StringLiteral');
+var MatrixLiteral = require('./MatrixLiteral');
+var VariableReference = require('./entities/VariableReference');
+var PrefixExpression = require('./entities/PrefixExpression');
+var InfixExpression = require('./entities/InfixExpression');
+var PostfixExpression = require('./entities/PostfixExpression');
 
 var tokens;
 
@@ -216,94 +218,7 @@ function parseMethodStatement(scope, name) {
 }
 
 function parseAssignmentStatement() {
-    var name;
-    var type;
-    var expressions = [];
-    var row = [];
-    match('@');
-    if (at('ID')) {
-        name = new VariableReference(match());
-        if (at(['=', '++', '--'])) {
-            if (at('=')) {
-                match();
-                type = 'generic';
-                expressions.push(parseExpression());
-            } else if (at('++')) {
-                match();
-                type = 'increment';
-            } else {
-                match('--');
-                type = 'decrement';
-            }
-        } else {
-            match('[');
-            if (at(']')) {
-                match();
-                type = 'matrix_0';
-                match('=');
-                match('[');
-                match('[');
-                row.push(parseExpresssion());
-                while (at(',')) {
-                    match();
-                    row.push(parseExpression());
-                }
-                match(']');
-                expressions.push(row);
-                row = [];
-                while (at('[')) {
-                    row.push(parseExpresssion());
-                    while (at(',')) {
-                        match();
-                        row.push(parseExpression());
-                    }
-                    match(']');
-                    expressions.push(row);
-                    row = [];
-                }
-                match(']');
-            } else {
-                type = 'matrix_1';
-                expressions.push(parseExpression());
-                match(']');
-                if (at('=')) {
-                    match();
-                    match('[');
-                    row.push(parseExpression());
-                    while (at(',')) {
-                        match();
-                        row.push(parseExpression());
-                    }
-                    match(']');
-                    expressions.push(row);
-                    row = [];
-                } else {
-                    type = 'matrix_2';
-                    match('[');
-                    expressions.push(parseExpression());
-                    match(']');
-                    match('=');
-                    expressions.push(parseExpression());
-                }
-            }
-        }
-    } else {
-        name = match('self').lexeme;
-        match('.');
-        expressions.push(new VariableReference(match('ID')));
-        if (at('=')) {
-            match();
-            type = 'generic';
-            expressions.push(parseExpression());
-        } else if (at('++')) {
-            match();
-            type = 'increment';
-        } else {
-            match('--');
-            type = 'decrement';
-        }
-    }
-    return new AssignmentStatement(name, type, expressions);
+    
 }
 
 function parseAttributeStatement(name) {
