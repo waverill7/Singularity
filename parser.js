@@ -99,9 +99,9 @@ function parseScope() {
     var scope;
     var name;
     if (at('global')) {
-        scope = match();
+        scope = match().lexeme;
     } else {
-        scope = match('local');
+        scope = match('local').lexeme;
     }
     name = new VariableReference(match('ID'));
     if (at('=')) {
