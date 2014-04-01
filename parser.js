@@ -542,9 +542,7 @@ function parseExpression_12() {
 }
 
 function parseExpression_13() {
-    if (at(['void','true','false','IntegerLiteral','RealLiteral','CharacterLiteral','StringLiteral', '['])) {
-        return parseLiteral();
-    } else if (at('self')) {
+    if (at('self')) {
         return parseAttributeStatement();
     } else if (at('ID')) {
         var name = new VariableReference(match());
@@ -563,6 +561,8 @@ function parseExpression_13() {
         expression = parseExpression();
         match(')');
         return expression;
+    else if (at(['void','true','false','IntegerLiteral','RealLiteral','CharacterLiteral','StringLiteral', '['])) {
+        return parseLiteral();
     } else {
         error('Illegal start of expression');
     }
