@@ -172,7 +172,7 @@ function parseFunctionStatement(scope, name) {
     } else {
         parameters.push(new VariableReference(match('ID')));
         while (at(',')) {
-            match(',');
+            match();
             parameters.push(new VariableReference(match('ID')));
         }
     }
@@ -197,7 +197,7 @@ function parseMethodStatement(scope, name) {
     var body;
     parameters.push(match('self').lexeme);
     while (at(',')) {
-        match(',');
+        match();
         parameters.push(new VariableReference(match('ID')));
     }
     match(')');
