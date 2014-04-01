@@ -327,18 +327,7 @@ Macrosyntax:
 
     Block               ::=    (Statement)+
 
-    Statement           ::=    Scope
-                         |     Assignment
-                         |     Attribute
-                         |     Call
-                         |     Matrix
-                         |     Print
-                         |     While
-                         |     For
-                         |     Break
-                         |     Continue
-                         |     Conditional
-                         |     Object
+    Statement           ::=    (Scope | Assignment | Attribute | Call | Matrix | Print | While | For | Break | Continue | Conditional | Object)
                         
     Scope               ::=    ('global' | 'local') ID (Declaration | Signature)
 
