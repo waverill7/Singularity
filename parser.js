@@ -570,22 +570,50 @@ function parseExpression_13() {
 
 function parseLiteral() {
     if (at('void')) {
-        return new VoidLiteral(match());
+        return parseVoidLiteral();
     } else if (at(['true' | 'false'])) {
-        return new BooleanLiteral(match());
+        return parseBooleanLiteral();
     } else if (at('IntegerLiteral')) {
-        return new IntegerLiteral(match());
+        return parseIntegerLiteral();
     } else if (at('RealLiteral')) {
-        return new RealLiteral(match());
+        return parseRealLiteral();
     } else if (at('CharacterLiteral')) {
-        return new CharacterLiteral(match());
+        return parseCharacterLiteral();
     } else if (at('StringLiteral')) {
-        return new StringLiteral(match());
+        return parseStringLiteral();
     } else if (at('[')) {
         return parseMatrixLiteral();
     } else {
         error('Illegal literal', tokens[0]);
     }
+}
+
+function parseVoidLiteral() {
+    return new VoidLiteral(match('void'));
+}
+
+function parseBooleanLiteral() {
+    if (at('true')) {
+        return new BooleanLiteral(match('true'));
+    } else {
+        return new BooleanLiteral(match('false'));
+    }
+}
+
+function parseIntegerLiteral() {
+    return new IntegerLiteral(match('IntegerLiteral'));
+}
+
+function parseRealLiteral() {
+    return new RealLiteral(match('RealLiteral'));
+}
+
+function parseCharacterLiteral() {
+    return new CharacterLiteral(match('CharacterLiteral'));
+}
+
+function parseStringLiteral() {
+    return new StringLiteral(match('StringLiteral'));
 }
 
 function parseMatrixLiteral() {
