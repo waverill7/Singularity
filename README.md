@@ -362,7 +362,7 @@ Macrosyntax:
 
     Call             ::=    ID '(' (Expression (',' Expression)*)? ')'
 
-    Matrix           ::=    ID (('[' ']') | ('[' Expression ']' ('[' Expression ']')?))
+    Matrix           ::=    ID '[' (Expression (',' Expression)*)? ']'
     
     Print            ::=    'print' Expression
     
