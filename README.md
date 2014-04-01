@@ -414,12 +414,14 @@ Macrosyntax:
                       |     ID
                       |     '(' Expression ')'
 
-    Literal         ::=    'void'
-                     |     ('true' | 'false')
-                     |     (IntegerLiteral | RealLiteral)
-                     |     CharacterLiteral
-                     |     StringLiteral
-                     |     MatrixLiteral
+    Literal          ::=    'void'
+                      |     ('true' | 'false')
+                      |     (IntegerLiteral | RealLiteral)
+                      |     CharacterLiteral
+                      |     StringLiteral
+                      |     MatrixLiteral
+                     
+    MatrixLiteral    ::=    [Expression (',' Expression)*]
                 
 Microsyntax:
 
