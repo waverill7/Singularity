@@ -329,34 +329,33 @@ function parseAttributeStatement(name) {
 }
 
 function parseCallStatement(name) {
-    var arguments = [];
+    var expressions = [];
     match('(');
     if (at(')')) {
         match();
     } else {
-        arguments.push(parseExpression());
+        expressions.push(parseExpression());
         while (at(',')) {
-            match(',');
-            arguments.push(parseExpression());
+            match();
+            expressions.push(parseExpression());
         }
         match(')');
     }
-    return CallStatement(name, arguments);
+    return CallStatement(name, expressions);
 }
 
 function parseMatrixStatement(name) {
     var expressions = [];
     match('[');
     if (at(']')) {
-        match(']');
+        match();
     } else {
         expressions.push(parseExpression());
-        match(']');
-        if (at('[')) {
-            match('[');
+        while (at(',')) {
+            match();
             expressions.push(parseExpression());
-            match(']');
         }
+        match(']');
     }
     return new MatrixStatement(name, expressions);
 }
