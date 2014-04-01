@@ -382,7 +382,7 @@ function parseExpression() {
     while (at('or')) {
         operator = match();
         right = parseExpression_1();
-        left = new BinaryExpression(operator, left, right);
+        left = new InfixExpression(operator, left, right);
     }
     return left;
 }
@@ -395,21 +395,22 @@ function parseExpression_1() {
     while (at('and')) {
         operator = match();
         right = parseExpression_2();
-        left = new BinaryExpression(operator, left, right);
+        left = new InfixExpression(operator, left, right);
     }
     return left;
 }
 
 function parseExpression_2() {
     var operator;
-    var operand;
-    if (at('not')) {
+    var left;
+    var right;
+    left = parseExpression_3();
+    while (at('|')) {
         operator = match();
-        operand = parseExpression_3();
-        return new UnaryExpression(operator, operand);
-    } else {
-        return parseExpression_3();
+        right = parseExpression_3();
+        left = new InfixExpression(operator, left, right);
     }
+    return left;
 }
 
 function parseExpression_3() {
@@ -417,10 +418,10 @@ function parseExpression_3() {
     var left;
     var right;
     left = parseExpression_4();
-    if (at(['<', '<=', '>', '>=', '!=', '=='])) {
+    while (at('^')) {
         operator = match();
         right = parseExpression_4();
-        left = new BinaryExpression(operator, left, right);
+        left = new InfixExpression(operator, left, right);
     }
     return left;
 }
@@ -430,10 +431,10 @@ function parseExpression_4() {
     var left;
     var right;
     left = parseExpression_5();
-    while (at('|')) {
+    while (at('&')) {
         operator = match();
         right = parseExpression_5();
-        left = new BinaryExpression(operator, left, right);
+        left = new InfixExpression(operator, left, right);
     }
     return left;
 }
@@ -443,10 +444,10 @@ function parseExpression_5() {
     var left;
     var right;
     left = parseExpression_6();
-    while (at('^')) {
+    if (at(['==', '!='])) { 
         operator = match();
         right = parseExpression_6();
-        left = new BinaryExpression(operator, left, right);
+        left = new InfixExpression(operator, left, right);
     }
     return left;
 }
@@ -456,10 +457,10 @@ function parseExpression_6() {
     var left;
     var right;
     left = parseExpression_7();
-    while (at('&')) {
+    if (at(['<', '<=', '>', '>='])) {
         operator = match();
         right = parseExpression_7();
-        left = new BinaryExpression(operator, left, right);
+        left = new InfixExpression(operator, left, right);
     }
     return left;
 }
@@ -469,10 +470,10 @@ function parseExpression_7() {
     var left;
     var right;
     left = parseExpression_8();
-    while (at(['>>', '<<'])) {
+    while (at(['<<', '>>'])) {
         operator = match();
         right = parseExpression_8();
-        left = new BinaryExpression(operator, left, right);
+        left = new InfixExpression(operator, left, right);
     }
     return left;
 }
@@ -482,10 +483,10 @@ function parseExpression_8() {
     var left;
     var right;
     left = parseExpression_9();
-    while (at(['-', '+'])) {
+    while (at(['+', '-'])) {
         operator = match();
         right = parseExpression_9();
-        left = new BinaryExpression(operator, left, right);
+        left = new InfixExpression(operator, left, right);
     }
     return left;
 }
@@ -495,10 +496,10 @@ function parseExpression_9() {
     var left;
     var right;
     left = parseExpression_10();
-    while (at(['%', '/', '*'])) {
+    while (at(['*', '/', '%'])) {
         operator = match();
         right = parseExpression_10();
-        left = new BinaryExpression(operator, left, right);
+        left = new InfixExpression(operator, left, right);
     }
     return left;
 }
@@ -506,24 +507,24 @@ function parseExpression_9() {
 function parseExpression_10() {
     var operator;
     var operand;
-    if (at('-')) {
+    if (at(['not', '~', '+', '-'])) {
         operator = match();
         operand = parseExpression_11();
-        return new UnaryExpression(operator, operand);
+        return new PrefixExpression(operator, operand);
     } else {
         return parseExpression_11();
     }
 }
 
 function parseExpression_11() {
-    var operator;
     var operand;
-    if (at('~')) {
+    var operator;
+    operand = parseExpression_12();
+    if (at(['++', '--'])) {
         operator = match();
-        operand = parseExpression_12();
-        return new UnaryExpression(operator, operand);
+        return new PostfixExpression(operand, operator);
     } else {
-        return parseExpression_12();
+        return operand;
     }
 }
 
@@ -535,13 +536,13 @@ function parseExpression_12() {
   while (at('**')) {
     operator = match();
     right = parseExpression_13();
-    left = new BinaryExpression(operator, left, right);
+    left = new InfixExpression(operator, left, right);
   }
   return left;
 }
 
 function parseExpression_13() {
-    if (at(['void','true','false','IntegerLiteral','RealLiteral','CharacterLiteral','StringLiteral'])) {
+    if (at(['void','true','false','IntegerLiteral','RealLiteral','CharacterLiteral','StringLiteral', '['])) {
         return parseLiteral();
     } else if (at('self')) {
         return parseAttributeStatement();
@@ -580,9 +581,22 @@ function parseLiteral() {
         return new CharacterLiteral(match());
     } else if (at('StringLiteral')) {
         return new StringLiteral(match());
+    } else if (at('[')) {
+        return parseMatrixLiteral();
     } else {
         error('Illegal literal', tokens[0]);
     }
+}
+
+function parseMatrixLiteral() {
+    var expressions = [];
+    match('[');
+    expressions.push(parseExpression());
+    while (at(',')) {
+        expressions.push(parseExpression());
+    }
+    match(']');
+    return new MatrixLiteral(expressions);
 }
 
 function at(symbol) {
