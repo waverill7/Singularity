@@ -325,100 +325,105 @@ Types:
                        
 Macrosyntax:
                        
-    Program          ::=    Block
+    Program           ::=    Block
 
-    Block            ::=    (Statement)+
+    Block             ::=    (Statement)+
 
-    Statement        ::=    Scope 
-                      |     Assignment 
-                      |     Attribute 
-                      |     Call 
-                      |     Matrix 
-                      |     Print 
-                      |     While 
-                      |     For 
-                      |     Break 
-                      |     Continue 
-                      |     Conditional 
-                      |     Object
+    Statement         ::=    Scope 
+                       |     Assignment 
+                       |     Attribute 
+                       |     Call 
+                       |     Matrix 
+                       |     Print 
+                       |     While 
+                       |     For 
+                       |     Break 
+                       |     Continue 
+                       |     Conditional 
+                       |     Object
                         
-    Scope            ::=    ('global' | 'local') ID (Declaration | Signature)
+    Scope             ::=    ('global' | 'local') ID (Declaration | Signature)
 
-    Declaration      ::=    '=' Expression (Size | ('#' Expression))? (',' ID '=' Expression (Size | ('#' Expression))?)*
+    Declaration       ::=    '=' Expression (Size | ('#' Expression))? (',' ID '=' Expression (Size | ('#' Expression))?)*
 
-    Size             ::=    '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double') '}'
+    Size              ::=    '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double') '}'
                         
-    Signature        ::=    Function 
-                      |     Method
+    Signature         ::=    Function 
+                       |     Method
     
-    Function         ::=    '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
+    Function          ::=    '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
     
-    Method           ::=    '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
+    Method            ::=    '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
 
-    Assignment       ::=    '@' (Attribute | Call | Matrix | ID) '=' Expression
+    Assignment        ::=    '@' (Attribute | Call | Matrix | ID) '=' Expression
                         
-    Attribute        ::=    (ID | 'self') '.' (Call | Matrix | ID)
+    Attribute         ::=    (ID | 'self') '.' (Call | Matrix | ID)
 
-    Call             ::=    ID '(' (Expression (',' Expression)*)? ')'
+    Call              ::=    ID '(' (Expression (',' Expression)*)? ')'
 
-    Matrix           ::=    ID '[' (Expression (',' Expression)*)? ']'
+    Matrix            ::=    ID '[' (Expression (',' Expression)*)? ']'
     
-    Print            ::=    'print' Expression
+    Print             ::=    'print' Expression
     
-    While            ::=    'while' Expression ':' 'Return' 'Indent' Block 'Dedent'
+    While             ::=    'while' Expression ':' 'Return' 'Indent' Block 'Dedent'
     
-    For              ::=    'for' Assignment ',' Expression ',' Assignment ':' 'Return' 'Indent' Block 'Dedent'
+    For               ::=    'for' Assignment ',' Expression ',' Assignment ':' 'Return' 'Indent' Block 'Dedent'
     
-    Break            ::=    'break'
+    Break             ::=    'break'
     
-    Continue         ::=    'continue'
+    Continue          ::=    'continue'
                                     
-    Conditional      ::=    'if' Expression ':' 'Return' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Return' 'Indent' Block 'Dedent')* ('else' ':' 'Return' 'Indent' Block 'Dedent')?
+    Conditional       ::=    'if' Expression ':' 'Return' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Return' 'Indent' Block 'Dedent')* ('else' ':' 'Return' 'Indent' Block 'Dedent')?
     
-    Object           ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
+    Object            ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
 
-    Expression       ::=    Expression_1 ('or' Expression_1)*
+    Expression        ::=    Expression_1 ('or' Expression_1)*
 
-    Expression_1     ::=    Expression_2 ('and' Expression_2)*
+    Expression_1      ::=    Expression_2 ('and' Expression_2)*
 
-    Expression_2     ::=    Expression_3 ('|' Expression_3)*
+    Expression_2      ::=    Expression_3 ('|' Expression_3)*
 
-    Expression_3     ::=    Expression_4 ('^' Expression_4)*
+    Expression_3      ::=    Expression_4 ('^' Expression_4)*
     
-    Expression_4     ::=    Expression_5 ('&' Expression_5)*
+    Expression_4      ::=    Expression_5 ('&' Expression_5)*
     
-    Expression_5     ::=    Expression_6 (('==' | '!=') Expression_6)?
+    Expression_5      ::=    Expression_6 (('==' | '!=') Expression_6)?
 
-    Expression_6     ::=    Expression_7 (('<' | '<=' | '>' | '>=') Expression_7)? 
+    Expression_6      ::=    Expression_7 (('<' | '<=' | '>' | '>=') Expression_7)? 
     
-    Expression_7     ::=    Expression_8 (('<<' | '>>') Expression_8)*
+    Expression_7      ::=    Expression_8 (('<<' | '>>') Expression_8)*
     
-    Expression_8     ::=    Expression_9 (('+' | '-') Expression_9)* 
+    Expression_8      ::=    Expression_9 (('+' | '-') Expression_9)* 
     
-    Expression_9     ::=    Expression_10 (('*' | '/' | '%') Expression_10)*
+    Expression_9      ::=    Expression_10 (('*' | '/' | '%') Expression_10)*
     
 
-    Expression_10    ::=    ('not' | '~' | '+' | '-')? Expression_11
+    Expression_10     ::=    ('not' | '~' | '+' | '-')? Expression_11
 
-    Expression_11    ::=    Expression_12 ('++' | '--')?     
+    Expression_11     ::=    Expression_12 ('++' | '--')?     
 
-    Expression_12    ::=    Expression_13 ('**' Expression_13)*
+    Expression_12     ::=    Expression_13 ('**' Expression_13)*
 
-    Expression_13    ::=    Attribute
-                      |     Call 
-                      |     Matrix
-                      |     ID
-                      |     '(' Expression ')'
-                      |     Literal
+    Expression_13     ::=    Attribute
+                       |     Call 
+                       |     Matrix
+                       |     ID
+                       |     '(' Expression ')'
+                       |     Literal
 
-    Literal          ::=    'void'
-                      |     ('true' | 'false')
-                      |     (IntegerLiteral | RealLiteral)
-                      |     CharacterLiteral
-                      |     StringLiteral
-                      |     MatrixLiteral
+    Literal           ::=    VoidLiteral
+                       |     BooleanLiteral
+                       |     IntegerLiteral 
+                       |     RealLiteral
+                       |     CharacterLiteral
+                       |     StringLiteral
+                       |     MatrixLiteral
+    
+    VoidLiteral       ::=    'void'
+    
+    BooleanLiteral    ::=    ('true' | 'false')
                      
-    MatrixLiteral    ::=    '[' Expression (',' Expression)* ']'
+    MatrixLiteral     ::=    '[' Expression (',' Expression)* ']'
                 
 Microsyntax:
 
