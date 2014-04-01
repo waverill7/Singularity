@@ -337,7 +337,7 @@ function parseCallStatement(name) {
         }
         match(')');
     }
-    return CallStatement(name, expressions);
+    return new CallStatement(name, expressions);
 }
 
 function parseMatrixStatement(name) {
