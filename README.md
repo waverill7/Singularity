@@ -322,7 +322,7 @@ Macrosyntax:
 
     Call              ::=    ID '(' (Expression (',' Expression)*)? ')'
 
-    Matrix            ::=    ID '[' Expression (',' Expression)? ']'
+    Matrix            ::=    ID '[' Expression (',' Expression)* ']'
     
     Print             ::=    'print' Expression
     
@@ -358,7 +358,6 @@ Macrosyntax:
     
     Expression_9      ::=    Expression_10 (('*' | '/' | '%') Expression_10)*
     
-
     Expression_10     ::=    ('not' | '~' | '+' | '-')? Expression_11
 
     Expression_11     ::=    Expression_12 ('++' | '--')?     
