@@ -357,7 +357,7 @@ Macrosyntax:
 
     Assignment       ::=    '@' (Attribute | Call | Matrix | ID) '=' Expression
                         
-    Attribute        ::=    (ID | 'self') '.' (ID | Call | Matrix)
+    Attribute        ::=    (ID | 'self') '.' (Call | Matrix | ID)
 
     Call             ::=    ID '(' (Expression (',' Expression)*)? ')'
 
