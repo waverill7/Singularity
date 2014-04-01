@@ -307,25 +307,21 @@ function parseAssignmentStatement() {
 }
 
 function parseAttributeStatement(name) {
+    var propertyName;
     var property;
-    var calls = [];
     if (at('self')) {
         name = match().lexeme;
-        match('.');
-        if (at('ID')) {
-            property = new VariableReference(match());
-        } else {
-            calls.push(parseCallStatement());
-        }
-    } else {
-        match('.');
-        calls.push(parseCallStatement());
-        while (at('.')) {
-            match('.');
-            calls.push(parseCallStatement());
-        }
     }
-    return new AttributeStatement(name, property, calls);    
+    match('.');
+    propertyName = new VariableReference(match('ID'));
+    if (at('(')) {
+        property = parseCallStatement(propertyName);
+    } else if (at('[')) {
+        property = parseMatrixStatement(propertyName);
+    } else {
+        property = propertyName;
+    }
+    return new AttributeStatement(name, property);    
 }
 
 function parseCallStatement(name) {
