@@ -358,9 +358,9 @@ Macrosyntax:
                          |     '@' ID '[' Expression ']' '=' '[' Expression (',' Expression)* ']'
                          |     '@' ID '[' Expression ']' '[' Expression ']' '=' Expression
                         
-    Attribute           ::=    'self' '.' ID
-                         |     'self' '.' Call
-                         |     ID ('.' Call)+
+    Attribute           ::=    ('self' | ID) '.' ID
+                         |     ('self' | ID) ('.' Call)+
+                         |     ('self' | ID) '.' Matrix
 
     Call                ::=    ID Arguments 
 
