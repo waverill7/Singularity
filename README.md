@@ -317,9 +317,9 @@ Types:
     real               float/double
     character          ''
     string             ""
-    matrix             r # c
-    object             
     function
+    matrix             r # c
+    object
                        
 Macrosyntax:
                        
