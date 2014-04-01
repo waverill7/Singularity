@@ -16,7 +16,7 @@ Hello World:
 
     print "Hello, World!"
 
-Declaration:
+Declaration/Assignment:
 
     global galaxy = "Milky Way"
     local color = "purple"
