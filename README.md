@@ -360,9 +360,7 @@ Macrosyntax:
                         
     Attribute        ::=    (ID | 'self') (('.' ID) | ('.' Call)+ | ('.' Matrix))
 
-    Call             ::=    ID Arguments 
-
-    Arguments        ::=    '(' (Expression (',' Expression)*)? ')'
+    Call             ::=    ID '(' (Expression (',' Expression)*)? ')'
 
     Matrix           ::=    ID (('[' ']') | ('[' Expression ']' ('[' Expression ']')?))
     
