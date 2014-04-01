@@ -404,12 +404,12 @@ Macrosyntax:
 
     Expression_12    ::=    Expression_13 ('**' Expression_13)*
 
-    Expression_13    ::=    Literal
-                      |     Attribute
+    Expression_13    ::=    Attribute
                       |     Call 
                       |     Matrix
                       |     ID
                       |     '(' Expression ')'
+                      |     Literal
 
     Literal          ::=    'void'
                       |     ('true' | 'false')
