@@ -355,7 +355,7 @@ Macrosyntax:
     
     Method           ::=    '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
 
-    Assignment       ::=    '@' (Attribute | Call | Matrix | 'ID') '=' Expression
+    Assignment       ::=    '@' (Attribute | Call | Matrix | ID) '=' Expression
                         
     Attribute        ::=    (ID | 'self') '.' (ID | Call | Matrix)
 
