@@ -209,13 +209,16 @@ Object:
             
     Usage:
             
-        global c = self.Circle(4, 3, 10)
-        print c.getArea()
-        print c.getPerimeter()
-        print c.move(3, 2).toString()
-        print c.toString()
-        print c.move(-3,2).expand(5).toString()
-        print c.toString()
+        global c1 = Circle(4, 3, 10)
+        global c2 = c1
+        print c2.getArea()
+        print c2.getPerimeter()
+        c2 = c2.move(3,2)
+        print c2.toString()
+        c2 = c2.move(-3,2)
+        c2 = c2.expand(5)
+        print c1.toString()
+        print c2.toString()
     
     Inheritance:
     
