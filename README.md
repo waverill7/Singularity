@@ -5,7 +5,7 @@ The language of no return (statement).
 
 Overview:
     
-    This is a static and strongly typed systems programming language that draws influence from Python, Java, and MATLAB.
+    This is a dynamic and weakly typed language that draws influence from Python, C++, and JavaScript.
     Furthermore, this language is intended to be clean, intuitive, and subtly reminiscent of the cosmos.
 
 Logo:
@@ -20,38 +20,32 @@ Declaration:
 
     global galaxy = "Milky Way"
     local color = "purple"
-    global limit = void
-    local return = void
     global initialized = true
     local defined = false
-    global pi = 3.14159 {float}
-    local rotations = 365 {int}
+    global pi = 3.14159
+    local goldenRatio = 1.6180
+    global hours = 24
+    local rotations = 365
     global variable = 'x'
     local curve = 'S'
-    global  box = 8 # 3
-    local point = 1 # 2
-    global galaxy = "Milky Way", limit = void, initialized = true, pi = 3.14159 {float}, variable = 'x', box = 8 # 3
-    local color = "purple", return = void, defined = false, rotations = 365 {int}, curve = 'S', point = 1 # 2
+    global limit = void
+    local return = void
+    global box = [void]
+    local point = [void]
 
 Assignment:
  
-    global galaxy = ""
     @ galaxy = "Milky Way"
     
-    local color = ""
     @ color = "purple"
-    
-    global limit = void
-    (no other value possible)
-    
-    local return = void
-    (no other value possible)
     
     global initialized = false
     @ initialized = true
     
     local defined = true
     @ defined = false
+    
+    global limit = void
     
     global pi = 0.0 {float}
     @ pi = 3.14159
@@ -65,27 +59,9 @@ Assignment:
     local curve = ''
     @ curve = 'S'
     
-    global  box = 8 # 3
     @ box[] = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
     
-    local point = 1 # 2
     @ point[] = [[1, 1]]
-    
-Number:
-    
-    Number declarations must include one of the following proceeding the specified value:
-    
-    Natural:
-        
-        {u_byte}/{u_short}/{u_int}/{u_long}
-    
-    Integer:
-        
-        {byte}/{short}/{int}/{long}
-        
-    Real:
-        
-        {float}/{double}
         
 Function:
 
@@ -250,17 +226,17 @@ Object:
 
 Matrix:
     
-    global m = 4 # 2          matrix with 4 rows and 2 columns with every entry initialized to void
-    @ m[3, 1] = 12            row 3, column 1 entry assigned the value 12
-    @ m[0] = [2, 4]           row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
-    @ m[] = [[2, 4],[6, 8],[10, 12],[14, 16]]
-                              row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4      
-                              row 1, column 0 assigned the value 6 and row 1, column 1 assigned the value 8
-                              row 2, column 0 assigned the value 10 and row 2, column 1 assigned the value 12
-                              row 3, column 0 assigned the value 14 and row 3, column 1 assigned the value 16
-    print m[]                 prints the entire matrix
-    print m[1]                prints the first row ([6 8])
-    print m[2, 1]             prints 12
+    global m = [void]         m = [void]        
+    @ m[0] = 1                m = [1]
+    @ m[1] = 2                m = [1, 2]
+    @ m[2] = 3                m = [1, 2, 3]
+    @ m[0] = m                m = [[1, 2, 3]]
+    @ m[0, 0] = 2             m = [[2, 2, 3]]
+    @ m[0, 1] = 4             m = [[2, 4, 3]]
+    @ m[0, 2] = 6             m = [[2, 4, 6]]
+    @ m[1] = [8, 10, 12]      m = [[2, 4, 6], [8, 10, 12]]
+    @ m[2] = [14, 16, 18]     m = [[2, 4, 6], [8, 10, 12], [14, 16, 18]]
+    @ m[1, 2] = 42            m = [[2, 4, 6], [8, 10, 42], [14, 16, 18]]
     
 Keywords:
     
@@ -277,16 +253,6 @@ Keywords:
     object
     self
     void
-    u_byte
-    u_short
-    u_int
-    u_long
-    byte
-    short
-    int
-    long
-    float
-    double
     or
     and
     not
@@ -313,14 +279,14 @@ Types:
 
     Singularity has 9 types:
 
-    void               void
-    boolean            true/false
-    integer            u_byte/u_short/u_int/u_long/byte/short/int/long
-    real               float/double
-    character          ''
-    string             ""
+    void               
+    boolean            
+    integer            
+    real               
+    character          
+    string             
     function
-    matrix             r # c
+    matrix             
     object
                        
 Macrosyntax:
@@ -329,8 +295,10 @@ Macrosyntax:
 
     Block             ::=    (Statement)+
 
-    Statement         ::=    Scope 
+    Statement         ::=    Declaration 
                        |     Assignment 
+                       |     Function
+                       |     Method
                        |     Attribute 
                        |     Call 
                        |     Matrix 
@@ -341,27 +309,20 @@ Macrosyntax:
                        |     Continue 
                        |     Conditional 
                        |     Object
-                        
-    Scope             ::=    ('global' | 'local') ID (Declaration | Signature)
 
-    Declaration       ::=    '=' Expression (Size | ('#' Expression))? (',' ID '=' Expression (Size | ('#' Expression))?)*
-
-    Size              ::=    '{' ('u_byte' | 'u_short' | 'u_int' | 'u_long' | 'byte' | 'short' | 'int' | 'long' | 'float' | 'double') '}'
-                        
-    Signature         ::=    Function 
-                       |     Method
-    
-    Function          ::=    '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
-    
-    Method            ::=    '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
+    Declaration       ::=    ('global' | 'local') (Assignment | Function | Method)
 
     Assignment        ::=    '@' (Attribute | Call | Matrix | ID) '=' Expression
+    
+    Function          ::=    ID '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
+    
+    Method            ::=    ID '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
                         
     Attribute         ::=    (ID | 'self') '.' (Call | Matrix | ID)
 
     Call              ::=    ID '(' (Expression (',' Expression)*)? ')'
 
-    Matrix            ::=    ID '[' (Expression (',' Expression)*)? ']'
+    Matrix            ::=    ID '[' Expression (',' Expression)? ']'
     
     Print             ::=    'print' Expression
     
