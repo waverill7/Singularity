@@ -358,7 +358,7 @@ function parseObjectStatement() {
     match('object');
     name = new VariableReference(match('ID'));
     if (at('(')) {
-        match('(');
+        match();
         inheritiance.push(new VariableReference(match('ID')));
         while (at(',')) {
             match();
