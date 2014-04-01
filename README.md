@@ -248,7 +248,7 @@ Object:
 Matrix:
     
     global m = 4 # 2          matrix with 4 rows and 2 columns with every entry initialized to void
-    @ m[3][1] = 12            row 3, column 1 entry assigned the value 12
+    @ m[3, 1] = 12            row 3, column 1 entry assigned the value 12
     @ m[0] = [2, 4]           row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4
     @ m[] = [[2, 4][6, 8][10, 12][14, 16]]
                               row 0, column 0 assigned the value 2 and row 0, column 1 assigned the value 4      
@@ -257,7 +257,7 @@ Matrix:
                               row 3, column 0 assigned the value 14 and row 3, column 1 assigned the value 16
     print m[]                 prints the entire matrix
     print m[1]                prints the first row ([6 8])
-    print m[2][1]             prints 12
+    print m[2, 1]             prints 12
     
 Keywords:
     
