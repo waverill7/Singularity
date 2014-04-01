@@ -1,7 +1,7 @@
 Singularity
 ===========
 
-The language of no return.
+The language of no return (statement).
 
 Overview:
     
@@ -385,25 +385,26 @@ Macrosyntax:
 
     Expression_1     ::=    Expression_2 ('and' Expression_2)*
 
-    Expression_2     ::=    'not'? Expression_3
+    Expression_2     ::=    Expression_3 ('|' Expression_3)*
 
-    Expression_3     ::=    Expression_4 (('<' | '<=' | '>' | '>=' | '!=' | '==') Expression_4)?
+    Expression_3     ::=    Expression_4 ('^' Expression_4)*
+    
+    Expression_4     ::=    Expression_5 ('&' Expression_5)*
+    
+    Expression_5     ::=    Expression_6 (('==' | '!=') Expression_6)?
 
-    Expression_4     ::=    Expression_5 ('|' Expression_5)*
-
-    Expression_5     ::=    Expression_6 ('^' Expression_6)*
-
-    Expression_6     ::=    Expression_7 ('&' Expression_7)*
-
+    Expression_6     ::=    Expression_7 (('<' | '<=' | '>' | '>=') Expression_7)? 
+    
     Expression_7     ::=    Expression_8 (('<<' | '>>') Expression_8)*
-
-    Expression_8     ::=    Expression_9 (('+' | '-') Expression_9)*
-
+    
+    Expression_8     ::=    Expression_9 (('+' | '-') Expression_9)* 
+    
     Expression_9     ::=    Expression_10 (('*' | '/' | '%') Expression_10)*
+    
 
-    Expression_10    ::=    '-'? Expression_11
+    Expression_10    ::=    ('not' | '~' | '+' | '-')? Expression_11
 
-    Expression_11    ::=    '~'? Expression_12
+    Expression_11    ::=    Expression_12 ('++' | '--')?     
 
     Expression_12    ::=    Expression_13 ('**' Expression_13)*
 
