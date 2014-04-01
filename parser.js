@@ -288,7 +288,7 @@ function parseAssignmentStatement() {
             }
         }
     } else {
-        name = match('self');
+        name = match('self').lexeme;
         match('.');
         expressions.push(new VariableReference(match('ID')));
         if (at('=')) {
@@ -329,23 +329,19 @@ function parseAttributeStatement(name) {
 }
 
 function parseCallStatement(name) {
-    return new CallStatement(name, parseArguments());
-}
-
-function parseArguments() {
-    var expressions = [];
+    var arguments = [];
     match('(');
     if (at(')')) {
-        match(')');
+        match();
     } else {
-        expressions.push(parseExpression());
+        arguments.push(parseExpression());
         while (at(',')) {
             match(',');
-            expressions.push(parseExpression());
+            arguments.push(parseExpression());
         }
         match(')');
     }
-    return expressions;
+    return CallStatement(name, arguments);
 }
 
 function parseMatrixStatement(name) {
