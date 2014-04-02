@@ -5,7 +5,7 @@ The language of no return (statement).
 
 Overview:
     
-    This is a dynamic and weakly typed language that draws influence from Python, C++, and JavaScript.
+    This is a dynamic and weakly typed language that draws influence from Python, C++, Java, and JavaScript.
     Furthermore, this language is intended to be clean, intuitive, and subtly reminiscent of the cosmos.
 
 Logo:
@@ -114,7 +114,7 @@ Selection:
             
 Object:
     
-    (Similar to C++/Python)
+    (Similar to Java/Python)
     
     Basic:
     
