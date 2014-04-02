@@ -264,12 +264,6 @@ Macrosyntax:
 
     Statement         ::=    Declaration 
                        |     Assignment 
-                       |     Function
-                       |     Method
-                       |     Object
-                       |     Attribute 
-                       |     Call 
-                       |     Matrix 
                        |     Print
                        |     Conditional 
                        |     While 
@@ -277,15 +271,17 @@ Macrosyntax:
                        |     Break 
                        |     Continue 
 
-    Declaration       ::=    ('global' | 'local') (Assignment | Function | Method | Object)
+    Declaration       ::=    ('global' | 'local') (Variable | Function | Method | Object)
 
-    Assignment        ::=    '@' (Attribute | Call | Matrix | ID) ('=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '^=' | '|=') Expression
+    Variable          ::=    ID = Expression
     
     Function          ::=    ID '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
     
     Method            ::=    ID '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
     
     Object            ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
+    
+    Assignment        ::=    '@' (Attribute | Call | Matrix | ID) ('=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '^=' | '|=') Expression
                         
     Attribute         ::=    (ID | 'self') '.' (Call | Matrix | ID)
 
@@ -353,3 +349,4 @@ Macrosyntax:
 Microsyntax:
 
     (TO DO)
+
