@@ -280,7 +280,7 @@ Macrosyntax:
 
     Declaration       ::=    ('global' | 'local') (Assignment | Function | Method | Object)
 
-    Assignment        ::=    '@' (Attribute | Call | Matrix | ID) '=' Expression
+    Assignment        ::=    '@' (Attribute | Call | Matrix | ID) ('=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '^=' | '|=') Expression
     
     Function          ::=    ID '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
     
