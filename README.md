@@ -16,7 +16,7 @@ Hello World:
 
     print "Hello, World!"
 
-Declaration:
+Declaration/Assignment:
 
     global @ galaxy = "Milky Way"
     local @ color = "purple"
@@ -30,14 +30,8 @@ Declaration:
     local @ curve = 'S'
     global @ limit = void
     local @ return = void
-    global @ box = [void]
-    local @ point = [void]
-
-Assignment: (update)
- 
-    @ box = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
-    
-    @ point = [[1, 1]]
+    global @ box = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
+    local @ point = [1, 1]
         
 Function:
 
@@ -103,7 +97,7 @@ Function:
 
 Iteration:
 
-    while x == y:
+    while x <= y:
         ...
 
     for @ i = x, i < y, @ i++:
@@ -120,7 +114,7 @@ Selection:
             
 Object:
     
-    (Similar to Java/Python)
+    (Similar to C++/Python)
     
     Basic:
     
@@ -157,7 +151,7 @@ Object:
                 $ Returns a stringy representation of the circle.
                 @ description = "Circle at " + self.x + ", " + self.y + " with r = " +  self.radius
             
-    Usage: (update)
+    Usage:
             
         global @ c1 = self.Circle(4, 3, 10)
         global @ c2 = c1
@@ -204,11 +198,11 @@ Matrix:
     @ m[0] = 1                m = [1]
     @ m[1] = 2                m = [1, 2]
     @ m[2] = 3                m = [1, 2, 3]
-    @ m[0] = m                m = [[1, 2, 3]]
-    @ m[0, 0] = 2             m = [[2, 2, 3]]
-    @ m[0, 1] = 4             m = [[2, 4, 3]]
-    @ m[0, 2] = 6             m = [[2, 4, 6]]
-    @ m[1] = [8, 10, 12]      m = [[2, 4, 6], [8, 10, 12]]
+    @ m[0] = m                m = [[1, 2, 3], 2, 3]
+    @ m[0, 0] = 2             m = [[2, 2, 3], 2, 3]
+    @ m[0, 1] = 4             m = [[2, 4, 3], 2, 3]
+    @ m[0, 2] = 6             m = [[2, 4, 6], 2, 3]
+    @ m[1] = [8, 10, 12]      m = [[2, 4, 6], [8, 10, 12], 3]
     @ m[2] = [14, 16, 18]     m = [[2, 4, 6], [8, 10, 12], [14, 16, 18]]
     @ m[1, 2] = 42            m = [[2, 4, 6], [8, 10, 42], [14, 16, 18]]
     
