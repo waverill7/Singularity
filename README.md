@@ -16,22 +16,22 @@ Hello World:
 
     print "Hello, World!"
 
-Declaration: (update)
+Declaration:
 
-    global galaxy = "Milky Way"
-    local color = "purple"
-    global initialized = true
-    local defined = false
-    global pi = 3.14159
-    local goldenRatio = 1.6180
-    global hours = 24
-    local rotations = 365
-    global variable = 'x'
-    local curve = 'S'
-    global limit = void
-    local return = void
-    global box = [void]
-    local point = [void]
+    global @ galaxy = "Milky Way"
+    local @ color = "purple"
+    global @ initialized = true
+    local @ defined = false
+    global @ pi = 3.14159
+    local @ goldenRatio = 1.6180
+    global @ hours = 24
+    local @ rotations = 365
+    global @ variable = 'x'
+    local @ curve = 'S'
+    global @ limit = void
+    local @ return = void
+    global @ box = [void]
+    local @ point = [void]
 
 Assignment: (update)
  
@@ -152,9 +152,9 @@ Object:
     
         global object Circle:
             $ A circle with a 2-D center point and a radius.
-            local x = 0
-            local y = 0
-            local radius = 0
+            local @ x = 0
+            local @ y = 0
+            local @ radius = 0
 
             global Circle(self, x, y, radius) = self:
                 $ Constructor for a circle.
@@ -185,22 +185,22 @@ Object:
             
     Usage: (update)
             
-        global c1 = self.Circle(4, 3, 10)
-        global c2 = c1
+        global @ c1 = self.Circle(4, 3, 10)
+        global @ c2 = c1
         print c2.getArea()
         print c2.getPerimeter()
-        c2 = c2.move(3,2)
+        @ c2 = c2.move(3,2)
         print c2.toString()
-        c2 = c2.move(-3,2)
-        c2 = c2.expand(5)
+        @ c2 = c2.move(-3,2)
+        @ c2 = c2.expand(5)
         print c1.toString()
         print c2.toString()
     
     Inheritance:
     
         global object Animal:
-            local name = ""
-            local sound = ""
+            local @ name = ""
+            local @ sound = ""
             
             global Animal(self, name, sound) = self:
                 @ self.name = name
@@ -226,7 +226,7 @@ Object:
 
 Matrix:
     
-    global m = [void]         m = [void]        
+    global @ m = [void]       m = [void]        
     @ m[0] = 1                m = [1]
     @ m[1] = 2                m = [1, 2]
     @ m[2] = 3                m = [1, 2, 3]
