@@ -47,7 +47,7 @@ Function:
         
         Call:
         
-            global procedure = f()
+            global procedure = f()     $ executes f()
             print procedure            $ prints void
         
     Parameters/Void Always Returned:
@@ -62,7 +62,7 @@ Function:
         
         Call:
         
-            global procedure = f(1)
+            global procedure = f(1)    $ executes f(1)
             print procedure            $ prints void
             
     No Parameters/Specified Value Returned:
