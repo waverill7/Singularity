@@ -16,22 +16,22 @@ Hello World:
 
     print "Hello, World!"
 
-Declaration/Assignment:
+Declaration:
 
-    global @ galaxy = "Milky Way"
-    local @ color = "purple"
-    global @ initialized = true
-    local @ defined = false
-    global @ pi = 3.14159
-    local @ goldenRatio = 1.6180
-    global @ hours = 24
-    local @ rotations = 365
-    global @ variable = 'x'
-    local @ curve = 'S'
-    global @ limit = void
-    local @ return = void
-    global @ box = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
-    local @ point = [1, 1]
+    global galaxy = "Milky Way"
+    local color = "purple"
+    global initialized = true
+    local defined = false
+    global pi = 3.14159
+    local goldenRatio = 1.6180
+    global hours = 24
+    local rotations = 365
+    global variable = 'x'
+    local curve = 'S'
+    global limit = void
+    local return = void
+    global box = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
+    local point = [1, 1]
         
 Function:
 
@@ -69,15 +69,15 @@ Function:
           
             global f (void) = y:
                 ...
-                @ y = 2
+                y = 2
                 
             local f (void) = y:
                 ...
-                @ y = 2
+                y = 2
                 
         Call:
             
-            global @ z = f()
+            global z = f()
         
     Parameters/Value Returned:
     
@@ -85,22 +85,22 @@ Function:
             
             global f (x) = y:
                 ...
-                @ y = 2
+                y = 2
                 
             local f (x) = y:
                 ...
-                @ y = 2
+                y = 2
                 
         Call:
             
-            global @ z = f(1)
+            global z = f(1)
 
 Iteration:
 
     while x <= y:
         ...
 
-    for @ i = x, i < y, @ i += 1:
+    for i = x, i < y, i += 1:
         ...
         
 Selection:
@@ -120,59 +120,59 @@ Object:
     
         global object Circle:
             $ A circle with a 2-D center point and a radius.
-            local @ x = 0
-            local @ y = 0
-            local @ radius = 0
+            local x = 0
+            local y = 0
+            local radius = 0
 
             global Circle(self, x, y, radius) = self:
                 $ Constructor for a circle.
-                @ self.x = x
-                @ self.y = y
-                @ self.radius = radius
+                self.x = x
+                self.y = y
+                self.radius = radius
 
             global getArea(self) = area:
                 $ Returns the area of the circle.
-                @ area = 3.14159 * (self.radius ** 2)
+                area = 3.14159 * (self.radius ** 2)
 
             global getPerimeter(self) = perimeter:
                 $ Returns the circumference of the circle.
-                @ perimeter = 3.14159 * self.radius * 2
+                perimeter = 3.14159 * self.radius * 2
 
             global expand(self, factor) = self:
                 $ Increases the radius by the given factor.
-                @ self.radius *= factor
+                self.radius *= factor
 
             global move(self, dx, dy) = self:
                 $ Moves the center point by <dx, dy>.
-                @ self.x += dx
-                @ self.y += dy
+                self.x += dx
+                self.y += dy
             
             global toString(self) = description:
                 $ Returns a stringy representation of the circle.
-                @ description = "Circle at " + self.x + ", " + self.y + " with r = " +  self.radius
+                description = "Circle at " + self.x + ", " + self.y + " with r = " +  self.radius
             
     Usage:
             
-        global @ c1 = self.Circle(4, 3, 10)
-        global @ c2 = c1
+        global c1 = self.Circle(4, 3, 10)
+        global c2 = c1
         print c2.getArea()
         print c2.getPerimeter()
-        @ c2 = c2.move(3,2)
+        c2 = c2.move(3,2)
         print c2.toString()
-        @ c2 = c2.move(-3,2)
-        @ c2 = c2.expand(5)
+        c2 = c2.move(-3,2)
+        c2 = c2.expand(5)
         print c1.toString()
         print c2.toString()
     
     Inheritance:
     
         global object Animal:
-            local @ name = ""
-            local @ sound = ""
+            local name = ""
+            local sound = ""
             
             global Animal(self, name, sound) = self:
-                @ self.name = name
-                @ self.sound = sound
+                self.name = name
+                self.sound = sound
 
             global speak(self) = void:
                 print self.name + " says " + self.sound
@@ -180,31 +180,31 @@ Object:
         global object Cow(Animal):
             
             global Cow(self, name) = self:
-                @ self.Animal = self.Animal(name, "moo")
+                self.Animal = self.Animal(name, "moo")
 
         global object Horse(Animal):
             
             global Horse(self, name) = self:
-                @ self.Animal = self.Animal(name, "neigh")
+                self.Animal = self.Animal(name, "neigh")
 
         global object Sheep(Animal):
             
             global Sheep(self, name) = self:
-                @ self.Animal = self.Animal(name, "baaaaa")
+                self.Animal = self.Animal(name, "baaaaa")
 
 Matrix:
     
-    global @ m = [void]       $ m = [void]        
-    @ m[0] = 1                $ m = [1]
-    @ m[1] = 2                $ m = [1, 2]
-    @ m[2] = 3                $ m = [1, 2, 3]
-    @ m[0] = m                $ m = [[1, 2, 3], 2, 3]
-    @ m[0, 0] = 2             $ m = [[2, 2, 3], 2, 3]
-    @ m[0, 1] = 4             $ m = [[2, 4, 3], 2, 3]
-    @ m[0, 2] = 6             $ m = [[2, 4, 6], 2, 3]
-    @ m[1] = [8, 10, 12]      $ m = [[2, 4, 6], [8, 10, 12], 3]
-    @ m[2] = [14, 16, 18]     $ m = [[2, 4, 6], [8, 10, 12], [14, 16, 18]]
-    @ m[1, 2] = 42            $ m = [[2, 4, 6], [8, 10, 42], [14, 16, 18]]
+    global m = [void]       $ m = [void]        
+    m[0] = 1                $ m = [1]
+    m[1] = 2                $ m = [1, 2]
+    m[2] = 3                $ m = [1, 2, 3]
+    m[0] = m                $ m = [[1, 2, 3], 2, 3]
+    m[0, 0] = 2             $ m = [[2, 2, 3], 2, 3]
+    m[0, 1] = 4             $ m = [[2, 4, 3], 2, 3]
+    m[0, 2] = 6             $ m = [[2, 4, 6], 2, 3]
+    m[1] = [8, 10, 12]      $ m = [[2, 4, 6], [8, 10, 12], 3]
+    m[2] = [14, 16, 18]     $ m = [[2, 4, 6], [8, 10, 12], [14, 16, 18]]
+    m[1, 2] = 42            $ m = [[2, 4, 6], [8, 10, 42], [14, 16, 18]]
     
 Keywords:
     
