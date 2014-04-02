@@ -35,33 +35,9 @@ Declaration:
 
 Assignment: (update)
  
-    @ galaxy = "Milky Way"
+    @ box = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
     
-    @ color = "purple"
-    
-    global initialized = false
-    @ initialized = true
-    
-    local defined = true
-    @ defined = false
-    
-    global limit = void
-    
-    global pi = 0.0 {float}
-    @ pi = 3.14159
-    
-    local rotations = 0 {int}
-    @ rotations = 365
-    
-    global variable = ''
-    @ variable = 'x'
-    
-    local curve = ''
-    @ curve = 'S'
-    
-    @ box[] = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
-    
-    @ point[] = [[1, 1]]
+    @ point = [[1, 1]]
         
 Function:
 
@@ -107,8 +83,7 @@ Function:
                 
         Call:
             
-            global z = 0 {int}
-            @ z = f()
+            global @ z = f()
         
     Parameters/Value Returned:
     
@@ -124,8 +99,7 @@ Function:
                 
         Call:
             
-            global z = 0 {int} 
-            @ z = f(1)
+            global @ z = f(1)
 
 Iteration:
 
