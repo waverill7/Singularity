@@ -100,7 +100,7 @@ Iteration:
     while x <= y:
         ...
 
-    for @ i = x, i < y, @ i++:
+    for @ i = x, i < y, @ i = i++:
         ...
         
 Selection:
