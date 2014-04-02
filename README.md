@@ -100,7 +100,7 @@ Iteration:
     while x <= y:
         ...
 
-    for @ i = x, i < y, @ i = i++:
+    for @ i = x, i < y, @ i += 1:
         ...
         
 Selection:
@@ -140,12 +140,12 @@ Object:
 
             global expand(self, factor) = self:
                 $ Increases the radius by the given factor.
-                @ self.radius = self.radius * factor
+                @ self.radius *= factor
 
             global move(self, dx, dy) = self:
                 $ Moves the center point by <dx, dy>.
-                @ self.x = self.x + dx
-                @ self.y = self.y + dy
+                @ self.x += dx
+                @ self.y += dy
             
             global toString(self) = description:
                 $ Returns a stringy representation of the circle.
@@ -240,7 +240,6 @@ Operators:
     + -                addition/subtraction
     * / %              multiplication/division/modulo
     not ~ + -          logical not/bitwise not/unary plus/unary minus
-    ++ --              postfix increment/postfix decrement
     **                 power
     
 Types:
@@ -328,11 +327,9 @@ Macrosyntax:
     
     Expression_10     ::=    ('not' | '~' | '+' | '-')? Expression_11
 
-    Expression_11     ::=    Expression_12 ('++' | '--')?     
+    Expression_11     ::=    Expression_12 ('**' Expression_12)*
 
-    Expression_12     ::=    Expression_13 ('**' Expression_13)*
-
-    Expression_13     ::=    Attribute
+    Expression_12     ::=    Attribute
                        |     Call 
                        |     Matrix
                        |     ID
