@@ -273,7 +273,7 @@ Macrosyntax:
 
     Declaration       ::=    ('global' | 'local') (Variable | Function | Method | Object)
 
-    Variable          ::=    ID = Expression
+    Variable          ::=    ID '=' Expression
     
     Function          ::=    ID '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
     
@@ -281,7 +281,7 @@ Macrosyntax:
     
     Object            ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
     
-    Assignment        ::=    '@' (Attribute | Call | Matrix | ID) ('=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '^=' | '|=') Expression
+    Assignment        ::=    (Attribute | Call | Matrix | ID) ('=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '^=' | '|=') Expression
                         
     Attribute         ::=    (ID | 'self') '.' (Call | Matrix | ID)
 
