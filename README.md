@@ -35,7 +35,7 @@ Declaration:
         
 Function:
 
-    No Parameters/No Value Returned:
+    No Parameters/Void Always Returned:
         
         Signature:
         
@@ -47,9 +47,10 @@ Function:
         
         Call:
         
-            f()
+            global procedure = f()
+            print procedure            $ prints void
         
-    Parameters/No Value Returned:
+    Parameters/Void Always Returned:
     
         Signature:
             
@@ -61,9 +62,10 @@ Function:
         
         Call:
         
-            f(1)
+            global procedure = f(1)
+            print procedure            $ prints void
             
-    No Parameters/Value Returned:
+    No Parameters/Specified Value Returned:
     
         Signature:
           
@@ -77,9 +79,9 @@ Function:
                 
         Call:
             
-            global z = f()
+            global value = f()
         
-    Parameters/Value Returned:
+    Parameters/Specified Value Returned:
     
         Signature:
             
@@ -93,7 +95,7 @@ Function:
                 
         Call:
             
-            global z = f(1)
+            global value = f(1)
 
 Iteration:
 
