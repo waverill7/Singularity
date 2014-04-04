@@ -36,7 +36,7 @@ Declaration:
 Assignment:
     
     =               Direct Assignment
-    +=   −=	        Assignment by Sum and Difference
+    +=   −=	      Assignment by Sum and Difference
     *=   /=   %=	Assignment by Product, Quotient, and Remainder
     <<=  >>=	    Assignment by Bitwise Left Shift and Right Shift
     &=   ^=   |=	Assignment by Bitwise AND, XOR, and OR
