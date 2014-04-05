@@ -18,7 +18,7 @@ describe('The scanner', function () {
   });
 
   it('properly handles comments and blank lines', function (done) {
-    scan('test/data/good-programs/multiplication_table.sing', function (tokens) {
+    scan('test/data/good-programs/multiplicationTable.sing', function (tokens) {
       tokens.length.should.equal(62);
       i(tokens[0]).should.equal(i({kind:'Return',lexeme:'Return',line:1,col:1}));
       i(tokens[1]).should.equal(i({kind:'global',lexeme:'global',line:2,col:1}));
