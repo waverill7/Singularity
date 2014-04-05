@@ -3,7 +3,7 @@ global multiplicationTable = [void]
 
 $ Iterates through each row of the table.
 for row = 1, row <= 10, row += 1:
-	multiplicationTable[row-1] = [void]
+    multiplicationTable[row-1] = [void]
     
     $ Iterates through each column of the table.
     for column = 1, column <= 10, column += 1:
