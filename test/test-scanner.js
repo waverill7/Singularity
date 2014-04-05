@@ -132,10 +132,10 @@ describe('The scanner', function () {
       i(tokens[29]).should.equal(i({kind:',',lexeme:',',line:1,col:49}));
       i(tokens[30]).should.equal(i({kind:'=',lexeme:'=',line:1,col:50}));
       i(tokens[31]).should.equal(i({kind:':',lexeme:':',line:1,col:51}));
-      i(tokens[31]).should.equal(i({kind:'.',lexeme:'.',line:1,col:52}));
-      i(tokens[31]).should.equal(i({kind:'[',lexeme:'[',line:1,col:53}));
-      i(tokens[31]).should.equal(i({kind:']',lexeme:']',line:1,col:54}));
-      i(tokens[31]).should.equal(i({kind:'-',lexeme:'-',line:1,col:55}));
+      i(tokens[32]).should.equal(i({kind:'.',lexeme:'.',line:1,col:52}));
+      i(tokens[33]).should.equal(i({kind:'[',lexeme:'[',line:1,col:53}));
+      i(tokens[34]).should.equal(i({kind:']',lexeme:']',line:1,col:54}));
+      i(tokens[35]).should.equal(i({kind:'-',lexeme:'-',line:1,col:55}));
       done();
     });
   });
