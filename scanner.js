@@ -74,13 +74,19 @@ function scan(line, linenumber, tokens) {
             break
         }
 
+        // Three-Character Tokens
+        if (/<<=|>>=/.test(line.substring(pos, pos+3))) {
+            emit(line.substring(pos, pos+3))
+            pos += 3
+        } 
+
         // Two-Character Tokens
-        if (/\+\+|--|<=|>=|!=|==|<<|>>|\*\*/.test(line.substring(pos, pos+2))) {
+        if (/<=|>=|!=|==|<<|>>|\*\*|\+=|-=|\*=|\/=|%=|&=|\^=|\|=/.test(line.substring(pos, pos+2))) {
             emit(line.substring(pos, pos+2))
             pos += 2
 
         // One-Character Tokens
-        } else if (/[<>|^&+\-*/%~#:,()=.[\]{}@]/.test(line[pos])) {
+        } else if (/[\|\^&<>\+\*\/%~\(\),=:\.\[\]-]/.test(line[pos])) {
             emit(line[pos])
             pos++
 
