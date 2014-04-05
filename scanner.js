@@ -78,10 +78,9 @@ function scan(line, linenumber, tokens) {
         if (/<<=|>>=/.test(line.substring(pos, pos+3))) {
             emit(line.substring(pos, pos+3));
             pos += 3;
-        } 
 
         // Two-Character Tokens
-        if (/<=|>=|!=|==|<<|>>|\*\*|\+=|-=|\*=|\/=|%=|&=|\^=|\|=/.test(line.substring(pos, pos+2))) {
+        } else if (/<=|>=|!=|==|<<|>>|\*\*|\+=|-=|\*=|\/=|%=|&=|\^=|\|=/.test(line.substring(pos, pos+2))) {
             emit(line.substring(pos, pos+2));
             pos += 2;
 
