@@ -114,7 +114,7 @@ function scan(line, linenumber, tokens) {
                 pos++;
             }
             var word = line.substring(start, pos);
-            if (/^(?:global|local|print|while|for|break|continue|if|elif|else|object|self|void|u_byte|u_short|u_int|u_long|byte|short|int|long|float|double|or|and|not|true|false)$/.test(word)) {
+            if (/^(?:global|local|print|while|for|break|continue|if|elif|else|object|self|void|or|and|not|true|false)$/.test(word)) {
                 emit(word);
             } else {
                 emit('ID', word);
