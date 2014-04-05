@@ -1,10 +1,12 @@
-global multiplication_table = 10 # 10
+$ Creates an empty matrix.
+global multiplicationTable = [void]
 
 $ Iterates through each row of the table.
-for @ row = 1, row <= 10, @ row++:
+for row = 1, row <= 10, row += 1:
+	multiplicationTable[row-1] = [void]
     
     $ Iterates through each column of the table.
-    for @ column = 1, column <= 10, @ column++:
+    for column = 1, column <= 10, column += 1:
         
         $ Fills in each entry of the table.
-        @ multiplication_table[row][column] = row * column
+        multiplicationTable[row-1, column-1] = row * column
