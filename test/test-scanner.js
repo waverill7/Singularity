@@ -249,8 +249,8 @@ describe('The scanner', function () {
       i(tokens[5]).should.equal(i({kind:'StringLiteral',lexeme:'\" \"',line:1,col:73}));
       i(tokens[6]).should.equal(i({kind:'StringLiteral',lexeme:'\"while x > 0:\"',line:1,col:77}));
       done();
-    })
-  })   
+    });
+  });   
 
   it('distinguishes reserved words and identifiers', function (done) {
     scan('test/data/token-tests/words', function (tokens) {
