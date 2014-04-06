@@ -312,50 +312,50 @@ Macrosyntax:
     
     ContinueStatement        ::=    'continue'
 
-    Expression        ::=    Expression_1 ('or' Expression_1)*
+    Expression               ::=    Expression_1 ('or' Expression_1)*
 
-    Expression_1      ::=    Expression_2 ('and' Expression_2)*
+    Expression_1             ::=    Expression_2 ('and' Expression_2)*
 
-    Expression_2      ::=    Expression_3 ('|' Expression_3)*
+    Expression_2             ::=    Expression_3 ('|' Expression_3)*
 
-    Expression_3      ::=    Expression_4 ('^' Expression_4)*
+    Expression_3             ::=    Expression_4 ('^' Expression_4)*
     
-    Expression_4      ::=    Expression_5 ('&' Expression_5)*
+    Expression_4             ::=    Expression_5 ('&' Expression_5)*
     
-    Expression_5      ::=    Expression_6 (('==' | '!=') Expression_6)?
+    Expression_5             ::=    Expression_6 (('==' | '!=') Expression_6)?
 
-    Expression_6      ::=    Expression_7 (('<' | '<=' | '>' | '>=') Expression_7)? 
+    Expression_6             ::=    Expression_7 (('<' | '<=' | '>' | '>=') Expression_7)? 
     
-    Expression_7      ::=    Expression_8 (('<<' | '>>') Expression_8)*
+    Expression_7             ::=    Expression_8 (('<<' | '>>') Expression_8)*
     
-    Expression_8      ::=    Expression_9 (('+' | '-') Expression_9)* 
+    Expression_8             ::=    Expression_9 (('+' | '-') Expression_9)* 
     
-    Expression_9      ::=    Expression_10 (('*' | '/' | '%') Expression_10)*
+    Expression_9             ::=    Expression_10 (('*' | '/' | '%') Expression_10)*
     
-    Expression_10     ::=    ('not' | '~' | '+' | '-')? Expression_11
+    Expression_10            ::=    ('not' | '~' | '+' | '-')? Expression_11
 
-    Expression_11     ::=    Expression_12 ('**' Expression_12)*
+    Expression_11            ::=    Expression_12 ('**' Expression_12)*
 
-    Expression_12     ::=    Attribute
-                       |     Call 
-                       |     Matrix
-                       |     ID
-                       |     '(' Expression ')'
-                       |     Literal
+    Expression_12            ::=    Attribute
+                              |     Call 
+                              |     Matrix
+                              |     ID
+                              |     '(' Expression ')'
+                              |     Literal
 
-    Literal           ::=    VoidLiteral
-                       |     BooleanLiteral
-                       |     IntegerLiteral 
-                       |     RealLiteral
-                       |     CharacterLiteral
-                       |     StringLiteral
-                       |     MatrixLiteral
+    Literal                  ::=    VoidLiteral
+                              |     BooleanLiteral
+                              |     IntegerLiteral 
+                              |     RealLiteral
+                              |     CharacterLiteral
+                              |     StringLiteral
+                              |     MatrixLiteral
     
-    VoidLiteral       ::=    'void'
+    VoidLiteral              ::=    'void'
     
-    BooleanLiteral    ::=    ('true' | 'false')
+    BooleanLiteral           ::=    ('true' | 'false')
                      
-    MatrixLiteral     ::=    '[' Expression (',' Expression)* ']'
+    MatrixLiteral            ::=    '[' Expression (',' Expression)* ']'
                 
 Microsyntax:
 
