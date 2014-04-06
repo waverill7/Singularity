@@ -20,15 +20,13 @@ var Attribute = require('./entities/Attribute');
 var Call = require('./entities/Call');
 var Matrix = require('./entities/Matrix');
 var PrintStatement = require('./entities/PrintStatement');
-
 var ConditionalStatement = require('./entities/ConditionalStatement');
-
 var WhileStatement = require('./entities/WhileStatement');
-
 var ForStatement = require('./entities/ForStatement');
 var BreakStatement = require('./entities/BreakStatement');
 var ContinueStatement = require('./entities/ContinueStatement');
-
+var InfixExpression = require('./entities/InfixExpression');
+var PrefixExpression = require('./entities/PrefixExpression');
 var VoidLiteral = require('./entities/VoidLiteral');
 var BooleanLiteral = require('./entities/BooleanLiteral');
 var IntegerLiteral = require('./entities/IntegerLiteral');
@@ -37,9 +35,6 @@ var CharacterLiteral = require('./entities/CharacterLiteral');
 var StringLiteral = require('./entities/StringLiteral');
 var MatrixLiteral = require('./entities/MatrixLiteral');
 var VariableReference = require('./entities/VariableReference');
-var PrefixExpression = require('./entities/PrefixExpression');
-var InfixExpression = require('./entities/InfixExpression');
-var PostfixExpression = require('./entities/PostfixExpression');
 
 var tokens;
 
@@ -343,131 +338,131 @@ function parseContinueStatement() {
 }
 
 function parseExpression() {
-    var operator;
     var left;
+    var operator;
     var right;
     left = parseExpression_1();
     while (at('or')) {
         operator = match();
         right = parseExpression_1();
-        left = new InfixExpression(operator, left, right);
+        left = new InfixExpression(left, operator, right);
     }
     return left;
 }
 
 function parseExpression_1() {
-    var operator;
     var left;
+    var operator;
     var right;
     left = parseExpression_2();
     while (at('and')) {
         operator = match();
         right = parseExpression_2();
-        left = new InfixExpression(operator, left, right);
+        left = new InfixExpression(left, operator, right);
     }
     return left;
 }
 
 function parseExpression_2() {
-    var operator;
     var left;
+    var operator;
     var right;
     left = parseExpression_3();
     while (at('|')) {
         operator = match();
         right = parseExpression_3();
-        left = new InfixExpression(operator, left, right);
+        left = new InfixExpression(left, operator, right);
     }
     return left;
 }
 
 function parseExpression_3() {
-    var operator;
     var left;
+    var operator;
     var right;
     left = parseExpression_4();
     while (at('^')) {
         operator = match();
         right = parseExpression_4();
-        left = new InfixExpression(operator, left, right);
+        left = new InfixExpression(left, operator, right);
     }
     return left;
 }
 
 function parseExpression_4() {
-    var operator;
     var left;
+    var operator;
     var right;
     left = parseExpression_5();
     while (at('&')) {
         operator = match();
         right = parseExpression_5();
-        left = new InfixExpression(operator, left, right);
+        left = new InfixExpression(left, operator, right);
     }
     return left;
 }
 
 function parseExpression_5() {
-    var operator;
     var left;
+    var operator;
     var right;
     left = parseExpression_6();
     if (at(['==', '!='])) { 
         operator = match();
         right = parseExpression_6();
-        left = new InfixExpression(operator, left, right);
+        left = new InfixExpression(left, operator, right);
     }
     return left;
 }
 
 function parseExpression_6() {
-    var operator;
     var left;
+    var operator;
     var right;
     left = parseExpression_7();
     if (at(['<', '<=', '>', '>='])) {
         operator = match();
         right = parseExpression_7();
-        left = new InfixExpression(operator, left, right);
+        left = new InfixExpression(left, operator, right);
     }
     return left;
 }
 
 function parseExpression_7() {
-    var operator;
     var left;
+    var operator;
     var right;
     left = parseExpression_8();
     while (at(['<<', '>>'])) {
         operator = match();
         right = parseExpression_8();
-        left = new InfixExpression(operator, left, right);
+        left = new InfixExpression(left, operator, right);
     }
     return left;
 }
 
 function parseExpression_8() {
-    var operator;
     var left;
+    var operator;
     var right;
     left = parseExpression_9();
     while (at(['+', '-'])) {
         operator = match();
         right = parseExpression_9();
-        left = new InfixExpression(operator, left, right);
+        left = new InfixExpression(left, operator, right);
     }
     return left;
 }
 
 function parseExpression_9() {
-    var operator;
     var left;
+    var operator;
     var right;
     left = parseExpression_10();
     while (at(['*', '/', '%'])) {
         operator = match();
         right = parseExpression_10();
-        left = new InfixExpression(operator, left, right);
+        left = new InfixExpression(left, operator, right);
     }
     return left;
 }
@@ -485,43 +480,31 @@ function parseExpression_10() {
 }
 
 function parseExpression_11() {
-    var operand;
-    var operator;
-    operand = parseExpression_12();
-    if (at(['++', '--'])) {
-        operator = match();
-        return new PostfixExpression(operand, operator);
-    } else {
-        return operand;
-    }
-}
-
-function parseExpression_12() {
-  var operator;
   var left;
+  var operator;
   var right;
-  left = parseExpression_13();
+  left = parseExpression_12();
   while (at('**')) {
     operator = match();
-    right = parseExpression_13();
-    left = new InfixExpression(operator, left, right);
+    right = parseExpression_12();
+    left = new InfixExpression(left, operator, right);
   }
   return left;
 }
 
-function parseExpression_13() {
+function parseExpression_12() {
     if (at('self')) {
-        return parseAttributeStatement();
+        return parseAttribute();
     } else if (at('ID')) {
         var name = new VariableReference(match());
         if (at('.')) {
-            return parseAttributeStatement(name);
+            return parseAttribute(name);
         } else if (at('(')) {
-            return parseCallStatement(name);
+            return parseCall(name);
         } else if (at('[')) {
-            return parseMatrixStatement(name);
+            return parseMatrix(name);
         } else {
-            return new VariableReference(match('ID'));
+            return name;
         }
     } else if (at('(')) {
         var expression;
@@ -539,7 +522,7 @@ function parseExpression_13() {
 function parseLiteral() {
     if (at('void')) {
         return parseVoidLiteral();
-    } else if (at(['true' | 'false'])) {
+    } else if (at(['true', 'false'])) {
         return parseBooleanLiteral();
     } else if (at('IntegerLiteral')) {
         return parseIntegerLiteral();
@@ -589,6 +572,7 @@ function parseMatrixLiteral() {
     match('[');
     expressions.push(parseExpression());
     while (at(',')) {
+        match();
         expressions.push(parseExpression());
     }
     match(']');
