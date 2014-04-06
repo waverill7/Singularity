@@ -269,30 +269,30 @@ Types:
                        
 Macrosyntax:
                        
-    Program           ::=    Block
+    Program                  ::=    Block
 
-    Block             ::=    (Statement)+
+    Block                    ::=    (Statement)+
 
-    Statement         ::=    Declaration 
-                       |     Assignment 
-                       |     Print
-                       |     Conditional 
-                       |     While 
-                       |     For 
-                       |     Break 
-                       |     Continue 
+    Statement                ::=    DeclarationStatement 
+                              |     AssignmentStatement 
+                              |     PrintStatement
+                              |     ConditionalStatement 
+                              |     WhileStatement 
+                              |     ForStatement 
+                              |     BreakStatement 
+                              |     ContinueStatement 
 
-    Declaration       ::=    ('global' | 'local') (Variable | Function | Method | Object)
+    Declaration              ::=    ('global' | 'local') (VariableDeclaration | FunctionDeclaration | MethodDeclaration | ObjectDeclaration)
 
-    Variable          ::=    ID '=' Expression
+    VariableDeclaration      ::=    ID '=' Expression
     
-    Function          ::=    ID '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
+    FunctionDeclaration      ::=    ID '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
     
-    Method            ::=    ID '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
+    MethodDeclaration        ::=    ID '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
     
-    Object            ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
+    ObjectDeclaration        ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
     
-    Assignment        ::=    (Attribute | Call | Matrix | ID) ('=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '^=' | '|=' | '<<=' | '>>=') Expression
+    AssignmentStatement      ::=    (Attribute | Call | Matrix | ID) ('=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '^=' | '|=' | '<<=' | '>>=') Expression
                         
     Attribute         ::=    (ID | 'self') '.' (Call | Matrix | ID)
 
@@ -300,17 +300,17 @@ Macrosyntax:
 
     Matrix            ::=    ID '[' Expression (',' Expression)* ']'
     
-    Print             ::=    'print' Expression
+    PrintStatement           ::=    'print' Expression
     
-    Conditional       ::=    'if' Expression ':' 'Return' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Return' 'Indent' Block 'Dedent')* ('else' ':' 'Return' 'Indent' Block 'Dedent')?
+    ConditionalStatement     ::=    'if' Expression ':' 'Return' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Return' 'Indent' Block 'Dedent')* ('else' ':' 'Return' 'Indent' Block 'Dedent')?
     
-    While             ::=    'while' Expression ':' 'Return' 'Indent' Block 'Dedent'
+    WhileStatement           ::=    'while' Expression ':' 'Return' 'Indent' Block 'Dedent'
     
-    For               ::=    'for' Assignment ',' Expression ',' Assignment ':' 'Return' 'Indent' Block 'Dedent'
+    ForStatement             ::=    'for' Assignment ',' Expression ',' Assignment ':' 'Return' 'Indent' Block 'Dedent'
     
-    Break             ::=    'break'
+    BreakStatement           ::=    'break'
     
-    Continue          ::=    'continue'
+    ContinueStatement        ::=    'continue'
 
     Expression        ::=    Expression_1 ('or' Expression_1)*
 
