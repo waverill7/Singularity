@@ -79,7 +79,7 @@ function parseStatement() {
     } else if (at('continue')) {
         return parseContinueStatement();
     } else {
-        error('Statement expected', tokens[0]);
+        error('Statement Expected', tokens[0]);
     }
 }
 
@@ -515,7 +515,7 @@ function parseExpression_12() {
     else if (at(['void','true','false','IntegerLiteral','RealLiteral','CharacterLiteral','StringLiteral', '['])) {
         return parseLiteral();
     } else {
-        error('Illegal start of expression');
+        error('Illegal Start Of Expression');
     }
 }
 
@@ -535,7 +535,7 @@ function parseLiteral() {
     } else if (at('[')) {
         return parseMatrixLiteral();
     } else {
-        error('Illegal literal', tokens[0]);
+        error('Illegal Literal', tokens[0]);
     }
 }
 
@@ -595,6 +595,6 @@ function match(symbol) {
     } else if (symbol === undefined || symbol === tokens[0].kind) {
         return tokens.shift();
     } else {
-        error('Expected ' + symbol + ' but found ' + tokens[0].kind, tokens[0]);
+        error('Expected ' + symbol + ' But Found ' + tokens[0].kind, tokens[0]);
     }
 }
