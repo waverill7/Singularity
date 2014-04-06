@@ -4,7 +4,6 @@ function Program(block) {
 
 Program.prototype.toString = function () {
     return '(Program ' + this.block + ')';
-}
-    
+} 
+
 module.exports = Program;
-            

@@ -4,6 +4,6 @@ function RealLiteral(token) {
 
 RealLiteral.prototype.toString = function () {
     return '(RealLiteral ' + this.token.lexeme + ')';
-}
+} 
 
 module.exports = RealLiteral;

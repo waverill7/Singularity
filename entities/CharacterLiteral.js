@@ -4,6 +4,6 @@ function CharacterLiteral(token) {
 
 CharacterLiteral.prototype.toString = function () {
     return '(CharacterLiteral ' + this.token.lexeme + ')';
-}
+} 
 
 module.exports = CharacterLiteral;
