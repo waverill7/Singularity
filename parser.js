@@ -84,7 +84,7 @@ function parseStatement() {
 }
 
 function parseDeclarationStatement() {
-    var scope = match();
+    var scope = match().lexeme;
     var name;
     if (at('ID')) {
         name = new VariableReference(match());
