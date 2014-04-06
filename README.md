@@ -294,11 +294,11 @@ Macrosyntax:
     
     AssignmentStatement      ::=    (Attribute | Call | Matrix | ID) ('=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '^=' | '|=' | '<<=' | '>>=') Expression
                         
-    Attribute         ::=    (ID | 'self') '.' (Call | Matrix | ID)
+    Attribute                ::=    (ID | 'self') '.' (Call | Matrix | ID)
 
-    Call              ::=    ID '(' (Expression (',' Expression)*)? ')'
+    Call                     ::=    ID '(' (Expression (',' Expression)*)? ')'
 
-    Matrix            ::=    ID '[' Expression (',' Expression)* ']'
+    Matrix                   ::=    ID '[' Expression (',' Expression)* ']'
     
     PrintStatement           ::=    'print' Expression
     
