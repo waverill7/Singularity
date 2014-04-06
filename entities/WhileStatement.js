@@ -5,6 +5,6 @@ function WhileStatement(condition, body) {
 
 WhileStatement.prototype.toString = function () {
     return '(WhileStatement ' + this.condition + ' ' + this.body + ')';
-} 
+}
 
 module.exports = WhileStatement;

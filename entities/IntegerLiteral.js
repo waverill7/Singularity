@@ -4,6 +4,6 @@ function IntegerLiteral(token) {
 
 IntegerLiteral.prototype.toString = function () {
     return '(IntegerLiteral ' + this.token.lexeme + ')';
-} 
+}
 
 module.exports = IntegerLiteral;

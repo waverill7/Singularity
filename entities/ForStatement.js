@@ -7,6 +7,6 @@ function ForStatement(initialization, condition, update, body) {
 
 ForStatement.prototype.toString = function () {
     return '(ForStatement ' + this.initialization + ' ' + this.condition + ' ' + this.update + ' ' + this.body + ')';
-} 
+}
 
 module.exports = ForStatement;

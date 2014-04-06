@@ -4,6 +4,6 @@ function BooleanLiteral(token) {
 
 BooleanLiteral.prototype.toString = function () {
     return '(BooleanLiteral ' + this.token.lexeme + ')';
-} 
+}
 
 module.exports = BooleanLiteral;
