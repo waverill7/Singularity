@@ -269,93 +269,93 @@ Types:
                        
 Macrosyntax:
                        
-    Program           ::=    Block
+    Program                  ::=    Block
 
-    Block             ::=    (Statement)+
+    Block                    ::=    (Statement)+
 
-    Statement         ::=    Declaration 
-                       |     Assignment 
-                       |     Print
-                       |     Conditional 
-                       |     While 
-                       |     For 
-                       |     Break 
-                       |     Continue 
+    Statement                ::=    DeclarationStatement 
+                              |     AssignmentStatement 
+                              |     PrintStatement
+                              |     ConditionalStatement 
+                              |     WhileStatement 
+                              |     ForStatement 
+                              |     BreakStatement 
+                              |     ContinueStatement 
 
-    Declaration       ::=    ('global' | 'local') (Variable | Function | Method | Object)
+    DeclarationStatement     ::=    ('global' | 'local') (VariableDeclaration | FunctionDeclaration | MethodDeclaration | ObjectDeclaration)
 
-    Variable          ::=    ID '=' Expression
+    VariableDeclaration      ::=    ID '=' Expression
     
-    Function          ::=    ID '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
+    FunctionDeclaration      ::=    ID '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
     
-    Method            ::=    ID '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
+    MethodDeclaration        ::=    ID '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
     
-    Object            ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
+    ObjectDeclaration        ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
     
-    Assignment        ::=    (Attribute | Call | Matrix | ID) ('=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '^=' | '|=' | '<<=' | '>>=") Expression
+    AssignmentStatement      ::=    (Attribute | Call | Matrix | ID) ('=' | '+=' | '-=' | '*=' | '/=' | '%=' | '&=' | '^=' | '|=' | '<<=' | '>>=') Expression
                         
-    Attribute         ::=    (ID | 'self') '.' (Call | Matrix | ID)
+    Attribute                ::=    (ID | 'self') '.' (Call | Matrix | ID)
 
-    Call              ::=    ID '(' (Expression (',' Expression)*)? ')'
+    Call                     ::=    ID '(' (Expression (',' Expression)*)? ')'
 
-    Matrix            ::=    ID '[' Expression (',' Expression)* ']'
+    Matrix                   ::=    ID '[' Expression (',' Expression)* ']'
     
-    Print             ::=    'print' Expression
+    PrintStatement           ::=    'print' Expression
     
-    Conditional       ::=    'if' Expression ':' 'Return' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Return' 'Indent' Block 'Dedent')* ('else' ':' 'Return' 'Indent' Block 'Dedent')?
+    ConditionalStatement     ::=    'if' Expression ':' 'Return' 'Indent' Block 'Dedent' ('elif' Expression ':' 'Return' 'Indent' Block 'Dedent')* ('else' ':' 'Return' 'Indent' Block 'Dedent')?
     
-    While             ::=    'while' Expression ':' 'Return' 'Indent' Block 'Dedent'
+    WhileStatement           ::=    'while' Expression ':' 'Return' 'Indent' Block 'Dedent'
     
-    For               ::=    'for' Assignment ',' Expression ',' Assignment ':' 'Return' 'Indent' Block 'Dedent'
+    ForStatement             ::=    'for' Assignment ',' Expression ',' Assignment ':' 'Return' 'Indent' Block 'Dedent'
     
-    Break             ::=    'break'
+    BreakStatement           ::=    'break'
     
-    Continue          ::=    'continue'
+    ContinueStatement        ::=    'continue'
 
-    Expression        ::=    Expression_1 ('or' Expression_1)*
+    Expression               ::=    Expression_1 ('or' Expression_1)*
 
-    Expression_1      ::=    Expression_2 ('and' Expression_2)*
+    Expression_1             ::=    Expression_2 ('and' Expression_2)*
 
-    Expression_2      ::=    Expression_3 ('|' Expression_3)*
+    Expression_2             ::=    Expression_3 ('|' Expression_3)*
 
-    Expression_3      ::=    Expression_4 ('^' Expression_4)*
+    Expression_3             ::=    Expression_4 ('^' Expression_4)*
     
-    Expression_4      ::=    Expression_5 ('&' Expression_5)*
+    Expression_4             ::=    Expression_5 ('&' Expression_5)*
     
-    Expression_5      ::=    Expression_6 (('==' | '!=') Expression_6)?
+    Expression_5             ::=    Expression_6 (('==' | '!=') Expression_6)?
 
-    Expression_6      ::=    Expression_7 (('<' | '<=' | '>' | '>=') Expression_7)? 
+    Expression_6             ::=    Expression_7 (('<' | '<=' | '>' | '>=') Expression_7)? 
     
-    Expression_7      ::=    Expression_8 (('<<' | '>>') Expression_8)*
+    Expression_7             ::=    Expression_8 (('<<' | '>>') Expression_8)*
     
-    Expression_8      ::=    Expression_9 (('+' | '-') Expression_9)* 
+    Expression_8             ::=    Expression_9 (('+' | '-') Expression_9)* 
     
-    Expression_9      ::=    Expression_10 (('*' | '/' | '%') Expression_10)*
+    Expression_9             ::=    Expression_10 (('*' | '/' | '%') Expression_10)*
     
-    Expression_10     ::=    ('not' | '~' | '+' | '-')? Expression_11
+    Expression_10            ::=    ('not' | '~' | '+' | '-')? Expression_11
 
-    Expression_11     ::=    Expression_12 ('**' Expression_12)*
+    Expression_11            ::=    Expression_12 ('**' Expression_12)*
 
-    Expression_12     ::=    Attribute
-                       |     Call 
-                       |     Matrix
-                       |     ID
-                       |     '(' Expression ')'
-                       |     Literal
+    Expression_12            ::=    Attribute
+                              |     Call 
+                              |     Matrix
+                              |     ID
+                              |     '(' Expression ')'
+                              |     Literal
 
-    Literal           ::=    VoidLiteral
-                       |     BooleanLiteral
-                       |     IntegerLiteral 
-                       |     RealLiteral
-                       |     CharacterLiteral
-                       |     StringLiteral
-                       |     MatrixLiteral
+    Literal                  ::=    VoidLiteral
+                              |     BooleanLiteral
+                              |     IntegerLiteral 
+                              |     RealLiteral
+                              |     CharacterLiteral
+                              |     StringLiteral
+                              |     MatrixLiteral
     
-    VoidLiteral       ::=    'void'
+    VoidLiteral              ::=    'void'
     
-    BooleanLiteral    ::=    ('true' | 'false')
+    BooleanLiteral           ::=    ('true' | 'false')
                      
-    MatrixLiteral     ::=    '[' Expression (',' Expression)* ']'
+    MatrixLiteral            ::=    '[' Expression (',' Expression)* ']'
                 
 Microsyntax:
 
