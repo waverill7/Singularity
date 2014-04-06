@@ -591,7 +591,7 @@ function at(symbol) {
 
 function match(symbol) {
     if (tokens.length === 0) {
-        error('Unexpected end of input');
+        error('Unexpected End Of Input');
     } else if (symbol === undefined || symbol === tokens[0].kind) {
         return tokens.shift();
     } else {
