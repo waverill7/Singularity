@@ -11,27 +11,31 @@ var error = require('./error');
 
 var Program = require('./entities/Program');
 var Block = require('./entities/Block');
-var DeclarationStatement = require('./entities/DeclarationStatement');
-var FunctionStatement = require('./entities/FunctionStatement');
-var MethodStatement = require('./entities/MethodStatement');
+var VariableDeclaration = require('./entities/VariableDeclaration');
+var FunctionDeclaration = require('./entities/FunctionDeclaration');
+var MethodDeclaration = require('./entities/MethodDeclaration');
+var ObjectDeclaration = require('./entities/ObjectDeclaration');
 var AssignmentStatement = require('./entities/AssignmentStatement');
-var AttributeStatement = require('./entities/AttributeStatement');
-var CallStatement = require('./entities/CallStatement');
-var MatrixStatement = require('./entities/MatrixStatement');
-var PrintStatement = require('./entiteis/PrintStatement');
+var Attribute = require('./entities/Attribute');
+var Call = require('./entities/Call');
+var Matrix = require('./entities/Matrix');
+var PrintStatement = require('./entities/PrintStatement');
+
+var ConditionalStatement = require('./entities/ConditionalStatement');
+
 var WhileStatement = require('./entities/WhileStatement');
+
 var ForStatement = require('./entities/ForStatement');
 var BreakStatement = require('./entities/BreakStatement');
 var ContinueStatement = require('./entities/ContinueStatement');
-var ConditionalStatement = require('./entities/ConditionalStatement');
-var ObjectStatement = require('./entities/ObjectStatement');
+
 var VoidLiteral = require('./entities/VoidLiteral');
 var BooleanLiteral = require('./entities/BooleanLiteral');
 var IntegerLiteral = require('./entities/IntegerLiteral');
 var RealLiteral = require('./entities/RealLiteral');
 var CharacterLiteral = require('./entities/CharacterLiteral');
 var StringLiteral = require('./entities/StringLiteral');
-var MatrixLiteral = require('./MatrixLiteral');
+var MatrixLiteral = require('./entities/MatrixLiteral');
 var VariableReference = require('./entities/VariableReference');
 var PrefixExpression = require('./entities/PrefixExpression');
 var InfixExpression = require('./entities/InfixExpression');
@@ -58,28 +62,19 @@ function parseBlock() {
         } else {
             statements.push(parseStatement());
         }
-    } while (at(['Return', 'global', 'local', '@', 'self', 'ID', 'print', 'while', 'for', 'break', 'continue', 'if', 'object']));
+    } while (at(['Return', 'global', 'local', 'ID', 'self', 'print', 'if', 'while', 'for', 'break', 'continue']));
     return new Block(statements);
 }
 
 function parseStatement() {
     if (at(['global', 'local'])) {
-        return parseScope();
-    } else if (at('@')) {
+        return parseDeclarationStatement();
+    } else if (at(['ID', 'self'])) {
         return parseAssignmentStatement();
-    } else if (at('self')) {
-        return parseAttributeStatement();
-    } else if (at('ID')) {
-        var name = new VariableReference(match());
-        if (at('.')) {
-            return parseAttributeStatement(name);
-        } else if (at('(')) {
-            return parseCallStatement(name);
-        } else {
-            return parseMatrixStatement(name);
-        }
     } else if (at('print')) {
         return parsePrintStatement();
+    } else if (at('if')) {
+        return parseConditionalStatement();
     } else if (at('while')) {
         return parseWhileStatement();
     } else if (at('for')) {
@@ -88,82 +83,39 @@ function parseStatement() {
         return parseBreakStatement();
     } else if (at('continue')) {
         return parseContinueStatement();
-    } else if (at('if')) {
-        return parseConditionalStatement();
-    } else if (at('object')) {
-        return parseObjectStatement();
     } else {
         error('Statement expected', tokens[0]);
     }
 }
 
-function parseScope() {
-    var scope;
+function parseDeclarationStatement() {
+    var scope = match();
     var name;
-    if (at('global')) {
-        scope = match().lexeme;
-    } else {
-        scope = match('local').lexeme;
-    }
-    name = new VariableReference(match('ID'));
-    if (at('=')) {
-        return parseDeclarationStatement(scope, name);
-    } else {
-        return parseSignature(scope, name);
-    }
-}
-
-function parseDeclarationStatement(scope, name) {
-    var declaration = [];
-    var declarations = [];
-    declaration.push(name);
-    match('=');
-    declaration.push(parseExpression());
-    if (at('{')) {
-        declaration.push(parseSize());
-    } else if (at('#')) {
-        match();
-        declaration.push(parseExpression());
-    }
-    declarations.push(declaration);
-    declaration = [];
-    while (at(',')) {
-        match();
-        declaration.push(new VariableReference(match('ID')));
-        match('=');
-        declaration.push(parseExpression());
-        if (at('{')) {
-            declaration.push(parseSize());
-        } else if (at('#')) {
-            match();
-            declaration.push(parseExpression());
+    if (at('ID')) {
+        name = new VariableReference(match());
+        if (at('=')) {
+            return parseVariableDeclaration(scope, name);
+        } else {
+            match('(');
+            if (at(['ID', 'void'])) {
+                return parseFunctionDeclaration(scope, name);
+            } else {
+                return parseMethodDeclaration(scope, name);
+            }    
         }
-        declarations.push(declaration);
-        declaration = [];
-    }
-    return new DeclarationStatement(scope, declarations);
-}
-
-function parseSize() {
-    var size;
-    match('{');
-    if (at(['u_byte', 'u_short', 'u_int', 'u_long', 'byte', 'short', 'int', 'long', 'float', 'double'])) {
-        size = match();
-    }
-    match('}');
-    return size;
-}
-
-function parseSignature(scope, name) {
-    match('(');
-    if (at(['ID', 'void'])) {
-        return parseFunctionStatement(scope, name);
     } else {
-        return parseMethodStatement(scope, name);
-    }
+        return parseObjectDeclaration(scope);
+    }   
 }
 
-function parseFunctionStatement(scope, name) {
+function parseVariableDeclaration(scope, name) {
+    var expression;
+    match('=');
+    expression = parseExpression();
+    return new VariableDeclaration(scope, name, expression);
+}   
+
+function parseFunctionDeclaration(scope, name) {
     var parameters = [];
     var value;
     var body;
@@ -188,10 +140,10 @@ function parseFunctionStatement(scope, name) {
     match('Indent');
     body = parseBlock();
     match('Dedent');
-    return new FunctionStatement(scope, name, parameters, value, body);
+    return new FunctionDeclaration(scope, name, parameters, value, body);
 }
 
-function parseMethodStatement(scope, name) {
+function parseMethodDeclaration(scope, name) {
     var parameters = [];
     var value;
     var body;
@@ -214,32 +166,75 @@ function parseMethodStatement(scope, name) {
     match('Indent');
     body = parseBlock();
     match('Dedent');
-    return MethodStatement(scope, name, parameters, value, body);
+    return MethodDeclaration(scope, name, parameters, value, body);
+}
+
+function parseObjectDeclaration(scope) {
+    var name;
+    var inheritance = [];
+    var body;
+    match('object');
+    name = new VariableReference(match('ID'));
+    if (at('(')) {
+        match();
+        inheritiance.push(new VariableReference(match('ID')));
+        while (at(',')) {
+            match();
+            inheritance.push(new VariableReference(match('ID')));
+        }
+        match(')');
+    }
+    match(':');
+    match('Return');
+    match('Indent');
+    body = parseBlock();
+    match('Dedent');
+    return new ObjectDeclaration(scope, name, inheritance, body);
 }
 
 function parseAssignmentStatement() {
-    
+    var left;
+    var operator;
+    var right;
+    if (at('self')) {
+        left = parseAttribute();
+    } else {
+        var name = new VariableReference(match('ID'));
+        if (at('.')) {
+            left = parseAttribute(name);
+        } else if (at('(')) {
+            left = parseCall(name);
+        } else if (at('[')) {
+            left = parseMatrix(name);
+        } else {
+            left = name;
+        }
+    }
+    if (at(['=', '+=', '-=', '*=', '/=', '%=', '&=', '^=', '|=', '<<=', '>>='])) {
+        operator = match();
+    }
+    right = parseExpression();
+    return new AssignmentStatement(left, operator, right);
 }
 
-function parseAttributeStatement(name) {
-    var propertyName;
+function parseAttribute(name) {
     var property;
     if (at('self')) {
         name = match().lexeme;
     }
     match('.');
-    propertyName = new VariableReference(match('ID'));
+    var propertyName = new VariableReference(match('ID'));
     if (at('(')) {
-        property = parseCallStatement(propertyName);
+        property = parseCall(propertyName);
     } else if (at('[')) {
-        property = parseMatrixStatement(propertyName);
+        property = parseMatrix(propertyName);
     } else {
         property = propertyName;
     }
-    return new AttributeStatement(name, property);    
+    return new Attribute(name, property);    
 }
 
-function parseCallStatement(name) {
+function parseCall(name) {
     var expressions = [];
     match('(');
     if (at(')')) {
@@ -252,23 +247,19 @@ function parseCallStatement(name) {
         }
         match(')');
     }
-    return new CallStatement(name, expressions);
+    return new Call(name, expressions);
 }
 
-function parseMatrixStatement(name) {
+function parseMatrix(name) {
     var expressions = [];
     match('[');
-    if (at(']')) {
+    expressions.push(parseExpression());
+    while (at(',')) {
         match();
-    } else {
         expressions.push(parseExpression());
-        while (at(',')) {
-            match();
-            expressions.push(parseExpression());
-        }
-        match(']');
     }
-    return new MatrixStatement(name, expressions);
+    match(']');
+    return new Matrix(name, expressions);
 }
 
 function parsePrintStatement() {
@@ -276,6 +267,37 @@ function parsePrintStatement() {
     match('print');
     expression = parseExpression();
     return new PrintStatement(expression);
+}
+
+function parseConditionalStatement() {
+    var IF = [];
+    var ELIF = [];
+    var ELSE = [];
+    match('if');
+    IF.push(parseExpression());
+    match(':');
+    match('Return');
+    match('Indent');
+    IF.push(parseBlock());
+    match('Dedent');
+    while (at('elif')) {
+        match();
+        ELIF.push(parseExpression());
+        match(':');
+        match('Return');
+        match('Indent');
+        ELIF.push(parseBlock());
+        match('Dedent');
+    }
+    if (at('else')) {
+        match();
+        match(':');
+        match('Return');
+        match('Indent');
+        ELSE.push(parseBlock());
+        match('Dedent');
+    }
+    return new ConditionalStatement(IF, ELIF, ELSE);
 }
 
 function parseWhileStatement() {
@@ -318,60 +340,6 @@ function parseBreakStatement() {
 function parseContinueStatement() {
     match('continue');
     return new ContinueStatement();
-}
-
-function parseConditionalStatement() {
-    var IF = [];
-    var ELIF = [];
-    var ELSE = [];
-    match('if');
-    IF.push(parseExpression());
-    match(':');
-    match('Return');
-    match('Indent');
-    IF.push(parseBlock());
-    match('Dedent');
-    while (at('elif')) {
-        match();
-        ELIF.push(parseExpression());
-        match(':');
-        match('Return');
-        match('Indent');
-        ELIF.push(parseBlock());
-        match('Dedent');
-    }
-    if (at('else')) {
-        match();
-        match(':');
-        match('Return');
-        match('Indent');
-        ELSE.push(parseBlock());
-        match('Dedent');
-    }
-    return new ConditionalStatement(IF, ELIF, ELSE);
-}
-
-function parseObjectStatement() {
-    var name;
-    var inheritance = [];
-    var body;
-    match('object');
-    name = new VariableReference(match('ID'));
-    if (at('(')) {
-        match();
-        inheritiance.push(new VariableReference(match('ID')));
-        while (at(',')) {
-            match();
-            inheritance.push(new VariableReference(match('ID')));
-        }
-        match(')');
-    }
-    match(':');
-    match('Return');
-    match('Indent');
-    body = parseBlock();
-    match('Dedent');
-    return new ObjectStatement(name, inheritance, body);
 }
 
 function parseExpression() {
