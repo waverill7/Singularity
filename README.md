@@ -282,7 +282,7 @@ Macrosyntax:
                               |     BreakStatement 
                               |     ContinueStatement 
 
-    Declaration              ::=    ('global' | 'local') (VariableDeclaration | FunctionDeclaration | MethodDeclaration | ObjectDeclaration)
+    DeclarationStatement     ::=    ('global' | 'local') (VariableDeclaration | FunctionDeclaration | MethodDeclaration | ObjectDeclaration)
 
     VariableDeclaration      ::=    ID '=' Expression
     
