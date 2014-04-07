@@ -11,7 +11,7 @@ var TEST_DIR = 'test/data/syntax-errors';
 
 describe('The parser detects an error for', function () {
   fs.readdirSync(TEST_DIR).forEach(function (name) {
-    var check = name.replace(/-/g, ' ').replace(/\.iki$/, '');
+    var check = name.replace(/-/g, ' ').replace(/\.sing$/, '');
     it(check, function (done) {
       scan(path.join(TEST_DIR, name), function (tokens) {
         var priorErrorCount = error.count;
