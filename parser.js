@@ -142,7 +142,7 @@ function parseMethodDeclaration(scope, name) {
     var parameters = [];
     var value;
     var body;
-    parameters.push(match('self').lexeme);
+    parameters.push(match('self'));
     while (at(',')) {
         match();
         parameters.push(new VariableReference(match('ID')));
