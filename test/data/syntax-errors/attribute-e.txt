@@ -1,2 +1,0 @@
-$ missing period
-test m[0,0]
