@@ -143,7 +143,7 @@ function parseMethodDeclaration(scope, name) {
     var value;
     var body;
     var self = match('self');
-    (self.lexeme !== undefined ? parameters.push(self.lexeme) : undefined)
+    (self !== undefined ? parameters.push(self.lexeme) : undefined);
     while (at(',')) {
         match();
         parameters.push(new VariableReference(match('ID')));
@@ -155,7 +155,8 @@ function parseMethodDeclaration(scope, name) {
     } else if (at('void')) {
         value = new VoidLiteral(match());
     } else {
-        value = match('self').lexeme;
+        value = match('self');
+        (value !== undefined ? value = value.lexeme : undefined);
     }
     match(':');
     match('Return');
