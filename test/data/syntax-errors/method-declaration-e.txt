@@ -1,0 +1,3 @@
+$ missing equality operator
+global f(self, x) void:
+    print x

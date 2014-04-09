@@ -1,0 +1,3 @@
+$ missing ID
+global (x) = void:
+    print x

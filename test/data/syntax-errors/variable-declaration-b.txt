@@ -1,0 +1,2 @@
+$ missing equality operator
+global x 2

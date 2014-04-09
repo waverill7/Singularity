@@ -1,0 +1,3 @@
+$ missing for
+i = 0, i < count, i += 1:
+    print i

@@ -1,0 +1,3 @@
+$ missing comma
+global f(x y) = void:
+    print x + y

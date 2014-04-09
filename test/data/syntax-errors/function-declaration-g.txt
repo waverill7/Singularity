@@ -1,0 +1,3 @@
+$ missing colon
+global f(x) = void
+    print x

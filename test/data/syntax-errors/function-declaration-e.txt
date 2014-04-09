@@ -1,0 +1,3 @@
+$ missing equality operator
+global f(x) void:
+    print x

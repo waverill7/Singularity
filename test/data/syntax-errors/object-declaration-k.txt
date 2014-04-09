@@ -1,0 +1,3 @@
+$ missing inheritance parameters
+local object o {}:
+    local error = true

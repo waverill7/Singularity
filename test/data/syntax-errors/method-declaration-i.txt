@@ -1,0 +1,3 @@
+$ improper indentation
+global f(self, x) = void:
+print x

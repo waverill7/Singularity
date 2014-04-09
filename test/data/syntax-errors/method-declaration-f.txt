@@ -1,0 +1,3 @@
+$ missing value
+global f(self, x) = :
+    print x

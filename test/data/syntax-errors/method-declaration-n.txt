@@ -1,0 +1,3 @@
+$ missing equality operator
+local f(self, y) void:
+    print y

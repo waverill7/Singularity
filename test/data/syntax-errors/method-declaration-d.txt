@@ -1,0 +1,3 @@
+$ missing parentheses
+global f self, x = void:
+    print x

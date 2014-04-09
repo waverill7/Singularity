@@ -1,0 +1,3 @@
+$ missing ID
+local object :
+    local error = true

@@ -1,0 +1,2 @@
+$ too many comparisons (== !=)
+test = x != y != z

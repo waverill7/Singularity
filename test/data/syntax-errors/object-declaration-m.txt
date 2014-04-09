@@ -1,0 +1,3 @@
+$ missing comma
+local object o {a b}:
+    local error = true

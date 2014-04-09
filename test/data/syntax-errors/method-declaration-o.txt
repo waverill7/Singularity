@@ -1,0 +1,3 @@
+$ missing value
+local f(self, y) = :
+    print y

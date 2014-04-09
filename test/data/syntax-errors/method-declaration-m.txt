@@ -1,0 +1,3 @@
+$ missing parentheses
+local f self, y = void:
+    print y

@@ -1,0 +1,3 @@
+$ missing first Assignment
+for , i < count, i += 1:
+    print i

@@ -1,0 +1,3 @@
+$ missing curly braces
+local object o a :
+    local error = true

@@ -1,0 +1,2 @@
+$ missing period
+self m[0,0]

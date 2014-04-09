@@ -1,0 +1,3 @@
+$ missing object
+global o:
+    local error = true

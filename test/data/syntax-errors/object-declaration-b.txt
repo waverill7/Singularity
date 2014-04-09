@@ -1,0 +1,3 @@
+$ missing ID
+global object :
+    local error = true

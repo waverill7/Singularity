@@ -1,0 +1,3 @@
+$ missing parameters
+global f() = void:
+    print x

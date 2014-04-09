@@ -1,0 +1,2 @@
+$ missing comma
+[0x]

@@ -1,0 +1,3 @@
+$ missing commas
+local f(self y) = void:
+    print y

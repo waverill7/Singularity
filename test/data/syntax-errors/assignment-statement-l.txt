@@ -1,0 +1,2 @@
+$ missing equality operator
+test.yx

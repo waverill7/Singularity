@@ -1,0 +1,3 @@
+$ improper indentation
+local object o:
+local error = true
