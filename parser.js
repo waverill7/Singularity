@@ -209,6 +209,8 @@ function parseAssignmentStatement() {
     }
     if (at(['=', '+=', '-=', '*=', '/=', '%=', '&=', '^=', '|=', '<<=', '>>='])) {
         operator = match();
+    } else {
+        match('=');
     }
     right = parseExpression();
     return new AssignmentStatement(left, operator, right);
