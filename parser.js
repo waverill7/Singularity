@@ -172,7 +172,7 @@ function parseObjectDeclaration(scope) {
     name = new VariableReference(match('ID'));
     if (at('(')) {
         match();
-        inheritiance.push(new VariableReference(match('ID')));
+        inheritance.push(new VariableReference(match('ID')));
         while (at(',')) {
             match();
             inheritance.push(new VariableReference(match('ID')));
