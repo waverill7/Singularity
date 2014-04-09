@@ -1,0 +1,45 @@
+$ missing object
+global o:
+    local error = true
+local o:
+    local error = true
+
+$ missing ID
+global object :
+    local error = true
+local object :
+    local error = true
+
+$ missing inheritance parameters
+global object o {}:
+    local error = true
+local object o {}:
+    local error = true
+
+$ missing curly braces
+global object o a :
+    local error = true
+local object o a :
+    local error = true
+
+$ missing comma
+global object o {a b}:
+    local error = true
+local object o {a b}:
+    local error = true
+
+$ missing colon
+global object o
+    local error = true
+local object o
+    local error = true
+
+$ missing Block
+global object o:
+local object o:
+
+$ improper indentation
+global object o:
+local error = true
+local object o:
+local error = true

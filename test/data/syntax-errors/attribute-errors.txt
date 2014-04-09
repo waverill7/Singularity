@@ -1,0 +1,16 @@
+$ missing first ID / missing self
+.f(x)
+.m[0,0]
+.x
+
+$ missing period
+test f(x)
+test m[0,0]
+test x
+self f(x)
+self m[0,0]
+self x
+
+$ missing Call / missing Matrix / missing second ID
+test.
+self.

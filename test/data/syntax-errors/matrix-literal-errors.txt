@@ -1,0 +1,8 @@
+$ missing brackets
+void
+
+$ missing Expression
+[]
+
+$ missing comma
+[0x]

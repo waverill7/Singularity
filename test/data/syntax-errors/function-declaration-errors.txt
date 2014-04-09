@@ -1,0 +1,51 @@
+$ missing ID
+global (x) = void:
+    print x
+local (y) = void:
+    print y
+
+$ missing parameters
+global f() = void:
+    print x
+local f() = void:
+    print y
+
+$ missing comma
+global f(x y) = void:
+    print x + y
+local f(x y) = void:
+    print x + y
+
+$ missing parentheses
+global f x = void:
+    print x
+local f y = void:
+    print y
+
+$ missing equality operator
+global f(x) void:
+    print x
+local f(y) void:
+    print y
+
+$ missing value
+global f(x) = :
+    print x
+local f(y) = :
+    print y
+
+$ missing colon
+global f(x) = void
+    print x
+local f(y) = void
+    print y
+
+$ missing Block
+global f(x) = void:
+local f(y) = void:
+
+$ improper indentation
+global f(x) = void:
+print x
+local f(y) = void:
+print y
