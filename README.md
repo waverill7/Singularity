@@ -48,10 +48,10 @@ Function:
         
         Signature:
         
-            global f (void) = void:
+            global f (void) = (void):
                 ...
         
-            local f (void) = void:
+            local f (void) = (void):
                 ...
         
         Call:
@@ -63,10 +63,10 @@ Function:
     
         Signature:
             
-            global f (x = 0) = void:
+            global f (x = 0) = (void):
                 ...
                 
-            local f (x = 0) = void:
+            local f (x = 0) = (void):
                 ...
         
         Call:
@@ -96,15 +96,15 @@ Function:
             
             global f (x = 0) = (y = 0):
                 ...
-                y = 2
+                y = x ** 2
                 
             local f (x = 0) = (y = 0):
                 ...
-                y = 2
+                y = x ** 2
                 
         Call:
             
-            global value = f(1)
+            global value = f(3)
 
 Iteration:
 
