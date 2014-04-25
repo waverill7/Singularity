@@ -5,7 +5,7 @@ The language of no return (statement).
 
 Overview:
     
-    This is a dynamic and weakly typed language that draws influence from Python, C++, Java, and JavaScript.
+    This is a static and strongly typed language that draws influence from Python, C++, Java, and JavaScript.
     Furthermore, this language is intended to be clean, intuitive, and subtly reminiscent of the cosmos.
 
 Logo:
@@ -63,10 +63,10 @@ Function:
     
         Signature:
             
-            global f (x) = void:
+            global f (x = 0) = void:
                 ...
                 
-            local f (x) = void:
+            local f (x = 0) = void:
                 ...
         
         Call:
@@ -78,11 +78,11 @@ Function:
     
         Signature:
           
-            global f (void) = y:
+            global f (void) = (y = 0):
                 ...
                 y = 2
                 
-            local f (void) = y:
+            local f (void) = (y = 0):
                 ...
                 y = 2
                 
@@ -94,11 +94,11 @@ Function:
     
         Signature:
             
-            global f (x) = y:
+            global f (x = 0) = (y = 0):
                 ...
                 y = 2
                 
-            local f (x) = y:
+            local f (x = 0) = (y = 0):
                 ...
                 y = 2
                 
@@ -131,76 +131,71 @@ Object:
     
         global object Circle:
             $ A circle with a 2-D center point and a radius.
-            local x = 0
-            local y = 0
-            local radius = 0
 
-            global Circle(self, x, y, radius) = self:
+            global Circle(self, x = 0.0, y = 0.0, radius = 0.0) = (self):
                 $ Constructor for a circle.
                 self.x = x
                 self.y = y
                 self.radius = radius
 
-            global getArea(self) = area:
+            global getArea(self) = (area = 0.0):
                 $ Returns the area of the circle.
-                area = 3.14159 * (self.radius ** 2)
+                area = 3.14159 * (self.radius ** 2.0)
 
-            global getPerimeter(self) = perimeter:
+            global getPerimeter(self) = (perimeter = 0.0):
                 $ Returns the circumference of the circle.
-                perimeter = 3.14159 * self.radius * 2
+                perimeter = 3.14159 * self.radius * 2.0
 
-            global expand(self, factor) = self:
+            global expand(self, factor = 0.0) = (self):
                 $ Increases the radius by the given factor.
                 self.radius *= factor
 
-            global move(self, dx, dy) = self:
+            global move(self, dx = 0.0, dy = 0.0) = (self):
                 $ Moves the center point by <dx, dy>.
                 self.x += dx
                 self.y += dy
             
-            global toString(self) = description:
+            global toString(self) = (description = ""):
                 $ Returns a stringy representation of the circle.
                 description = "Circle at " + self.x + ", " + self.y + " with r = " +  self.radius
             
     Usage:
             
-        global c1 = self.Circle(4, 3, 10)
+        global c1 = self.Circle(4.0, 3.0, 10.0)
         global c2 = c1
         print c2.getArea()
         print c2.getPerimeter()
-        c2 = c2.move(3,2)
+        c2 = c2.move(3.0,2.0)
         print c2.toString()
-        c2 = c2.move(-3,2)
-        c2 = c2.expand(5)
+        c2 = c2.move(-3.0,2.0)
+        c2 = c2.expand(5.0)
         print c1.toString()
         print c2.toString()
     
     Inheritance:
     
         global object Animal:
-            local name = ""
-            local sound = ""
             
-            global Animal(self, name, sound) = self:
+            global Animal(self, name = "", sound = "") = (self):
                 self.name = name
                 self.sound = sound
 
-            global speak(self) = void:
+            global speak(self) = (void):
                 print self.name + " says " + self.sound
 
         global object Cow(Animal):
             
-            global Cow(self, name) = self:
+            global Cow(self, name = "") = (self):
                 self.Animal = self.Animal(name, "moo")
 
         global object Horse(Animal):
             
-            global Horse(self, name) = self:
+            global Horse(self, name = "") = (self):
                 self.Animal = self.Animal(name, "neigh")
 
         global object Sheep(Animal):
             
-            global Sheep(self, name) = self:
+            global Sheep(self, name = "") = (self):
                 self.Animal = self.Animal(name, "baaaaa")
 
 Matrix:
@@ -286,9 +281,9 @@ Macrosyntax:
 
     VariableDeclaration      ::=    ID '=' Expression
     
-    FunctionDeclaration      ::=    ID '(' ((ID (',' ID)*) | 'void') ')' '=' (ID | 'void') ':' 'Return' 'Indent' Block 'Dedent'
+    FunctionDeclaration      ::=    ID '(' ((VariableDeclaration (',' VariableDeclaration)*) | 'void') ')' '=' '(' (VariableDeclaration | 'void') ')' ':' 'Return' 'Indent' Block 'Dedent'
     
-    MethodDeclaration        ::=    ID '(' 'self' (',' ID)* ')' '=' (ID | 'void' | 'self') ':' 'Return' 'Indent' Block 'Dedent'
+    MethodDeclaration        ::=    ID '(' 'self' (',' VariableDeclaration)* ')' '=' '(' (VariableDeclaration | 'void' | 'self') ')' ':' 'Return' 'Indent' Block 'Dedent'
     
     ObjectDeclaration        ::=    'object' ID ('(' ID (',' ID)* ')')? ':' 'Return' 'Indent' Block 'Dedent'
     
@@ -306,7 +301,7 @@ Macrosyntax:
     
     WhileStatement           ::=    'while' Expression ':' 'Return' 'Indent' Block 'Dedent'
     
-    ForStatement             ::=    'for' Assignment ',' Expression ',' Assignment ':' 'Return' 'Indent' Block 'Dedent'
+    ForStatement             ::=    'for' VariableDeclaration ',' Expression ',' Assignment ':' 'Return' 'Indent' Block 'Dedent'
     
     BreakStatement           ::=    'break'
     
