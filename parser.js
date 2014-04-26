@@ -87,7 +87,7 @@ function parseDeclarationStatement() {
     var scope = match().lexeme;
     var name;
     if (at('ID')) {
-        name = new VariableReference(match());
+        name = match();
         if (at('=')) {
             return parseVariableDeclaration(scope, name);
         } else {
@@ -115,21 +115,23 @@ function parseFunctionDeclaration(scope, name) {
     var value;
     var body;
     if (at('void')) {
-        parameters.push(new VoidLiteral(match()));
+        parameters.push(parseVoidLiteral());
     } else {
-        parameters.push(new VariableReference(match('ID')));
+        parameters.push(parseVariableDeclaration('local', match('ID')));
         while (at(',')) {
             match();
-            parameters.push(new VariableReference(match('ID')));
+            parameters.push(parseVariableDeclaration('local', match('ID')));
         }
     }
     match(')');
     match('=');
+    match('(');
     if (at('ID')) {
-        value = new VariableReference(match());
+        value = parseVariableDeclaration('local', match());
     } else {
-        value = new VoidLiteral(match('void'));
+        value = parseVoidLiteral();
     }
+    match(')');
     match(':');
     match('Return');
     match('Indent');
@@ -146,18 +148,20 @@ function parseMethodDeclaration(scope, name) {
     (self !== undefined ? parameters.push(self.lexeme) : undefined);
     while (at(',')) {
         match();
-        parameters.push(new VariableReference(match('ID')));
+        parameters.push(parseVariableDeclaration('local', match('ID')));
     }
     match(')');
     match('=');
+    match('(');
     if (at('ID')) {
-        value = new VariableReference(match());
+        value = parseVariableDeclaration('local', match());
     } else if (at('void')) {
-        value = new VoidLiteral(match());
+        value = parseVoidLiteral();
     } else {
         value = match('self');
         (value !== undefined ? value = value.lexeme : undefined);
     }
+    match(')');
     match(':');
     match('Return');
     match('Indent');
@@ -171,7 +175,7 @@ function parseObjectDeclaration(scope) {
     var inheritance = [];
     var body;
     match('object');
-    name = new VariableReference(match('ID'));
+    name = match('ID');
     if (at('(')) {
         match();
         inheritance.push(new VariableReference(match('ID')));
@@ -318,7 +322,7 @@ function parseForStatement() {
     var update;
     var body;
     match('for');
-    initialization = parseAssignmentStatement();
+    initialization = parseVariableDeclaration('local', match('ID'));
     match(',');
     condition = parseExpression();
     match(',');
@@ -332,13 +336,11 @@ function parseForStatement() {
 }
 
 function parseBreakStatement() {
-    match('break');
-    return new BreakStatement();
+    return new BreakStatement(match('break'));
 }
 
 function parseContinueStatement() {
-    match('continue');
-    return new ContinueStatement();
+    return new ContinueStatement(match('continue'));
 }
 
 function parseExpression() {

@@ -8,4 +8,9 @@ InfixExpression.prototype.toString = function () {
     return '(InfixExpression ' + this.left + ' ' + this.operator.lexeme + ' ' + this.right + ')';
 } 
 
+InfixExpression.prototype.analyze = function (context) {
+	this.left.analyze(context);
+	this.right.analyze(context);
+}
+
 module.exports = InfixExpression;

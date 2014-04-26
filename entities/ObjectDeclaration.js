@@ -6,7 +6,7 @@ function ObjectDeclaration(scope, name, inheritance, body) {
 }
 
 ObjectDeclaration.prototype.toString = function () {
-    return '(ObjectDeclaration ' + this.scope + ' ' + this.name + ' ' + this.inheritance.join(' ') + ' ' + this.body + ')';
+    return '(ObjectDeclaration ' + this.scope + ' ' + this.name.lexeme + ' ' + this.inheritance.join(' ') + ' ' + this.body + ')';
 } 
 
 module.exports = ObjectDeclaration;

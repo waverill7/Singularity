@@ -5,7 +5,7 @@ function VariableDeclaration(scope, name, expression) {
 }
 
 VariableDeclaration.prototype.toString = function () {
-    return '(VariableDeclaration ' + this.scope + ' ' + this.name + ' ' + this.expression + ')';
+    return '(VariableDeclaration ' + this.scope + ' ' + this.name.lexeme + ' ' + this.expression + ')';
 } 
 
 module.exports = VariableDeclaration;

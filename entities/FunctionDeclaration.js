@@ -7,7 +7,7 @@ function FunctionDeclaration(scope, name, parameters, value, body) {
 }
 
 FunctionDeclaration.prototype.toString = function () {
-    return '(FunctionDeclaration ' + this.scope + ' ' + this.name + ' ' + this.parameters.join(' ') + ' ' + this.value + ' ' + this.body + ')';
+    return '(FunctionDeclaration ' + this.scope + ' ' + this.name.lexeme + ' ' + this.parameters.join(' ') + ' ' + this.value + ' ' + this.body + ')';
 } 
 
 module.exports = FunctionDeclaration;
