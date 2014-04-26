@@ -39,4 +39,14 @@ AnalysisContext.prototype.addContextType = function (contextType) {
     this.contextType = contextType;
 }
 
+AnalysisContext.prototype.lookupContextType = function (contextType) {
+    if (this.contextType === contextType) {
+        return true;    
+    } else if (!this.parent) {
+        return false;
+    } else {
+        return this.parent.lookupContextType(contextType);
+    }
+}
+
 exports.initialContext = AnalysisContext.initialContext;
