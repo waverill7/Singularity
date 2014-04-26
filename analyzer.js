@@ -3,6 +3,7 @@ var error = require('./error');
 function AnalysisContext(parent) {
     this.parent = parent;
     this.symbolTable = {};
+    this.contextType = '';
 }
 
 AnalysisContext.initialContext = function () {
@@ -32,6 +33,10 @@ AnalysisContext.prototype.lookupVariable = function (token) {
     } else {
         return this.parent.lookupVariable(token);
     }
+}
+
+AnalysisContext.prototype.addContextType = function (contextType) {
+    this.contextType = contextType;
 }
 
 exports.initialContext = AnalysisContext.initialContext;
