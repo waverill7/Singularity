@@ -44,6 +44,14 @@ Type.prototype.isReal = function () {
 	return this === Type.REAL;
 }
 
+Type.prototype.isNumber = function () {
+	return ((this === Type.INTEGER) || (this === Type.REAL));
+}
+
+Type.prototype.isString = function () {
+	return this === Type.STRING;
+}
+
 Type.prototype.isCompatibleWith = function (otherType) {
 	return this == otherType;
 }
