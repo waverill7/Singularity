@@ -30,6 +30,20 @@ Type.prototype.mustBeInteger = function (message, location) {
 	}
 }
 
+Type.prototype.mustBeNumber = function (message, location) {
+	if ((this !== Type.INTEGER) || (this !== Type.REAL)) {
+		error(message, location);
+	}
+}
+
+Type.prototype.isInteger = function () {
+	return this === Type.INTEGER;
+}
+
+Type.prototype.isReal = function () {
+	return this === Type.REAL;
+}
+
 Type.prototype.isCompatibleWith = function (otherType) {
 	return this == otherType;
 }
