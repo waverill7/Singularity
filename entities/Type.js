@@ -17,6 +17,7 @@ exports.REAL = Type.REAL = new Type('real');
 exports.CHARACTER = Type.CHARACTER = new Type('character');
 exports.STRING = Type.STRING = new Type('string');
 exports.VOID = Type.VOID = new Type('void');
+exports.MATRIX = Type.MATRIX = new Type('matrix');
 
 Type.prototype.mustBeBoolean = function(message, location) {
 	if (this !== Type.BOOLEAN) {
@@ -32,6 +33,12 @@ Type.prototype.mustBeInteger = function (message, location) {
 
 Type.prototype.mustBeNumber = function (message, location) {
 	if ((this !== Type.INTEGER) || (this !== Type.REAL)) {
+		error(message, location);
+	}
+}
+
+Type.prototype.mustBeMatrix = function (message, location) {
+	if (this !== Type.MATRIX) {
 		error(message, location);
 	}
 }
