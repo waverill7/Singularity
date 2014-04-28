@@ -1,3 +1,5 @@
+var Type = require('./Type');
+
 function PrefixExpression(operator, operand) {
     this.operator = operator;
     this.operand = operand;
