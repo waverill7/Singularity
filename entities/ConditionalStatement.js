@@ -10,8 +10,20 @@ ConditionalStatement.prototype.toString = function () {
     for (var i = 0; i < this.ELIF.length; i += 2) {
     	elifPartitions.push('(elif ' + this.ELIF[i] + ' ' + this.ELIF[i+1] + ')');
     }
-    var elsePartition = '(else ' + this.ELSE[0] + ' ' + this.ELSE[1] + ')';
+    var elsePartition = '(else ' + this.ELSE[0] + ')';
     return '(ConditionalStatement ' + ifPartition + ' ' + elifPartitions.join(' ') + ' ' + elsePartition + ')';
 } 
+
+ConditionalStatement.prototype.analyze = function (context) {
+    this.IF[0].analyze(context);
+    this.IF[0].type.mustBeBoolean('Condition in "if" statement must be boolean.');
+    this.IF[1].analyze(context, 'ConditionalStatement');
+    for (var i = 0; i < this.ELIF.length; i += 2) {
+        this.ELIF[i].analyze(context);
+        this.ELIF[i].type.mustBeBoolean('Condition in "elif" statement must be boolean.');
+        this.ELIF[i+1].analyze(context, 'ConditionalStatement');
+    }
+    this.ELSE[0].analyze(context, 'ConditionalStatement');
+}
 
 module.exports = ConditionalStatement;
