@@ -134,30 +134,24 @@ Object:
 
             global Circle(self, x = 0.0, y = 0.0, radius = 0.0) = (self):
                 $ Constructor for a circle.
-                self.x = x
-                self.y = y
-                self.radius = radius
 
-            global getArea(self) = (area = 0.0):
+            global getArea(self) = (area = 3.14159 * (self.radius ** 2.0)):
                 $ Returns the area of the circle.
-                area = 3.14159 * (self.radius ** 2.0)
 
-            global getPerimeter(self) = (perimeter = 0.0):
+            global getPerimeter(self) = (perimeter = 3.14159 * self.radius * 2.0):
                 $ Returns the circumference of the circle.
-                perimeter = 3.14159 * self.radius * 2.0
 
             global expand(self, factor = 0.0) = (self):
-                $ Increases the radius by the given factor.
+                $ Increases the radius by the given factor and returns a copy of this object.
                 self.radius *= factor
 
             global move(self, dx = 0.0, dy = 0.0) = (self):
-                $ Moves the center point by <dx, dy>.
+                $ Moves the center point by <dx, dy> and returns a copy of this object.
                 self.x += dx
                 self.y += dy
             
-            global toString(self) = (description = ""):
+            global toString(self) = (description = "Circle at " + self.x + ", " + self.y + " with r = " +  self.radius):
                 $ Returns a stringy representation of the circle.
-                description = "Circle at " + self.x + ", " + self.y + " with r = " +  self.radius
             
     Usage:
             
@@ -177,8 +171,7 @@ Object:
         global object Animal:
             
             global Animal(self, name = "", sound = "") = (self):
-                self.name = name
-                self.sound = sound
+                $ Constructor for an animal.
 
             global speak(self) = (void):
                 print self.name + " says " + self.sound
