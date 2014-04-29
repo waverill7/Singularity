@@ -16,11 +16,9 @@ ConditionalStatement.prototype.toString = function () {
 
 ConditionalStatement.prototype.analyze = function (context) {
     this.IF[0].analyze(context);
-    this.IF[0].type.mustBeBoolean('Condition in "if" statement must be boolean.');
     this.IF[1].analyze(context, 'ConditionalStatement');
     for (var i = 0; i < this.ELIF.length; i += 2) {
         this.ELIF[i].analyze(context);
-        this.ELIF[i].type.mustBeBoolean('Condition in "elif" statement must be boolean.');
         this.ELIF[i+1].analyze(context, 'ConditionalStatement');
     }
     this.ELSE[0].analyze(context, 'ConditionalStatement');
