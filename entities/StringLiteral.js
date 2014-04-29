@@ -9,7 +9,6 @@ StringLiteral.prototype.toString = function () {
 } 
 
 StringLiteral.prototype.analyze = function (context) {
-	this.type = Type.STRING;
 }
 
 module.exports = StringLiteral;

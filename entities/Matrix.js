@@ -9,10 +9,8 @@ Matrix.prototype.toString = function () {
 
 Matrix.prototype.analyze = function (context) {
 	this.name.analyze(context);
-	this.name.type.mustBeMatrix('Invalid matrix reference.');
 	this.expressions.forEach(function (expression) {
         expression.analyze(context);
-        expression.type.mustBeInteger('Matrix indices must be integers.')
 	});
 }
 

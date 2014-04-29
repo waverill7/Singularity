@@ -1,5 +1,3 @@
-var Type = require('./Type');
-
 function IntegerLiteral(token) {
     this.token = token;
 }
@@ -9,7 +7,6 @@ IntegerLiteral.prototype.toString = function () {
 } 
 
 IntegerLiteral.prototype.analyze = function (context) {
-	this.type = Type.INTEGER;
 }
 
 module.exports = IntegerLiteral;

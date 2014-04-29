@@ -9,7 +9,6 @@ RealLiteral.prototype.toString = function () {
 } 
 
 RealLiteral.prototype.analyze = function (context) {
-	this.type = Type.REAL;
 }
 
 module.exports = RealLiteral;

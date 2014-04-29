@@ -1,5 +1,3 @@
-var Type = require('./Type');
-
 function VoidLiteral(token) {
     this.token = token;
 }
@@ -9,7 +7,6 @@ VoidLiteral.prototype.toString = function () {
 } 
 
 VoidLiteral.prototype.analyze = function (context) {
-	this.type = Type.VOID;
 }
 
 module.exports = VoidLiteral;
