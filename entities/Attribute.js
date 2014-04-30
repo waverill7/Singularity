@@ -1,3 +1,5 @@
+var error = require('../error');
+
 function Attribute(name, property) {
     this.name = name;
     this.property = property;
@@ -8,7 +10,13 @@ Attribute.prototype.toString = function () {
 } 
 
 Attribute.prototype.analyze = function (context) {
-	this.name.analyze(context);
+	if (this.name === 'self') {
+        if (!context.lookupContextType('ObjectDeclaration')) {
+            error('A reference to "self" must be within the context of an "object" declaration.', this.token);
+        }
+	} else {
+	    this.name.analyze(context);
+	}
 	this.property.analyze(context);
 }
 
