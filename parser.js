@@ -115,7 +115,7 @@ function parseFunctionDeclaration(scope, name) {
     var value;
     var body;
     if (at('void')) {
-        parameters.push(parseVoidLiteral());
+        parameters.push(match().lexeme);
     } else {
         parameters.push(parseVariableDeclaration('local', match('ID')));
         while (at(',')) {
@@ -129,7 +129,7 @@ function parseFunctionDeclaration(scope, name) {
     if (at('ID')) {
         value = parseVariableDeclaration('local', match());
     } else {
-        value = parseVoidLiteral();
+        value = match().lexeme;
     }
     match(')');
     match(':');
