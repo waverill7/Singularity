@@ -20,7 +20,15 @@ AnalysisContext.prototype.variableMustNotBeAlreadyDeclared = function (token) {
     }
 }
 
-AnalysisContext.prototype.addVariable = function (name, entity) {
+AnalysisContext.prototype.addGlobalVariable = function (name, entity) {
+    if (!this.parent) {
+        this.symbolTable[name] = entity;
+    } else {
+        return this.parent.addGlobalVariable(name, entity);
+    }
+}
+
+AnalysisContext.prototype.addLocalVariable = function (name, entity) {
     this.symbolTable[name] = entity;
 }
 
