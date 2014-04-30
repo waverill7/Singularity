@@ -14,9 +14,19 @@ AnalysisContext.prototype.createChildContext = function () {
     return new AnalysisContext(this);
 }
 
-AnalysisContext.prototype.variableMustNotBeAlreadyDeclared = function (token) {
+AnalysisContext.prototype.globalVariableMustNotBeAlreadyDeclared = function (token) {
+    if (!this.parent) {
+        if (this.symbolTable[token.lexeme]) {
+            error('Global variable ' + token.lexeme + ' already declared.', token);
+        }
+    } else {
+        return this.parent.globalVariableMustNotBeAlreadyDeclared(token);
+    }
+}
+
+AnalysisContext.prototype.localVariableMustNotBeAlreadyDeclared = function (token) {
     if (this.symbolTable[token.lexeme]) {
-        error('Variable ' + token.lexeme + ' already declared', token);
+        error('Local variable ' + token.lexeme + ' already declared.', token);
     }
 }
 
