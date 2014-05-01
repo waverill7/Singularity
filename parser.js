@@ -156,7 +156,7 @@ function parseMethodDeclaration(scope, name) {
     if (at('ID')) {
         value = parseVariableDeclaration('local', match());
     } else if (at('void')) {
-        value = parseVoidLiteral();
+        value = match().lexeme;
     } else {
         value = match('self');
         (value !== undefined ? value = value.lexeme : undefined);
