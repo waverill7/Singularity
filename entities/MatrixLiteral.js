@@ -7,9 +7,9 @@ MatrixLiteral.prototype.toString = function () {
 } 
 
 MatrixLiteral.prototype.analyze = function (context) {
-	this.expressions.forEach(function (expression) {
-		expression.analyze(context);
-	});
+    this.expressions.forEach(function (expression) {
+        expression.analyze(context);
+    });
 }
 
 module.exports = MatrixLiteral;

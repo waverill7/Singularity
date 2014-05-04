@@ -8,7 +8,7 @@ PrefixExpression.prototype.toString = function () {
 } 
 
 PrefixExpression.prototype.analyze = function (context) {
-	this.operand.analyze(context);
+    this.operand.analyze(context);
 }
 
 module.exports = PrefixExpression;

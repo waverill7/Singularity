@@ -8,8 +8,8 @@ WhileStatement.prototype.toString = function () {
 } 
 
 WhileStatement.prototype.analyze = function (context) {
-	this.condition.analyze(context);
-	this.body.analyze(context, 'WhileStatement');
+    this.condition.analyze(context);
+    this.body.analyze(context, 'WhileStatement');
 }
 
 module.exports = WhileStatement;

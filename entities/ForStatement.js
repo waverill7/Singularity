@@ -10,10 +10,10 @@ ForStatement.prototype.toString = function () {
 } 
 
 ForStatement.prototype.analyze = function (context) {
-	this.initialization.analyze(context);
-	this.condition.analyze(context);
-	this.update.analyze(context);
-	this.body.analyze(context, 'ForStatement');
+    this.initialization.analyze(context);
+    this.condition.analyze(context);
+    this.update.analyze(context);
+    this.body.analyze(context, 'ForStatement');
 }
 
 module.exports = ForStatement;

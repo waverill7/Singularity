@@ -1,7 +1,7 @@
 var error = require('../error');
 
 function BreakStatement(token) {
-	this.token = token;
+    this.token = token;
 }
 
 BreakStatement.prototype.toString = function () {
@@ -10,7 +10,7 @@ BreakStatement.prototype.toString = function () {
 
 BreakStatement.prototype.analyze = function (context) {
     if (!context.lookupContextType('ForStatement')) {
-    	error('A "break" statement must be within the context of a "for" statement.', this.token);
+        error('A "break" statement must be within the context of a "for" statement.', this.token);
     }
 }
 
