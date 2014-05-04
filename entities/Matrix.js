@@ -8,10 +8,10 @@ Matrix.prototype.toString = function () {
 } 
 
 Matrix.prototype.analyze = function (context) {
-	this.name.analyze(context);
-	this.expressions.forEach(function (expression) {
+    this.name.analyze(context);
+    this.expressions.forEach(function (expression) {
         expression.analyze(context);
-	});
+    });
 }
 
 module.exports = Matrix;

@@ -8,10 +8,10 @@ Call.prototype.toString = function () {
 } 
 
 Call.prototype.analyze = function (context) {
-	this.name.analyze(context);
-	this.expressions.forEach(function (expression) {
-		expression.analyze(context);
-	});
+    this.name.analyze(context);
+    this.expressions.forEach(function (expression) {
+        expression.analyze(context);
+    });
 }
 
 module.exports = Call;

@@ -7,7 +7,7 @@ VariableReference.prototype.toString = function () {
 } 
 
 VariableReference.prototype.analyze = function (context) {
-	this.referent = context.lookupVariable(this.token);
+    this.referent = context.lookupVariable(this.token);
 }
 
 module.exports = VariableReference;

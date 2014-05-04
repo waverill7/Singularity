@@ -9,8 +9,8 @@ AssignmentStatement.prototype.toString = function () {
 } 
 
 AssignmentStatement.prototype.analyze = function (context) {
-	this.left.analyze(context);
-	this.right.analyze(context);
+    this.left.analyze(context);
+    this.right.analyze(context);
 }
 
 module.exports = AssignmentStatement;

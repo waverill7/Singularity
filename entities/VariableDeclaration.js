@@ -9,14 +9,14 @@ VariableDeclaration.prototype.toString = function () {
 } 
 
 VariableDeclaration.prototype.analyze = function (context) {
-	if (this.scope === 'global') {
+    if (this.scope === 'global') {
         context.globalVariableMustNotBeAlreadyDeclared(this.name);
         context.addGlobalVariable(this.name.lexeme, this);
-	} else {
+    } else {
         context.localVariableMustNotBeAlreadyDeclared(this.name);
         context.addLocalVariable(this.name.lexeme, this);
-	}
-	this.expression.analyze(context);
+    }
+    this.expression.analyze(context);
 }
 
 module.exports = VariableDeclaration;
