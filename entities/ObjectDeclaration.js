@@ -10,7 +10,7 @@ ObjectDeclaration.prototype.toString = function () {
 } 
 
 ObjectDeclaration.prototype.analyze = function (context) {
-	if (this.scope === 'global') {
+    if (this.scope === 'global') {
         context.globalVariableMustNotBeAlreadyDeclared(this.name);
         context.addGlobalVariable(this.name.lexeme, this);
     } else {

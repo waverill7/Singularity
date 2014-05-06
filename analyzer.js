@@ -67,4 +67,12 @@ AnalysisContext.prototype.lookupContextType = function (contextType) {
     }
 }
 
+AnalysisContext.prototype.getContext = function (contextType) {
+    if (this.contextType === contextType) {
+        return this;
+    } else {
+        return this.parent.getContext(contextType);
+    }
+}
+
 exports.initialContext = AnalysisContext.initialContext;

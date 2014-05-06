@@ -10,14 +10,15 @@ Attribute.prototype.toString = function () {
 } 
 
 Attribute.prototype.analyze = function (context) {
-	if (this.name === 'self') {
+    if (this.name === 'self') {
         if (!context.lookupContextType('ObjectDeclaration')) {
             error('A reference to "self" must be within the context of an "object" declaration.', this.token);
         }
-	} else {
-	    this.name.analyze(context);
-	}
-	this.property.analyze(context);
+        this.property.analyze(context.getContext('ObjectDeclaration'));
+    } else {
+        this.name.analyze(context);
+        this.property.analyze(context);
+    }
 }
 
 module.exports = Attribute;

@@ -25,12 +25,12 @@ MethodDeclaration.prototype.analyze = function (context) {
     }
     var methodContext = context.createChildContext();
     this.parameters.forEach(function (parameter) {
-    	if (parameter !== 'self') {
+        if (parameter !== 'self') {
             parameter.analyze(methodContext);
         }
     });
     if ((this.value !== 'void') && (this.value !== 'self')) {
-    	this.value.analyze(methodContext);
+        this.value.analyze(methodContext);
     }
     this.body.analyze(methodContext, 'MethodDeclaration');
 }
