@@ -3,7 +3,7 @@ function CharacterLiteral(token) {
 }
 
 CharacterLiteral.prototype.toString = function () {
-    return '(CharacterLiteral ' + this.token.lexeme + ')';
+    return this.token.lexeme;
 } 
 
 CharacterLiteral.prototype.analyze = function (context) {
