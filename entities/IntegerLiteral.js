@@ -3,7 +3,7 @@ function IntegerLiteral(token) {
 }
 
 IntegerLiteral.prototype.toString = function () {
-    return '(IntegerLiteral ' + this.token.lexeme + ')';
+    return this.token.lexeme;
 } 
 
 IntegerLiteral.prototype.analyze = function (context) {
