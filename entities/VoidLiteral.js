@@ -3,7 +3,7 @@ function VoidLiteral(token) {
 }
 
 VoidLiteral.prototype.toString = function () {
-    return '(VoidLiteral ' + this.token.lexeme + ')';
+    return this.token.lexeme;
 } 
 
 VoidLiteral.prototype.analyze = function (context) {
