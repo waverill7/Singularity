@@ -34,6 +34,10 @@ function gen(e) {
 
 var generator = {
 
+    'AssignmentStatement': function (s) {
+        emit(util.format('%s %s %s;', gen(s.left), makeOp(s.operator.lexeme), gen(s.right)));
+    },
+
     'Block': function (block) {
         indentLevel++;
         block.statements.forEach(function (statement) {
@@ -90,6 +94,14 @@ var generator = {
     'StringLiteral': function (literal) {
         return literal.toString();
     },
+
+    'VariableDeclaration': function (v) {
+        emit(util.format('var %s = %s;', makeVariable(v), gen(v.expression)));
+    },
+
+    'VariableReference': function (v) {
+        return makeVariable(v.referent);
+    }, 
 
     'VoidLiteral': function (literal) {
         return 'null';
