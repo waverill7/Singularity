@@ -1,5 +1,3 @@
-var Type = require('./Type');
-
 function RealLiteral(token) {
     this.token = token;
 }

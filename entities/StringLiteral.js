@@ -1,5 +1,3 @@
-var Type = require('./Type');
-
 function StringLiteral(token) {
     this.token = token;
 }

@@ -117,21 +117,19 @@ function parseFunctionDeclaration(scope, name) {
     if (at('void')) {
         parameters.push(match().lexeme);
     } else {
-        parameters.push(parseVariableDeclaration('local', match('ID')));
+        parameters.push(match('ID'));
         while (at(',')) {
             match();
-            parameters.push(parseVariableDeclaration('local', match('ID')));
+            parameters.push(match('ID'));
         }
     }
     match(')');
     match('=');
-    match('(');
     if (at('ID')) {
-        value = parseVariableDeclaration('local', match());
+        value = match();
     } else {
         value = match().lexeme;
     }
-    match(')');
     match(':');
     match('Return');
     match('Indent');
@@ -148,20 +146,18 @@ function parseMethodDeclaration(scope, name) {
     (self !== undefined ? parameters.push(self.lexeme) : undefined);
     while (at(',')) {
         match();
-        parameters.push(parseVariableDeclaration('local', match('ID')));
+        parameters.push(match('ID'));
     }
     match(')');
     match('=');
-    match('(');
     if (at('ID')) {
-        value = parseVariableDeclaration('local', match());
+        value = match();
     } else if (at('void')) {
         value = match().lexeme;
     } else {
         value = match('self');
         (value !== undefined ? value = value.lexeme : undefined);
     }
-    match(')');
     match(':');
     match('Return');
     match('Indent');

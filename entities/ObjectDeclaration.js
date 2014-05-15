@@ -18,10 +18,9 @@ ObjectDeclaration.prototype.analyze = function (context) {
         context.addLocalVariable(this.name.lexeme, this);
     }
     var objectContext = context.createChildContext();
-        this.inheritance.forEach(function (object) {
-            object.analyze(objectContext);
-        });
-    }
+    this.inheritance.forEach(function (object) {
+        object.analyze(objectContext);
+    });
     this.body.analyze(objectContext, 'ObjectDeclaration');
 }
 
